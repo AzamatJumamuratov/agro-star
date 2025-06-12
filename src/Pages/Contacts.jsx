@@ -6,11 +6,16 @@ import PageTitle from "../Components/Common/PageTitle";
 
 const Contacts = () => {
   const actionData = useActionData();
+  const formRef = useRef(null);
+  if (actionData) {
+    formRef.current.reset();
+  }
   return (
     <main>
       <div className="wrapper">
         <PageTitle title={"Свяжитесь с нами"} />
         <CustomForm
+          ref={formRef}
           method={"post"}
           result={actionData}
           formTitle={"Форма для связи по проектам"}
