@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --default-font-family: "Arial";
+  --color-bg-start: #33684e;
+  --color-bg-end: #257947;
+  --color-primary: #32694e;
+  --color-almostWhite: #f8f9fa;
+  --text-almostN: 28px;
+  --text-largerN: 32px;
+  --text-almostL: 42px;
+}
+
+.wrapper {
+  max-width: 1630px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1630px) {
+  .wrapper {
+    padding: 0 40px;
+  }
+}
