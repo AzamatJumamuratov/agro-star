@@ -20,16 +20,16 @@ const ContactForm = () => {
         formTitle={"Форма для связи по проектам"}
       >
         <FormInput
-          name="projectName"
-          id="projectName"
+          name="name_project"
+          id="name_project"
           type="text"
-          autoComplete="projectName"
+          autoComplete="name_project"
           placeholder="Название проекта"
           required
         />
         <CustomTextArea
-          name="message"
-          id="message"
+          name="comment"
+          id="comment"
           required
           placeholder="Ваше сообщение"
         />
