@@ -12,7 +12,7 @@ import Partners from "./Pages/Partners.jsx";
 import News from "./Pages/News.jsx";
 import Contacts from "./Pages/Contacts.jsx";
 
-import { action as contactAction } from "./Data Fetching/ContactFormAction.js";
+import { action as contactAction } from "./Data Fetching/ContactsData.js";
 import {
   loader as ProjectsLoader,
   action as ProjectsAction,

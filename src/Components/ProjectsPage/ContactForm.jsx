@@ -8,6 +8,7 @@ const ContactForm = () => {
   const actionData = useActionData();
   const formRef = useRef(null);
   if (actionData) {
+    console.log(actionData);
     formRef.current.reset();
   }
   return (

@@ -11,13 +11,10 @@ const CustomForm = ({
   children,
   ...props
 }) => {
+  console.log(result);
   return (
     <>
-      <Notification
-        result={result}
-        durationSeconds={3000}
-        innerText={"Отправлено!"}
-      />
+      <Notification result={result} durationSeconds={3000} />
 
       <div className="bg-almostWhite rounded-2xl border-2 border-[#F1F1F1] px-6 py-8">
         <h2 className="xl:text-4xl lg:text-2xl text-xl font-bold xl:mb-12 lg:mb-8 mb-4">

@@ -1,30 +1,30 @@
-// import project_image from "../assets/images/project.png";
+import project_image from "../assets/images/project.png";
 import ConvertToJSonFormData from "../Utils/FromDataToJson";
 import FetchData from "./FetchData";
 
 export async function loader() {
-  let response = await FetchData("projects", {
-    headers: {
-      "Accept-Language": "ru",
-    },
-  });
-  if (response.ok) {
-    return await response.json();
-  } else {
-    console.Log("Eror Code : " + response.status + "Text : " + response.status);
-  }
+  // let response = await FetchData("projects", {
+  //   headers: {
+  //     "Accept-Language": "ru",
+  //   },
+  // });
+  // if (response.ok) {
+  //   return await response.json();
+  // } else {
+  //   console.Log("Eror Code : " + response.status + "Text : " + response.status);
+  // }
 
-  // return {
-  //   results: [
-  //     {
-  //       id: "1",
-  //       title: "Органическое земледелие",
-  //       description:
-  //         "Развитие экологически чистых методов выращивания сельскохозяйственных культур.",
-  //       image: project_image,
-  //     },
-  //   ],
-  // };
+  return {
+    results: [
+      {
+        id: "1",
+        title: "Органическое земледелие",
+        description:
+          "Развитие экологически чистых методов выращивания сельскохозяйственных культур.",
+        image: project_image,
+      },
+    ],
+  };
 }
 
 export async function action({ request }) {
@@ -38,14 +38,21 @@ export async function action({ request }) {
     },
     body: dataJson,
   });
+
+  let result;
   if (response.ok) {
-    return await response.json();
+    result = await response.json();
   } else {
-    console.log(
-      "Eror Code : " + response.status + "Text : " + response.statusText
+    console.error(
+      "Error Code : " + response.status + "Text : " + response.statusText
     );
+    result = {
+      message: "Произошла Ошибка!",
+    };
   }
 
-  // // Redirect or return a response as needed
-  // return { success: true };
+  return {
+    success: response.ok,
+    result,
+  };
 }

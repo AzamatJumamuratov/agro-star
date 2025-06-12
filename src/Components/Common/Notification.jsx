@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-const Notification = ({ result, durationSeconds, innerText }) => {
+const Notification = ({ result, durationSeconds }) => {
+  console.log(result);
   const [doneShowing, SetDoneShowing] = useState(true);
   useEffect(() => {
     SetDoneShowing(false);
@@ -15,11 +16,13 @@ const Notification = ({ result, durationSeconds, innerText }) => {
     <>
       {
         <div
-          className={`${
-            result && !doneShowing ? "top-14" : "-top-full"
-          } bg-red-500 rounded-4xl fixed left-1/2 -translate-1/2 -top-full p-4 duration-1000 ease-in-out text-white z-40`}
+          className={`${result && !doneShowing ? "top-14" : "-top-full"} ${
+            result?.success
+              ? "bg-blue-500 border-blue-600"
+              : "bg-red-500 border-red-600"
+          } rounded-4xl border  fixed left-1/2 -translate-1/2 -top-full xl:p-4 p-3 duration-1000 ease-in-out text-white z-40 xl:text-base lg:text-sm text-xs`}
         >
-          {innerText}
+          {result?.success ? "Результат Успешен!" : "Произошла Ошибка!"}
         </div>
       }
     </>

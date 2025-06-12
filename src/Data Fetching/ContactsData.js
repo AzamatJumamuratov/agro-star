@@ -12,16 +12,28 @@ export async function action({ params, request }) {
     },
     body: dataJson,
   });
+
+  let result;
   if (response.ok) {
-    return await response.json();
+    result = await response.json();
   } else {
-    console.log(
-      "Eror Code : " + response.status + "Text : " + response.statusText
+    console.error(
+      "Error Code : " + response.status + "Text : " + response.statusText
     );
-    const errorVal = await response.json();
-    return {
-      status: response.status,
-      error: errorVal,
+    result = {
+      message: "Произошла Ошибка!",
     };
   }
+
+  return {
+    success: response.ok,
+    result,
+  };
+
+  // return {
+  //   success: false,
+  //   result: {
+  //     message: "sdada",
+  //   },
+  // };
 }
