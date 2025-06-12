@@ -3,7 +3,7 @@ import LastNews from "../Components/HomePage/LastNews";
 
 const HomePage = () => {
   return (
-    <main className="">
+    <main className="" ref>
       <HeroBanner />
       <LastNews />
     </main>

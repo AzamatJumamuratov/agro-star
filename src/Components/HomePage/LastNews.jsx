@@ -7,7 +7,7 @@ const LastNews = () => {
   return (
     <div className="wrapper">
       <div className="flex justify-between items-center mt-14 mb-">
-        <h2 className="xl:text-5xl lg:text-largerN md:text-almostN text-2xl font-bold">
+        <h2 className="xl:text-5xl lg:text-almostN md:text-2xl text-xl font-bold">
           Последние новости
         </h2>
         <Link to="/news">Посмотреть все</Link>

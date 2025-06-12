@@ -12,12 +12,24 @@
 }
 
 .wrapper {
-  max-width: 1630px;
+  max-width: calc(100% - 290px);
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1630px) {
+@media screen and (max-width: 1024px) {
   .wrapper {
-    padding: 0 40px;
+    max-width: calc(100% - 150px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: calc(100% - 100px);
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    max-width: calc(100% - 50px);
   }
 }

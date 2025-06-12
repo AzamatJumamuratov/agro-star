@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 const QuickLinks = () => {
   return (
     <div className="text-white xl:col-auto col-span-full">
-      <h3 className="xl:text-[28px] text-lg xl:mb-8 lg:mb-5 font-bold">
+      <h3 className="xl:text-[28px] text-lg xl:mb-8 lg:mb-5 mb-4 font-bold">
         Быстрые ссылки
       </h3>
       <nav className="grid xl:grid-cols-1 md:grid-cols-4  grid-cols-3 gap-6 xl:text-2xl text-base">

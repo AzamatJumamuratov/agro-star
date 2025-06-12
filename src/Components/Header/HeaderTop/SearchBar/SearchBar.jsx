@@ -7,12 +7,12 @@ const SearchBar = ({ additionalClass }) => {
       <img
         src={search_icon}
         alt="search_icon"
-        className="absolute left-4 top-2.5 bottom-3"
+        className="absolute xl:h-[18px] lg:h-3.5 h-3  xl:left-4 lg:left-3 left-3 xl:top-3 lg:top-2 top-1 bottom-3"
       />
       <input
         type="search"
         placeholder="Поиск по сайту.."
-        className="h-full w-[368px]  py-3 pl-11 pr-2 placeholder:text-white rounded-lg xl:text-base text-xs bg-white/30 text-white"
+        className="h-full xl:w-[368px] lg:w-[245px]  xl:py-3 lg:py-2 py-1 pl-11 pr-2 placeholder:text-white rounded-lg xl:text-base text-xs bg-white/30 text-white"
       />
     </Form>
   );
