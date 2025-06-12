@@ -21,7 +21,6 @@ import { loader as PartnersLoader } from "./Data Fetching/PartnersData.js";
 import { loader as AboutLoader } from "./Data Fetching/AboutData.js";
 import { loader as NewsLoader } from "./Data Fetching/NewsData.js";
 import { loader as HomeLoader } from "./Data Fetching/HomeData.js";
-import ScrollToTop from "./Utils/ScrollToTop.jsx";
 
 const router = createBrowserRouter([
   {
