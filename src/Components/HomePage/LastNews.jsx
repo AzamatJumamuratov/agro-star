@@ -1,6 +1,6 @@
 import { Link, useLoaderData } from "react-router";
 import NewsItem from "../Common/NewsItem.jsx";
-import GetLastDates from "../../Utils/getLastDates.js";
+import GetLastDates from "../../Utils/GetLastDates.js";
 
 const LastNews = () => {
   const loaderData = useLoaderData();
