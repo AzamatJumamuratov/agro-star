@@ -33,7 +33,7 @@ const CustomForm = ({
           {children}
           <button
             type="submit"
-            className="bg-primary xl:text-2xl lg:text-base text-sm text-white rounded-lg xl:px-14 lg:px-9 md:px-5 px-4 xl:py-4 lg:py-3 py-2"
+            className="bg-primary xl:text-2xl lg:text-sm text-xs text-white rounded-lg xl:px-14 lg:px-6 md:px-5 px-4 xl:py-4 lg:py-3 py-2"
           >
             {buttonText || "Submit"}
           </button>
