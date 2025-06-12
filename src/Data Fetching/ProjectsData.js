@@ -41,7 +41,7 @@ export async function action({ request }) {
   if (response.ok) {
     return await response.json();
   } else {
-    console.Log("Eror Code : " + response.status + "Text : " + response.status);
+    console.log("Eror Code : " + response.status + "Text : " + response.status);
   }
 
   // // Redirect or return a response as needed
