@@ -17,8 +17,8 @@ const Partners = () => {
         </h3>
 
         <ul className="list-disc xl:text-largerN lg:text-xl text-base pl-8 mb-12">
-          {loaderData.results.map((partnerObj, index) => {
-            return <li key={partnerObj.id}>{partnerObj.name}</li>;
+          {loaderData.results.map((item) => {
+            return <li key={item.id}>{item.name}</li>;
           })}
           {/* <li>Министерство сельского хозяйства Республики Узбекистан</li>
           <li>Международные агротехнические компании </li>
