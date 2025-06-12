@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import bg from "../../assets/images/bg.png";
 
 const HeroBanner = () => {
@@ -19,9 +20,12 @@ const HeroBanner = () => {
             Инновационные решения для увеличения сельскохозяйственной продукции
             и устойчивого развития агросектора
           </p>
-          <button className="bg-[#F39C12] xl:px-6 lg:px-4 px-3 py-3 rounded-full xl:text-lg lg:text-xs text-[10px]">
+          <Link
+            to={"/contacts"}
+            className="bg-[#F39C12] xl:px-6 lg:px-4 px-3 py-3 rounded-full xl:text-lg lg:text-xs text-[10px]"
+          >
             Связаться с нами
-          </button>
+          </Link>
         </div>
       </div>
     </section>
