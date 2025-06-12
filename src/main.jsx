@@ -68,7 +68,6 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ScrollToTop />
     <RouterProvider router={router} />
   </StrictMode>
 );
