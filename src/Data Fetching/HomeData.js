@@ -1,14 +1,16 @@
+import FetchData from "./FetchData.js";
+
 export async function loader() {
-  // let response = await FetchData("company-info", {
-  //   headers: {
-  //     "Accept-Language": "ru",
-  //   },
-  // });
-  // if (response.ok) {
-  //   return { success: true };
-  // } else {
-  //   console.log("Eror Code : " + response.status + "Text : " + response.status);
-  // }
+  let response = await FetchData("news", {
+    headers: {
+      "Accept-Language": "ru",
+    },
+  });
+  if (response.ok) {
+    return await response.json();
+  } else {
+    console.log("Eror Code : " + response.status + "Text : " + response.status);
+  }
 
   return {
     results: [
