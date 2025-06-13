@@ -1,5 +1,4 @@
 import XMark_icon from "../../../../assets/xMark_icon.svg";
-import { Sidebar, Menu, MenuItem, Submenu, Logo } from "react-mui-sidebar";
 import SearchBar from "../SearchBar/SearchBar";
 import LanguageButtons from "../LanguageButtons/LanguageButtons";
 import { NavLink } from "react-router";
