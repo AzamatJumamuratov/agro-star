@@ -1,8 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import "./i18n/config.js";
 import Layout from "./Layout.jsx";
 import "./Styles/index.css";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
 
 import HomePage from "./Pages/HomePage.jsx";
 import About from "./Pages/About.jsx";
@@ -21,6 +22,11 @@ import { loader as PartnersLoader } from "./Data Fetching/PartnersData.js";
 import { loader as AboutLoader } from "./Data Fetching/AboutData.js";
 import { loader as NewsLoader } from "./Data Fetching/NewsData.js";
 import { loader as HomeLoader } from "./Data Fetching/HomeData.js";
+import GlobalLanguageContextProvider from "./Contexts/LanguageGlobalContext.jsx";
+import Admin from "./Pages/Admin/Admin.jsx";
+import AdminNews from "./Pages/Admin/AdminNews.jsx";
+import AdminControlPanel from "./Pages/Admin/AdminControlPanel.jsx";
+import AdminStatistics from "./Pages/Admin/AdminStatistics.jsx";
 
 const router = createBrowserRouter([
   {
@@ -64,9 +70,33 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/admin",
+    Component: Admin,
+    children: [
+      {
+        index: true, // Это будет срабатывать при /admin
+        element: <Navigate to="news" replace />, // Редиректим на /admin/news
+      },
+      {
+        path: "news",
+        Component: AdminNews,
+      },
+      {
+        path: "controlPanel",
+        Component: AdminControlPanel,
+      },
+      {
+        path: "statistics",
+        Component: AdminStatistics,
+      },
+    ],
+  },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <GlobalLanguageContextProvider>
+      <RouterProvider router={router} />
+    </GlobalLanguageContextProvider>
   </StrictMode>
 );

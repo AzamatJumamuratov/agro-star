@@ -1,10 +1,10 @@
 import FetchData from "./FetchData.js";
 
 export async function loader() {
-  let language = localStorage.getItem("language");
+  // let language = localStorage.getItem("language");
   let response = await FetchData("news", {
     headers: {
-      "Accept-Language": language,
+      "Accept-Language": "ru",
     },
   });
   if (response.ok) {

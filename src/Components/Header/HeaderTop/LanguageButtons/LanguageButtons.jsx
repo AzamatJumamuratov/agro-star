@@ -1,22 +1,56 @@
+import { useContext } from "react";
+// In our components or hooks
+import { useTranslation } from "react-i18next";
+import { GlobalLanguageContext } from "../../../../Contexts/LanguageGlobalContext";
+
+import LangButton from "./langButton";
+
 const LanguageButtons = ({ additionalClass }) => {
+  const { currentLanguage, languageSwitchHandler } = useContext(
+    GlobalLanguageContext
+  );
+  const { i18n } = useTranslation();
+  const activeLocale = i18n.resolvedLanguage;
+
   return (
     <div
       className={`flex justify-between items-center xl:text-base lg:text-sm text-xs gap-3 ${additionalClass}`}
     >
-      <button className="py-1 xl:py-3 px-2.5 xl:px-4 rounded-lg bg-white/30 text-white">
+      <LangButton
+        current={currentLanguage}
+        onClick={OnChangeLanguage}
+        language={"ru"}
+      >
         RU
-      </button>
-      <button className="py-1 xl:py-3 px-2.5 xl:px-4 rounded-lg bg-white/30 text-white">
+      </LangButton>
+      <LangButton
+        current={currentLanguage}
+        onClick={OnChangeLanguage}
+        language={"uz"}
+      >
         UZ
-      </button>
-      <button className="py-1 xl:py-3 px-2.5 xl:px-4 rounded-lg bg-white/30 text-white">
+      </LangButton>
+      <LangButton
+        current={currentLanguage}
+        onClick={OnChangeLanguage}
+        language={"kaa"}
+      >
         KK
-      </button>
-      <button className="py-1 xl:py-3 px-2.5 xl:px-4 rounded-lg bg-white/30 text-white">
+      </LangButton>
+      <LangButton
+        current={currentLanguage}
+        onClick={OnChangeLanguage}
+        language={"en"}
+      >
         EN
-      </button>
+      </LangButton>
     </div>
   );
+
+  function OnChangeLanguage(newL) {
+    languageSwitchHandler(newL);
+    i18n.changeLanguage(newL);
+  }
 };
 
 export default LanguageButtons;
