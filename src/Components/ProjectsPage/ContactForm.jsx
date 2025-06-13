@@ -32,6 +32,7 @@ const ContactForm = () => {
           name="comment"
           id="comment"
           required
+          minLength={10}
           placeholder="Ваше сообщение"
         />
       </CustomForm>
