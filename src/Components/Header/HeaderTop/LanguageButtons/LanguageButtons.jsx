@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { GlobalLanguageContext } from "../../../../Contexts/LanguageGlobalContext";
 
-import LangButton from "./langButton";
+import LangButton from "./LangButton";
 
 const LanguageButtons = ({ additionalClass }) => {
   const { currentLanguage, languageSwitchHandler } = useContext(
