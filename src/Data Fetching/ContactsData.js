@@ -18,7 +18,10 @@ export async function action({ params, request }) {
     result = await response.json();
   } else {
     console.error(
-      "Error Code : " + response.status + "Text : " + response.statusText
+      "Error Sending Contacts. Code : " +
+        response.status +
+        " Text : " +
+        response.statusText
     );
     result = {
       message: "Произошла Ошибка!",

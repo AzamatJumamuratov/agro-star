@@ -10,7 +10,12 @@ export async function loader() {
   if (response.ok) {
     return await response.json();
   } else {
-    console.log("Eror Code : " + response.status + "Text : " + response.status);
+    console.error(
+      "Error Loading Home Page. Code : " +
+        response.status +
+        " Text : " +
+        response.statusText
+    );
   }
 
   // return {

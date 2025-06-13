@@ -18,8 +18,8 @@ const About = () => {
           return (
             <AboutItem
               key={item.id}
-              title={item.history}
-              desc={item.strategy}
+              title={item.title}
+              desc={item.description}
             />
           );
         })}

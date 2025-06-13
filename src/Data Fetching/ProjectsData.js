@@ -11,7 +11,12 @@ export async function loader() {
   if (response.ok) {
     return await response.json();
   } else {
-    console.Log("Eror Code : " + response.status + "Text : " + response.status);
+    console.error(
+      "Error Loading About Page. Code : " +
+        response.status +
+        " Text : " +
+        response.statusText
+    );
   }
 
   // return {
