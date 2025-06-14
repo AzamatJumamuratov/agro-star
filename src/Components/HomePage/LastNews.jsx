@@ -1,9 +1,14 @@
 import { Link, useLoaderData } from "react-router";
 import NewsItem from "../Common/NewsItem.jsx";
 import GetLastDates from "../../Utils/GetLastDates.js";
+import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
+import { useContext } from "react";
 
 const LastNews = () => {
   const loaderData = useLoaderData();
+  const { currentLanguage, languageSwitchHandler } = useContext(
+    GlobalLanguageContext
+  );
   return (
     <div className="wrapper">
       <div className="flex justify-between items-center mt-14 mb-">
