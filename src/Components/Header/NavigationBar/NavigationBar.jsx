@@ -1,31 +1,35 @@
+import { useTranslation } from "react-i18next";
 import CustomNavLink from "./CustomNavLink";
 
 const NavigationBar = () => {
+  const { t } = useTranslation();
   return (
     <div className="hidden md:block shadow-[0px_2px_5px_0px_#0000001A] mb-1 bg-white">
       <div className="wrapper">
         <nav className="">
           <ul className="flex lg:flex-nowrap flex-wrap justify-center items-center md:gap-x-16    lg:gap-12 xl:gap-[84px] py-[12px]">
             <li className="">
-              <CustomNavLink to="/">Главная</CustomNavLink>
+              <CustomNavLink to="/">{t("link_home")}</CustomNavLink>
             </li>
             <li className="">
-              <CustomNavLink to="/about">О компании</CustomNavLink>
+              <CustomNavLink to="/about">{t("link_about")}</CustomNavLink>
             </li>
             <li className="">
-              <CustomNavLink to="/projects">Проекты</CustomNavLink>
+              <CustomNavLink to="/projects">{t("link_projects")}</CustomNavLink>
             </li>
             <li className="">
-              <CustomNavLink to="/agroschool">Агрошкола</CustomNavLink>
+              <CustomNavLink to="/agroschool">
+                {t("link_agroschool")}
+              </CustomNavLink>
             </li>
             <li className="">
-              <CustomNavLink to="/partners">Партнеры</CustomNavLink>
+              <CustomNavLink to="/partners">{t("link_partners")}</CustomNavLink>
             </li>
             <li className="">
-              <CustomNavLink to="/news">Новости</CustomNavLink>
+              <CustomNavLink to="/news">{t("link_news")}</CustomNavLink>
             </li>
             <li className="">
-              <CustomNavLink to="/contacts">Контакты</CustomNavLink>
+              <CustomNavLink to="/contacts">{t("link_contacts")}</CustomNavLink>
             </li>
           </ul>
         </nav>
