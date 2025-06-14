@@ -45,6 +45,10 @@ i18n
         // `translation` is the default namespace.
         // More details about namespaces shortly.
         translation: {
+          banner_title: "Развиваем сельское хозяйство будущего",
+          banner_desc:
+            "Инновационные решения для увеличения сельскохозяйственной продукции и устойчивого развития агросектора",
+          banner_btn: "Связаться с нами",
           about_company_title: "О Компании",
           about_company_desc:
             "Наша сельскохозяйственная компания специализируется на увеличении сельскохозяйственной продукции и внедрении современных технологий агросектор.",
@@ -56,6 +60,10 @@ i18n
       },
       uz: {
         translation: {
+          banner_title: "Kelajak qishloq xo‘jaligini rivojlantiramiz",
+          banner_desc:
+            "Qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorni barqaror rivojlantirish uchun innovatsion yechimlar",
+          banner_btn: "Biz bilan aloqa",
           about_company_title: "Kompaniya haqida",
           about_company_desc:
             "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",

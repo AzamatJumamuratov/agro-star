@@ -1,7 +1,9 @@
 import { Link } from "react-router";
 import bg from "../../assets/images/bg.png";
+import { useTranslation } from "react-i18next";
 
 const HeroBanner = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative xl:h-[720px] lg:h-[512px] h-[384px]">
       <div className="absolute -z-10 w-full h-full bg-linear-to-r from-bg-start to-bg-end">
@@ -14,17 +16,14 @@ const HeroBanner = () => {
       <div className="wrapper">
         <div className="text-white xl:max-w-[608px] lg:max-w-[512px] max-w-1/2 xl:pt-32 lg:pt-20 pt-10">
           <h1 className="xl:text-[56px] lg:text-4xl text-3xl mb-6 font-bold">
-            Развиваем сельское хозяйство будущего
+            {t("banner_title")}
           </h1>
-          <p className="mb-9 xl:mr-32 lg:mr-[84px] mr-10">
-            Инновационные решения для увеличения сельскохозяйственной продукции
-            и устойчивого развития агросектора
-          </p>
+          <p className="mb-9 xl:mr-32 lg:mr-[84px] mr-10">{t("banner_desc")}</p>
           <Link
             to={"/contacts"}
             className="bg-[#F39C12] xl:px-6 lg:px-4 px-3 py-3 rounded-full xl:text-lg lg:text-xs text-[10px]"
           >
-            Связаться с нами
+            {t("banner_btn")}
           </Link>
         </div>
       </div>
