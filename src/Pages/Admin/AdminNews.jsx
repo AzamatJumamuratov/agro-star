@@ -1,5 +1,12 @@
+import AdminHeader from "../../Components/Admin/Header/Header";
+
 const AdminNews = () => {
-  return <div>Admin News</div>;
+  return (
+    <div>
+      <AdminHeader />
+      <main></main>
+    </div>
+  );
 };
 
 export default AdminNews;

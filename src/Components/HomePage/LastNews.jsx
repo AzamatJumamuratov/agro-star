@@ -14,14 +14,15 @@ const LastNews = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-14">
         {GetLastDates(loaderData.results).map((item) => {
-          return (
+          let dataByLanguage = item.translations?.[currentLanguage];
+          if (dataByLanguage) {
             <NewsItem
               key={item.id}
-              title={item.title}
-              content={item.content}
+              title={dataByLanguage.title}
+              content={dataByLanguage.content}
               date={item.published_at}
-            />
-          );
+            />;
+          }
         })}
       </div>
     </div>

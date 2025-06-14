@@ -5,8 +5,12 @@ import Sidebar from "../../Components/Admin/Sidebar";
 const Admin = () => {
   return (
     <div className="flex">
-      <Sidebar />
-      <Outlet />
+      <div className="w-[280px]">
+        <Sidebar />
+      </div>
+      <div className="w-[calc(100%-280px)]">
+        <Outlet />
+      </div>
     </div>
   );
 };
