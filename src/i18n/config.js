@@ -84,8 +84,8 @@ i18n
           banner_desc:
             "Qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorni barqaror rivojlantirish uchun innovatsion yechimlar",
           banner_btn: "Biz bilan aloqa",
-          lastnews_title: "So‘nggi yangiliklar",
-          lastnews_link: "Hammasini ko‘rish",
+          lastNews_title: "So‘nggi yangiliklar",
+          lastNews_link: "Hammasini ko‘rish",
           about_company_title: "Kompaniya haqida",
           about_company_desc:
             "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",
