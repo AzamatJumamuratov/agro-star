@@ -58,9 +58,9 @@ i18n
           banner_desc:
             "Инновационные решения для увеличения сельскохозяйственной продукции и устойчивого развития агросектора",
           banner_btn: "Связаться с нами",
-          about_company_title: "О Компании",
           lastNews_title: "Последние новости",
           lastNews_link: "Посмотреть все",
+          about_company_title: "О Компании",
           about_company_desc:
             "Наша сельскохозяйственная компания специализируется на увеличении сельскохозяйственной продукции и внедрении современных технологий агросектор.",
           agroSchool_title: "Сельскохозяйственная школа",
@@ -84,8 +84,8 @@ i18n
           banner_desc:
             "Qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorni barqaror rivojlantirish uchun innovatsion yechimlar",
           banner_btn: "Biz bilan aloqa",
-          lastNews_title: "So‘nggi yangiliklar",
-          lastNews_link: "Hammasini ko‘rish",
+          lastnews_title: "So‘nggi yangiliklar",
+          lastnews_link: "Hammasini ko‘rish",
           about_company_title: "Kompaniya haqida",
           about_company_desc:
             "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",
