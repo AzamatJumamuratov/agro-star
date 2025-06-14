@@ -4,9 +4,11 @@ import CustomForm from "../Components/Common/CustomForm";
 import CustomTextArea from "../Components/Common/CustomTextArea";
 import FormInput from "../Components/Common/FormInput";
 import PageTitle from "../Components/Common/PageTitle";
+import { useTranslation } from "react-i18next";
 
 const Contacts = () => {
   const actionData = useActionData();
+  const { t } = useTranslation();
   const formRef = useRef(null);
   if (actionData) {
     formRef.current.reset();
@@ -14,7 +16,7 @@ const Contacts = () => {
   return (
     <main>
       <div className="wrapper">
-        <PageTitle title={"Свяжитесь с нами"} />
+        <PageTitle title={t("contacts_title")} />
         <CustomForm
           ref={formRef}
           method={"post"}

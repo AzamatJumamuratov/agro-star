@@ -23,14 +23,16 @@ const LastNews = () => {
         {GetLastDates(loaderData.results).map((item) => {
           // let dataByLanguage = item.translations?.[currentLanguage];
           // if (dataByLanguage) {
-          <NewsItem
-            key={item.id}
-            // title={dataByLanguage.title}
-            // content={dataByLanguage.content}
-            title={item.title}
-            content={item.content}
-            date={item.published_at}
-          />;
+          return (
+            <NewsItem
+              key={item.id}
+              // title={dataByLanguage.title}
+              // content={dataByLanguage.content}
+              title={item.title}
+              content={item.content}
+              date={item.published_at}
+            />
+          );
           // }
         })}
       </div>

@@ -67,6 +67,10 @@ i18n
           agroSchool_desc:
             "Наша агрошкола предоставляет современное образование в области сельского хозяйства, готовя квалифицированных специалистов для агросектора.",
           agroSchool_directions: "Основные направления обучения:",
+          projects_title: "Наши проекты",
+          partners_title: "Наши партнеры",
+          news_title: "Новости и объявления",
+          contacts_title: "Свяжитесь с нами",
         },
       },
       uz: {
@@ -89,6 +93,10 @@ i18n
           about_company_title: "Kompaniya haqida",
           about_company_desc:
             "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",
+          projects_title: "Loyihalarimiz",
+          partners_title: "Hamkorlarimiz",
+          news_title: "Yangiliklar va e’lonlar",
+          contacts_title: "Biz bilan bog‘lanish",
         },
       },
     },

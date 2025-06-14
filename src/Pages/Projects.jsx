@@ -2,13 +2,15 @@ import { useLoaderData } from "react-router";
 import PageTitle from "../Components/Common/PageTitle";
 import ContactForm from "../Components/ProjectsPage/ContactForm";
 import ProjectItem from "../Components/ProjectsPage/ProjectItem";
+import { useTranslation } from "react-i18next";
 
 const Projects = () => {
   const loaderData = useLoaderData();
+  const { t } = useTranslation();
   return (
     <main>
       <div className="wrapper">
-        <PageTitle title={"Наши проекты"} />
+        <PageTitle title={t("projects_title")} />
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-8 mb-10">
           {loaderData.results.map((item, i) => {
             return (

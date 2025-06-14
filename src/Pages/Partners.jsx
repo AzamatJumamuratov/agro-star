@@ -1,10 +1,12 @@
 import { useLoaderData } from "react-router";
 import PageTitle from "../Components/Common/PageTitle";
+import { useTranslation } from "react-i18next";
 // import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
 // import { useContext } from "react";
 
 const Partners = () => {
   const loaderData = useLoaderData();
+  const { t } = useTranslation();
   // const { currentLanguage, languageSwitchHandler } = useContext(
   //   GlobalLanguageContext
   // );
@@ -12,7 +14,7 @@ const Partners = () => {
     <main>
       <div className="wrapper">
         <PageTitle
-          title={"Наши партнеры"}
+          title={t("partners_title")}
           desc={
             "Мы сотрудничаем с ведущими организациями в области сельского хозяйства как на национальном, так и на международном уровне."
           }
