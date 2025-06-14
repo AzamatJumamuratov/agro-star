@@ -1,8 +1,13 @@
 import { useLoaderData } from "react-router";
 import PageTitle from "../Components/Common/PageTitle";
+import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
+import { useContext } from "react";
 
 const Partners = () => {
   const loaderData = useLoaderData();
+  const { currentLanguage, languageSwitchHandler } = useContext(
+    GlobalLanguageContext
+  );
   return (
     <main>
       <div className="wrapper">
@@ -18,7 +23,9 @@ const Partners = () => {
 
         <ul className="list-disc xl:text-largerN lg:text-xl text-base pl-8 mb-12">
           {loaderData.results.map((item) => {
-            return <li key={item.id}>{item.name}</li>;
+            if (item.translations?.[currentLanguage]) {
+              return <li key={item.id}>{item.name}</li>;
+            }
           })}
           {/* <li>Министерство сельского хозяйства Республики Узбекистан</li>
           <li>Международные агротехнические компании </li>
