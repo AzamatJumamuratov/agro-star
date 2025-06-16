@@ -9,9 +9,9 @@ const AdminNews = () => {
   const [searchData, setSearchData] = useState("");
   const loaderData = useLoaderData();
   return (
-    <div>
+    <>
       <AdminHeader>Новости</AdminHeader>
-      <main className="xl:pl-6 lg:pl-4 pl-3 2xl:pt-6 xl:pt-5 lg:pt-4 pt-3 2xl:pr-10 xl:pr-8 lg:pr-6 md:pr-5 pr-3 mb-30">
+      <main className=" xl:pl-6a lg:pl-4 pl-3 2xl:pt-6 xl:pt-5 lg:pt-4 pt-3 2xl:pr-10 xl:pr-8 lg:pr-6 md:pr-5 pr-3 mb-30">
         <AdminSearchNews
           value={searchData}
           onChange={(e) => setSearchData(e.target.value)}
@@ -46,7 +46,7 @@ const AdminNews = () => {
           })}
         </div>
       </main>
-    </div>
+    </>
   );
 };
 

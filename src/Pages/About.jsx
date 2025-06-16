@@ -27,8 +27,8 @@ const About = () => {
               key={item.id}
               // title={item.translations[currentLanguage].title}
               // desc={item.translations[currentLanguage].description}
-              title={item.translations.title}
-              desc={item.translations.description}
+              title={item.title}
+              desc={item.description}
             />
           );
         })}

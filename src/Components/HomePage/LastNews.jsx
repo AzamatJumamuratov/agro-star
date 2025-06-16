@@ -14,13 +14,13 @@ const LastNews = () => {
   return (
     <div className="wrapper">
       <div className="flex justify-between items-center mt-14">
-        <h2 className="xl:text-5xl lg:text-almostN md:text-2xl text-xl font-bold">
+        <h2 className="2xl:text-5xl xl:text-3xl lg:text-2xl md:text-2xl text-xl font-bold">
           {t("lastNews_title")}
         </h2>
         <Link to="/news">{t("lastNews_link")}</Link>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-14">
-        {GetLastDates(loaderData.results).map((item) => {
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-8 mt-14">
+        {GetLastDates(loaderData.results, 6).map((item) => {
           // let dataByLanguage = item.translations?.[currentLanguage];
           // if (dataByLanguage) {
           return (

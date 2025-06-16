@@ -1,6 +1,6 @@
-export default function GetLastDates(arr, count) {
+export default function GetLastDates(arr, count = 3, currentId = null) {
   return arr
-    .slice() // копия массива, чтобы не мутировать оригинал
-    .sort((a, b) => new Date(b["published_at"]) - new Date(a["published_at"]))
-    .slice(0, count);
+    .filter((item) => item.id !== currentId) // исключить текущую новость
+    .sort((a, b) => new Date(b.published_at) - new Date(a.published_at)) // сортировка по дате
+    .slice(0, count); // взять нужное количество
 }

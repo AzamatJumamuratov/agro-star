@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router";
-import test_image from "../assets/images/NewsItem.png";
 import NewsItem from "../Components/Common/NewsItem";
 import PageTitle from "../Components/Common/PageTitle";
+import GetLastDates from "../Utils/GetLastDates";
 
 const NewsItemPage = () => {
   const loaderData = useLoaderData();
@@ -12,12 +12,25 @@ const NewsItemPage = () => {
       {loaderData.item.img && (
         <img src={loaderData.item.img} className="px-10" />
       )}
-      <p className="text-2xl mt-10 text-[#222222]">{loaderData.item.content}</p>
+      <p className="xl:text-largerN lg:text-sm text-xs mt-10 text-[#222222]">
+        {loaderData.item.content || "Описание Пусто"}
+      </p>
       <hr className="h-0.5 bg-primary xl:mb-9 lg:mb-6 mb-3 mt-16" />
-      <h3 className="xl:text-5xl lg:text-almostN text-2xl font-bold mb-16">
+      <h3 className="xl:text-5xl lg:text-2xl text-lg font-bold mb-16">
         Другие интересные новости
       </h3>
-      <div className="grid grid-cols-3"></div>
+      <div className="grid grid-cols-3 gap-8">
+        {GetLastDates(loaderData.news.results, 3).map((item) => {
+          return (
+            <NewsItem
+              id={item.id}
+              title={item.title}
+              content={item.content}
+              date={item.published_at}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import FetchData from "./FetchData.js";
 
-export async function loader(params) {
-  console.log(params.id);
+export async function loader({ params }) {
   let responseItem = await FetchData(`news/${params.id}`, {
     headers: {
       "Accept-Language": "ru",

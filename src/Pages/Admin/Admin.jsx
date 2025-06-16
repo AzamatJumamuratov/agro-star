@@ -3,12 +3,14 @@ import Sidebar from "../../Components/Admin/Sidebar/Sidebar";
 
 const Admin = () => {
   return (
-    <div className="flex">
-      <div className="xl:w-[280px] md:w-[240px] w-[180px]">
-        <Sidebar />
-      </div>
-      <div className="xl:w-[calc(100%-280px)] md:w-[calc(100%-240px)] w-[calc(100%-180px)]">
-        <Outlet />
+    <div className="min-h-screen">
+      <div className="h-screen flex">
+        <div className="xl:w-[280px] md:w-[240px] w-[180px] max-[500px]:w-0">
+          <Sidebar />
+        </div>
+        <div className="flex-1 flex flex-col">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

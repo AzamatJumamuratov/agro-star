@@ -21,19 +21,20 @@ import {
 import { loader as PartnersLoader } from "./Data Fetching/PartnersData.js";
 import { loader as AboutLoader } from "./Data Fetching/AboutData.js";
 import { loader as NewsLoader } from "./Data Fetching/NewsData.js";
+import { loader as NewsItemLoader } from "./Data Fetching/NewsItemData.js";
 import { loader as HomeLoader } from "./Data Fetching/HomeData.js";
 import GlobalLanguageContextProvider from "./Contexts/LanguageGlobalContext.jsx";
 import Admin from "./Pages/Admin/Admin.jsx";
 import AdminNews from "./Pages/Admin/AdminNews.jsx";
 import AdminControlPanel from "./Pages/Admin/AdminControlPanel.jsx";
 import AdminStatistics from "./Pages/Admin/AdminStatistics.jsx";
+import NewsItemPage from "./Pages/NewsItemPage.jsx";
 import {
   action as controlPanelAction,
   loader as controlPanelLoader,
 } from "./Data Fetching/Admin/ControlPanelData.js";
 import { loader as AdminNewsLoader } from "./Data Fetching/Admin/AdminNewsData.js";
 import { loader as AdminStatisticsLoader } from "./Data Fetching/Admin/StatisticsData.js";
-import NewsItemPage from "./Pages/NewsItemPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,7 @@ const router = createBrowserRouter([
       {
         path: "News/:id",
         Component: NewsItemPage,
+        loader: NewsItemLoader,
       },
       {
         path: "Contacts",

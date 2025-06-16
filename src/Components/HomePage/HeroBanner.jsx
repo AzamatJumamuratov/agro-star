@@ -15,7 +15,7 @@ const HeroBanner = () => {
       </div>
       <div className="wrapper">
         <div className="text-white xl:max-w-[608px] lg:max-w-[512px] max-w-1/2 xl:pt-32 lg:pt-20 pt-10">
-          <h1 className="xl:text-[56px] lg:text-4xl text-3xl mb-6 font-bold">
+          <h1 className="2xl:text-[56px] xl:text-5xl lg:text-4xl text-3xl mb-6 font-bold">
             {t("banner_title")}
           </h1>
           <p className="mb-9 xl:mr-32 lg:mr-[84px] mr-10">{t("banner_desc")}</p>
