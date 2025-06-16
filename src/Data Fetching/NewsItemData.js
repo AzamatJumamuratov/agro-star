@@ -1,6 +1,6 @@
 import FetchData from "./FetchData.js";
 
-export async function loader({ params }) {
+export async function loader(params) {
   console.log(params.id);
   let responseItem = await FetchData(`news/${params.id}`, {
     headers: {
@@ -17,10 +17,7 @@ export async function loader({ params }) {
   if (responseItem.ok && responseNews.ok) {
     let item = await responseItem.json();
     let news = await responseNews.json();
-    return {
-      item: item,
-      news: news,
-    };
+    return { item, news };
   } else {
     if (!responseItem.ok) {
       console.error(

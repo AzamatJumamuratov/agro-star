@@ -1,6 +1,6 @@
 import { useState } from "react";
 import edit_icon from "../../../assets/edit.svg";
-import bin_icon from "../../../assets/trash bin.svg";
+import bin_icon from "../../../assets/trash_bin.svg";
 import FetchData from "../../../Data Fetching/FetchData";
 import formatDateToDDMMYYYY from "../../../Utils/formatDateToDDMMYYYY";
 
