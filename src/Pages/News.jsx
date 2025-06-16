@@ -15,6 +15,7 @@ const News = () => {
             return (
               <NewsItem
                 key={item.id}
+                id={item.id}
                 title={item.title}
                 content={item.content}
                 date={item.published_at}

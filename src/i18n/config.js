@@ -15,7 +15,7 @@ i18n
 
     // Specifies the default language (locale) used
     // when a user visits our site for the first time.
-    // We use English here, but feel free to use
+    // We use RU here, but feel free to use
     // whichever locale you want.
     lng: "ru",
 
@@ -69,6 +69,8 @@ i18n
           agroSchool_directions: "Основные направления обучения:",
           projects_title: "Наши проекты",
           partners_title: "Наши партнеры",
+          partners_desc:
+            "Мы сотрудничаем с ведущими организациями в области сельского хозяйства как на национальном, так и на международном уровне.",
           news_title: "Новости и объявления",
           contacts_title: "Свяжитесь с нами",
         },
@@ -95,6 +97,8 @@ i18n
             "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",
           projects_title: "Loyihalarimiz",
           partners_title: "Hamkorlarimiz",
+          partners_desc:
+            "Biz milliy va xalqaro miqyosda qishloq xo‘jaligi sohasidagi yetakchi tashkilotlar bilan hamkorlik qilamiz.",
           news_title: "Yangiliklar va e’lonlar",
           contacts_title: "Biz bilan bog‘lanish",
         },

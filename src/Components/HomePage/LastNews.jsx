@@ -26,6 +26,7 @@ const LastNews = () => {
           return (
             <NewsItem
               key={item.id}
+              id={item.id}
               // title={dataByLanguage.title}
               // content={dataByLanguage.content}
               title={item.title}

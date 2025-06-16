@@ -13,12 +13,7 @@ const Partners = () => {
   return (
     <main>
       <div className="wrapper">
-        <PageTitle
-          title={t("partners_title")}
-          desc={
-            "Мы сотрудничаем с ведущими организациями в области сельского хозяйства как на национальном, так и на международном уровне."
-          }
-        />
+        <PageTitle title={t("partners_title")} desc={t("partners_desc")} />
         <h3 className="xl:text-almostL lg:text-almostN text-xl font-bold mb-6">
           Партнерские организации:
         </h3>

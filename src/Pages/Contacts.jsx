@@ -49,6 +49,7 @@ const Contacts = () => {
             required={true}
             name={"message"}
             placeholder={"Сообщение*"}
+            additionalClass={"xl:min-h-96 lg:min-h-72  md:min-h-64 min-h-48"}
           />
         </CustomForm>
       </div>

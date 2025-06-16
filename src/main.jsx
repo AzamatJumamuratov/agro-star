@@ -27,6 +27,13 @@ import Admin from "./Pages/Admin/Admin.jsx";
 import AdminNews from "./Pages/Admin/AdminNews.jsx";
 import AdminControlPanel from "./Pages/Admin/AdminControlPanel.jsx";
 import AdminStatistics from "./Pages/Admin/AdminStatistics.jsx";
+import {
+  action as controlPanelAction,
+  loader as controlPanelLoader,
+} from "./Data Fetching/Admin/ControlPanelData.js";
+import { loader as AdminNewsLoader } from "./Data Fetching/Admin/AdminNewsData.js";
+import { loader as AdminStatisticsLoader } from "./Data Fetching/Admin/StatisticsData.js";
+import NewsItemPage from "./Pages/NewsItemPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +71,10 @@ const router = createBrowserRouter([
         loader: NewsLoader,
       },
       {
+        path: "News/:id",
+        Component: NewsItemPage,
+      },
+      {
         path: "Contacts",
         Component: Contacts,
         action: contactAction,
@@ -81,14 +92,18 @@ const router = createBrowserRouter([
       {
         path: "news",
         Component: AdminNews,
+        loader: AdminNewsLoader,
       },
       {
         path: "controlPanel",
         Component: AdminControlPanel,
+        action: controlPanelAction,
+        loader: controlPanelLoader,
       },
       {
         path: "statistics",
         Component: AdminStatistics,
+        loader: AdminStatisticsLoader,
       },
     ],
   },

@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
-const Notification = ({ result, durationSeconds }) => {
-  console.log(result);
+const Notification = ({ result, durationMilliSeconds = 3000 }) => {
   const [doneShowing, SetDoneShowing] = useState(true);
   useEffect(() => {
     SetDoneShowing(false);
     let id = setTimeout(() => {
       SetDoneShowing(true);
-    }, durationSeconds);
+    }, durationMilliSeconds);
     return () => {
       clearTimeout(id);
     };

@@ -34,6 +34,7 @@ const ContactForm = () => {
           required
           minLength={10}
           placeholder="Ваше сообщение"
+          additionalClass={"xl:min-h-96 lg:min-h-72  md:min-h-64 min-h-48"}
         />
       </CustomForm>
     </>
