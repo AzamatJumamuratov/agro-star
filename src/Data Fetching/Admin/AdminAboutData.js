@@ -1,8 +1,9 @@
+import ConvertToJSonFormData from "../../Utils/FromDataToJson.js";
 import FetchData from "../FetchData.js";
 
 export async function loader() {
   // let language = localStorage.getItem("language");
-  let response = await FetchData("news", {
+  let response = await FetchData("company-info", {
     headers: {
       "Accept-Language": "ru",
     },
@@ -11,7 +12,7 @@ export async function loader() {
     return await response.json();
   } else {
     console.error(
-      "Error Loading Admin Control Panel Page. Code : " +
+      "Error Loading Admin About Page. Code : " +
         response.status +
         " Text : " +
         response.statusText
@@ -33,26 +34,33 @@ export async function loader() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const title = formData.get("title");
-  const description = formData.get("description");
-  const image = formData.get("image");
+  const dataJSON = ConvertToJSonFormData(formData);
 
-  // let response = await FetchData("news", {
-  //   method: "POST",
-  //   body: formData,
-  // });
-  // if (response.ok) {
-  //   return await response.json();
-  // } else {
-  //   console.error(
-  //     "Error Loading Admin Control Panel Page. Code : " +
-  //       response.status +
-  //       " Text : " +
-  //       response.statusText
-  //   );
-  // }
+  let response = await FetchData("company-info/", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: dataJSON,
+  });
 
-  // здесь можешь отправить на сервер через fetch или сохранить на сервере
+  let result;
+  if (response.ok) {
+    result = await response.json();
+  } else {
+    console.error(
+      "Error in Action from Admin About Page.Error Code : " +
+        response.status +
+        "Text : " +
+        response.statusText
+    );
+    result = {
+      message: "Произошла Ошибка!",
+    };
+  }
 
-  return null; // или redirect
+  return {
+    success: response.ok,
+    result,
+  };
 }

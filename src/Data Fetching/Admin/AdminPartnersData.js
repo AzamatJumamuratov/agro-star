@@ -1,8 +1,9 @@
+import ConvertToJSonFormData from "../../Utils/FromDataToJson.js";
 import FetchData from "../FetchData.js";
 
 export async function loader() {
   // let language = localStorage.getItem("language");
-  let response = await FetchData("news", {
+  let response = await FetchData("partners", {
     headers: {
       "Accept-Language": "ru",
     },
@@ -11,7 +12,7 @@ export async function loader() {
     return await response.json();
   } else {
     console.error(
-      "Error Loading Admin News Page. Code : " +
+      "Error Loading Admin Partners Page. Code : " +
         response.status +
         " Text : " +
         response.statusText
@@ -33,10 +34,14 @@ export async function loader() {
 
 export async function action({ request }) {
   const formData = await request.formData();
+  const dataJSON = ConvertToJSonFormData(formData);
 
-  let response = await FetchData("news/", {
+  let response = await FetchData("/partners/", {
     method: "POST",
-    body: formData,
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: dataJSON,
   });
 
   let result;
@@ -44,7 +49,7 @@ export async function action({ request }) {
     result = await response.json();
   } else {
     console.error(
-      "Error In Action from Admin News Page Error Code : " +
+      "Error in Action from Admin Partners Page.Error Code : " +
         response.status +
         "Text : " +
         response.statusText

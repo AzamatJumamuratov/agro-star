@@ -34,14 +34,10 @@ export async function loader() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const dataJson = ConvertToJSonFormData(formData);
 
   let response = await FetchData("project-comments/", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: dataJson,
+    body: formData,
   });
 
   let result;
@@ -49,7 +45,10 @@ export async function action({ request }) {
     result = await response.json();
   } else {
     console.error(
-      "Error Code : " + response.status + "Text : " + response.statusText
+      "Error in Action from Projects Page.Error Code : " +
+        response.status +
+        "Text : " +
+        response.statusText
     );
     result = {
       message: "Произошла Ошибка!",

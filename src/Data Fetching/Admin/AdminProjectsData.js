@@ -2,7 +2,7 @@ import FetchData from "../FetchData.js";
 
 export async function loader() {
   // let language = localStorage.getItem("language");
-  let response = await FetchData("news", {
+  let response = await FetchData("projects", {
     headers: {
       "Accept-Language": "ru",
     },
@@ -11,7 +11,7 @@ export async function loader() {
     return await response.json();
   } else {
     console.error(
-      "Error Loading Admin News Page. Code : " +
+      "Error Loading Admin Projects Page. Code : " +
         response.status +
         " Text : " +
         response.statusText
@@ -34,7 +34,7 @@ export async function loader() {
 export async function action({ request }) {
   const formData = await request.formData();
 
-  let response = await FetchData("news/", {
+  let response = await FetchData("projects/", {
     method: "POST",
     body: formData,
   });
@@ -44,7 +44,7 @@ export async function action({ request }) {
     result = await response.json();
   } else {
     console.error(
-      "Error In Action from Admin News Page Error Code : " +
+      "Error in Action from Admin Projects Page.Error Code : " +
         response.status +
         "Text : " +
         response.statusText

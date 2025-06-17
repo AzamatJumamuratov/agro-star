@@ -12,6 +12,7 @@ import AgroSchool from "./Pages/AgroSchool.jsx";
 import Partners from "./Pages/Partners.jsx";
 import News from "./Pages/News.jsx";
 import Contacts from "./Pages/Contacts.jsx";
+import NewsItemPage from "./Pages/NewsItemPage.jsx";
 
 import { action as contactAction } from "./Data Fetching/ContactsData.js";
 import {
@@ -23,18 +24,44 @@ import { loader as AboutLoader } from "./Data Fetching/AboutData.js";
 import { loader as NewsLoader } from "./Data Fetching/NewsData.js";
 import { loader as NewsItemLoader } from "./Data Fetching/NewsItemData.js";
 import { loader as HomeLoader } from "./Data Fetching/HomeData.js";
+
 import GlobalLanguageContextProvider from "./Contexts/LanguageGlobalContext.jsx";
+
 import Admin from "./Pages/Admin/Admin.jsx";
-import AdminNews from "./Pages/Admin/AdminNews.jsx";
-import AdminControlPanel from "./Pages/Admin/AdminControlPanel.jsx";
+
+import AdminNewsLayout from "./Pages/Admin/Admin News/AdminNewsLayout.jsx";
+import AdminNews from "./Pages/Admin/Admin News/AdminNews.jsx";
+import AdminNewsForm from "./Pages/Admin/Admin News/AdminNewsForm.jsx";
+
 import AdminStatistics from "./Pages/Admin/AdminStatistics.jsx";
-import NewsItemPage from "./Pages/NewsItemPage.jsx";
+
+import AdminProjectsLayout from "./Pages/Admin/Admin Projects/AdminProjectsLayout.jsx";
+import AdminProjects from "./Pages/Admin/Admin Projects/AdminProjects.jsx";
+
 import {
-  action as controlPanelAction,
-  loader as controlPanelLoader,
-} from "./Data Fetching/Admin/ControlPanelData.js";
-import { loader as AdminNewsLoader } from "./Data Fetching/Admin/AdminNewsData.js";
+  action as AdminNewsAction,
+  loader as AdminNewsLoader,
+} from "./Data Fetching/Admin/AdminNewsData.js";
 import { loader as AdminStatisticsLoader } from "./Data Fetching/Admin/StatisticsData.js";
+import {
+  loader as AdminProjectsLoader,
+  action as AdminProjectsAction,
+} from "./Data Fetching/Admin/AdminProjectsData.js";
+import AdminProjectsForm from "./Pages/Admin/Admin Projects/AdminProjectsForm.jsx";
+import AdminPartnersLayout from "./Pages/Admin/Admin Partners/AdminPartnersLayout.jsx";
+import AdminPartners from "./Pages/Admin/Admin Partners/AdminPartners.jsx";
+import {
+  action as AdminPartnersAction,
+  loader as AdminPartnersLoader,
+} from "./Data Fetching/Admin/AdminPartnersData.js";
+import AdminAboutLayout from "./Pages/Admin/Admin About/AdminAboutLayout.jsx";
+import AdminAbout from "./Pages/Admin/Admin About/AdminAbout.jsx";
+import {
+  action as AdminAboutAction,
+  loader as AdminAboutLoader,
+} from "./Data Fetching/Admin/AdminAboutData.js";
+import AdminAboutForm from "./Pages/Admin/Admin About/AdminAboutForm.jsx";
+import AdminPartnersForm from "./Pages/Admin/Admin Partners/AdminPartnersForm.jsx";
 
 const router = createBrowserRouter([
   {
@@ -89,23 +116,76 @@ const router = createBrowserRouter([
     children: [
       {
         index: true, // Это будет срабатывать при /admin
-        element: <Navigate to="news" replace />, // Редиректим на /admin/news
-      },
-      {
-        path: "news",
-        Component: AdminNews,
-        loader: AdminNewsLoader,
-      },
-      {
-        path: "controlPanel",
-        Component: AdminControlPanel,
-        action: controlPanelAction,
-        loader: controlPanelLoader,
+        element: <Navigate to="statistics" replace />, // Редиректим на /admin/news
       },
       {
         path: "statistics",
         Component: AdminStatistics,
         loader: AdminStatisticsLoader,
+      },
+      {
+        path: "news",
+        Component: AdminNewsLayout,
+        children: [
+          {
+            index: true,
+            Component: AdminNews,
+            loader: AdminNewsLoader,
+          },
+          {
+            path: "new",
+            Component: AdminNewsForm,
+            action: AdminNewsAction,
+          },
+        ],
+      },
+      {
+        path: "projects",
+        Component: AdminProjectsLayout,
+        children: [
+          {
+            index: true,
+            Component: AdminProjects,
+            loader: AdminProjectsLoader,
+          },
+          {
+            path: "new",
+            Component: AdminProjectsForm,
+            action: AdminProjectsAction,
+          },
+        ],
+      },
+      {
+        path: "partners",
+        Component: AdminPartnersLayout,
+        children: [
+          {
+            index: true,
+            Component: AdminPartners,
+            loader: AdminPartnersLoader,
+          },
+          {
+            path: "new",
+            Component: AdminPartnersForm,
+            action: AdminPartnersAction,
+          },
+        ],
+      },
+      {
+        path: "about",
+        Component: AdminAboutLayout,
+        children: [
+          {
+            index: true,
+            Component: AdminAbout,
+            loader: AdminAboutLoader,
+          },
+          {
+            path: "new",
+            Component: AdminAboutForm,
+            action: AdminAboutAction,
+          },
+        ],
       },
     ],
   },

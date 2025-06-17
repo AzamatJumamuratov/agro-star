@@ -1,27 +1,49 @@
-import { Form } from "react-router";
-import FormInput from "../../Common/FormInput";
-import DropZone from "../../Common/DropZone";
-import { useRef, useState } from "react";
+import { Form, useActionData, useSubmit } from "react-router";
+import FormInput from "../../../Components/Common/FormInput";
+import DropZone from "../../../Components/Common/DropZone";
+import { useEffect, useRef, useState } from "react";
 import AdminTitle from "../../../Components/Admin/AdminTitle";
-import CustomTextArea from "../../Common/CustomTextArea";
+import CustomTextArea from "../../../Components/Common/CustomTextArea";
+import Notification from "../../../Components/Common/Notification";
 
-const NewsForm = () => {
+const AdminNewsForm = () => {
   const [previewImage, setPreviewImage] = useState(null);
+  const imageFileRef = useRef(null);
   const formRef = useRef(null);
-  const fileInputRef = useRef(null);
+  const submit = useSubmit();
+  const actionData = useActionData();
   const handleFileSelect = (file) => {
-    // обновляем скрытый file input (если нужно)
-    const dataTransfer = new DataTransfer();
-    dataTransfer.items.add(file);
-    fileInputRef.current.files = dataTransfer.files;
+    imageFileRef.current = file;
   };
+
+  useEffect(() => {
+    if (actionData?.success) {
+      formRef.current.reset();
+      imageFileRef.current = null;
+      setPreviewImage(null);
+    }
+  }, [actionData]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    formData.set("image", imageFileRef.current, imageFileRef.current.name);
+
+    submit(formData, {
+      method: "post",
+      encType: "multipart/form-data",
+      action: "/admin/news/new",
+    });
+  }
   return (
     <>
+      <Notification result={actionData} />
       <AdminTitle type="h1">Создание новости</AdminTitle>
       <Form
         ref={formRef}
         method="POST"
         className="2xl:p-9 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10"
+        onSubmit={handleSubmit}
       >
         <label htmlFor="title" className="">
           <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
@@ -41,9 +63,9 @@ const NewsForm = () => {
           </span>
           <CustomTextArea
             type={"text"}
-            name={"description"}
-            id={"description"}
-            autoComplete={"title"}
+            name={"content"}
+            id={"content"}
+            autoComplete={"content"}
             additionalClass={"mt-3 lg:min-h-40 min-h-24"}
           />
         </label>
@@ -55,13 +77,6 @@ const NewsForm = () => {
             preview={previewImage}
             setPreview={setPreviewImage}
             onFileSelect={handleFileSelect}
-          />
-          {/* Скрытый input для файла (чтобы FormData работал) */}
-          <input
-            type="file"
-            name="image"
-            ref={fileInputRef}
-            style={{ display: "none" }}
           />
         </label>
         <div className="flex gap-6 mt-9 text-white">
@@ -84,4 +99,4 @@ const NewsForm = () => {
   );
 };
 
-export default NewsForm;
+export default AdminNewsForm;
