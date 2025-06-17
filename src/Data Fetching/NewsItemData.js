@@ -1,7 +1,7 @@
 import FetchData from "./FetchData.js";
 
 export async function loader({ params }) {
-  let responseItem = await FetchData(`news/${params.id}`, {
+  let responseItem = await FetchData(`news/${params.id}/`, {
     headers: {
       "Accept-Language": "ru",
     },
@@ -20,7 +20,7 @@ export async function loader({ params }) {
   } else {
     if (!responseItem.ok) {
       console.error(
-        "Error Loading News Item Page. Code : " +
+        "Error Loading News Item ITem Data Page. Code : " +
           responseItem.status +
           " Text : " +
           responseItem.statusText

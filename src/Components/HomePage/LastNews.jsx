@@ -31,6 +31,7 @@ const LastNews = () => {
               // content={dataByLanguage.content}
               title={item.title}
               content={item.content}
+              image={item.image}
               date={item.published_at}
             />
           );
