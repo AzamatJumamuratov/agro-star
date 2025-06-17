@@ -9,8 +9,8 @@ const NewsItemPage = () => {
   return (
     <div className="wrapper">
       <PageTitle title={loaderData.item.title || "Пусто"} />
-      {loaderData.item.img && (
-        <img src={loaderData.item.img} className="px-10" />
+      {loaderData.item.image && (
+        <img src={loaderData.item.image} className="px-10" />
       )}
       <p className="xl:text-largerN lg:text-sm text-xs mt-10 text-[#222222]">
         {loaderData.item.content || "Описание Пусто"}
