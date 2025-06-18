@@ -1,7 +1,7 @@
 import FetchData from "./FetchData";
 
 export async function loader() {
-  let response = await FetchData("company-info", {
+  let response = await FetchData("company-info/", {
     headers: {
       "Accept-Language": "ru",
     },

@@ -3,7 +3,7 @@ import FetchData from "../FetchData.js";
 
 export async function loader() {
   // let language = localStorage.getItem("language");
-  let response = await FetchData("company-info", {
+  let response = await FetchData("company-info/", {
     headers: {
       "Accept-Language": "ru",
     },

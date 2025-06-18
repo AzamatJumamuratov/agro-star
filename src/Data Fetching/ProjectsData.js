@@ -3,7 +3,7 @@ import ConvertToJSonFormData from "../Utils/FromDataToJson";
 import FetchData from "./FetchData";
 
 export async function loader() {
-  let response = await FetchData("projects", {
+  let response = await FetchData("projects/", {
     headers: {
       "Accept-Language": "ru",
     },
