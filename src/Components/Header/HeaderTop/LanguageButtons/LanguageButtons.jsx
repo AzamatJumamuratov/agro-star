@@ -10,7 +10,6 @@ const LanguageButtons = ({ additionalClass }) => {
     GlobalLanguageContext
   );
   const { i18n } = useTranslation();
-  const activeLocale = i18n.resolvedLanguage;
 
   return (
     <div
@@ -33,7 +32,7 @@ const LanguageButtons = ({ additionalClass }) => {
       <LangButton
         current={currentLanguage}
         onClick={OnChangeLanguage}
-        language={"kaa"}
+        language={"kk"}
       >
         KK
       </LangButton>

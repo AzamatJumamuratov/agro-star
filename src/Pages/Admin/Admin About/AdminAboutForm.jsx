@@ -30,6 +30,7 @@ const AdminAboutForm = () => {
             type={"text"}
             name={"title"}
             id={"title"}
+            required={true}
             autoComplete={"title"}
             additionalClass={"mt-3"}
           />
@@ -42,6 +43,7 @@ const AdminAboutForm = () => {
             type={"text"}
             name={"description"}
             id={"description"}
+            required={true}
             autoComplete={"title"}
             additionalClass={"mt-3 lg:min-h-40 min-h-24"}
           />

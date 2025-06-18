@@ -9,6 +9,8 @@ const Navigation = () => {
         <NavLinkListItem to={"projects"}>Проекты</NavLinkListItem>
         <NavLinkListItem to={"partners"}>Партнеры</NavLinkListItem>
         <NavLinkListItem to={"about"}>Информация Компании</NavLinkListItem>
+        <NavLinkListItem to={"contacts"}>Контакты</NavLinkListItem>
+        <NavLinkListItem to={"comments"}>Обращения по Проекту</NavLinkListItem>
       </ul>
     </nav>
   );

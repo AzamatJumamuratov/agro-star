@@ -2,19 +2,37 @@ import XMark_icon from "../../../../assets/xMark_icon.svg";
 import SearchBar from "../SearchBar/SearchBar";
 import LanguageButtons from "../LanguageButtons/LanguageButtons";
 import { NavLink } from "react-router";
+import sign_out_icon from "../../../../assets/sign_out.svg";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const CustomSideBar = ({ opened, OpenSidebarFn }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (opened) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Чистка при размонтировании
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [opened]);
   return (
-    <div
-      className={`fixed flex w-full  top-0 ${
-        opened ? "left-0" : "left-full"
-      } duration-300 ease-in-out h-full z-40`}
-    >
+    <>
       <div
         onClick={() => OpenSidebarFn((v) => false)}
-        className="bg-black/30 w-1/4"
+        className={`${
+          opened ? "block" : "hidden"
+        } fixed w-full left-0  top-0 duration-300 ease-in-out h-full bg-black/30 z-30`}
       ></div>
-      <div className={` w-3/4 bg-primary p-6 overflow-y-scroll`}>
+      <div
+        className={`fixed w-3/4 top-0 z-40 h-full ${
+          opened ? "right-0" : "-right-full"
+        } duration-300 ease-in-out bg-primary p-6 overflow-y-scroll`}
+      >
         <button
           onClick={() => {
             OpenSidebarFn((v) => false);
@@ -23,7 +41,15 @@ const CustomSideBar = ({ opened, OpenSidebarFn }) => {
         >
           <img src={XMark_icon} className="w-8 h-8" />
         </button>
-        <SearchBar additionalClass={"mb-4"} />
+        <div className="flex flex-wrap gap-4 items-center mb-4">
+          <SearchBar />
+          <button
+            onClick={() => navigate("/login")}
+            className=" bg-white/30 py-1 xl:py-3 px-2.5 xl:px-4 active:scale-110 duration-100 ease-in-out rounded-lg  text-white"
+          >
+            <img src={sign_out_icon} className="w-5 h-5" />
+          </button>
+        </div>
         <LanguageButtons additionalClass={"w-1/2 mb-8"} />
         <nav className="grid grid-cols-1 gap-6 text-2xl text-white">
           <NavLink
@@ -77,7 +103,7 @@ const CustomSideBar = ({ opened, OpenSidebarFn }) => {
           </NavLink>
         </nav>
       </div>
-    </div>
+    </>
   );
 };
 

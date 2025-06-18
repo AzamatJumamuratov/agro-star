@@ -14,6 +14,7 @@ const AdminProjectsForm = () => {
   const actionData = useActionData();
 
   const handleFileSelect = (file) => {
+    setPreviewImage(URL.createObjectURL(file));
     imageFileRef.current = file;
   };
 
@@ -28,7 +29,9 @@ const AdminProjectsForm = () => {
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(formRef.current);
-    formData.set("image", imageFileRef.current, imageFileRef.current.name);
+    if (imageFileRef.current) {
+      formData.set("image", imageFileRef.current, imageFileRef.current.name);
+    }
 
     submit(formData, {
       method: "post",
@@ -55,6 +58,7 @@ const AdminProjectsForm = () => {
             name={"title"}
             id={"title"}
             autoComplete={"title"}
+            required={true}
             additionalClass={"mt-3"}
           />
         </label>
@@ -67,6 +71,7 @@ const AdminProjectsForm = () => {
             name={"description"}
             id={"description"}
             autoComplete={"description"}
+            required={true}
             additionalClass={"mt-3 lg:min-h-40 min-h-24"}
           />
         </label>
@@ -74,11 +79,23 @@ const AdminProjectsForm = () => {
           <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
             Фотографии
           </span>
-          <DropZone
-            preview={previewImage}
-            setPreview={setPreviewImage}
-            onFileSelect={handleFileSelect}
-          />
+          <DropZone onFileSelect={handleFileSelect} />
+          <div className="mt-4">
+            {previewImage && (
+              <>
+                <span>Предпросмотр</span>
+                <div className="flex gap-6 items-center">
+                  <img src={previewImage} className="w-1/2  rounded-lg mt-3" />
+                  <button
+                    onClick={(e) => setPreviewImage(null)}
+                    className="xl:p-3 lg:p-2 p-2 2xl:text-3xl xl:text-xl lg:text-base text-xs rounded-xl bg-red-400 text-white"
+                  >
+                    Убрать
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </label>
         <div className="flex gap-6 mt-9 text-white">
           <button

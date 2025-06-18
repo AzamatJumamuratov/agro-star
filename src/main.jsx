@@ -62,6 +62,16 @@ import {
 } from "./Data Fetching/Admin/AdminAboutData.js";
 import AdminAboutForm from "./Pages/Admin/Admin About/AdminAboutForm.jsx";
 import AdminPartnersForm from "./Pages/Admin/Admin Partners/AdminPartnersForm.jsx";
+import AuthLayout from "./Pages/Auth/AuthLayout.jsx";
+import Login from "./Pages/Auth/Login.jsx";
+import { LoginAction } from "./Data Fetching/Auth/LoginData.js";
+import { loader as AdminCheckAuthLoader } from "./Data Fetching/Admin/AdminCheckAuth.js";
+import AdminContactsLayout from "./Pages/Admin/Admin Contacts/AdminContactsLayout.jsx";
+import AdminContacts from "./Pages/Admin/Admin Contacts/AdminContacts.jsx";
+import { loader as AdminContactsLoader } from "./Data Fetching/Admin/AdminContactsData.js";
+import AdminCommentsLayout from "./Pages/Admin/Admin Comments/AdminCommentsLayout.jsx";
+import AdminComments from "./Pages/Admin/Admin Comments/AdminComments.jsx";
+import { loader as AdminCommentsLoader } from "./Data Fetching/Admin/AdminCommentsData.js";
 
 const router = createBrowserRouter([
   {
@@ -111,12 +121,28 @@ const router = createBrowserRouter([
     ],
   },
   {
+    Component: AuthLayout,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+        action: LoginAction,
+      },
+      // {
+      //   path: "register",
+      //   Component: Register,
+      //   action: RegisterAction,
+      // },
+    ],
+  },
+  {
     path: "/admin",
     Component: Admin,
+    loader: AdminCheckAuthLoader,
     children: [
       {
         index: true, // Это будет срабатывать при /admin
-        element: <Navigate to="statistics" replace />, // Редиректим на /admin/news
+        element: <Navigate to="statistics" replace />, // Редиректим на /admin/statistics
       },
       {
         path: "statistics",
@@ -184,6 +210,28 @@ const router = createBrowserRouter([
             path: "new",
             Component: AdminAboutForm,
             action: AdminAboutAction,
+          },
+        ],
+      },
+      {
+        path: "contacts",
+        Component: AdminContactsLayout,
+        children: [
+          {
+            index: true,
+            Component: AdminContacts,
+            loader: AdminContactsLoader,
+          },
+        ],
+      },
+      {
+        path: "comments",
+        Component: AdminCommentsLayout,
+        children: [
+          {
+            index: true,
+            Component: AdminComments,
+            loader: AdminCommentsLoader,
           },
         ],
       },

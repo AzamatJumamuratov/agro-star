@@ -31,6 +31,7 @@ const AdminPartnersForm = () => {
             name={"name"}
             id={"name"}
             autoComplete={"name"}
+            required={true}
             additionalClass={"mt-3"}
           />
         </label>
@@ -43,6 +44,7 @@ const AdminPartnersForm = () => {
             name={"description"}
             id={"description"}
             autoComplete={"description"}
+            required={true}
             additionalClass={"mt-3 lg:min-h-40 min-h-24"}
           />
         </label>

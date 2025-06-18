@@ -11,7 +11,6 @@ const CustomForm = ({
   children,
   ...props
 }) => {
-  console.log(result);
   return (
     <>
       <Notification result={result} durationSeconds={3000} />

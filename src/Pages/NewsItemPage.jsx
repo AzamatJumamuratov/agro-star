@@ -10,7 +10,7 @@ const NewsItemPage = () => {
     <div className="wrapper">
       <PageTitle title={loaderData.item.title || "Пусто"} />
       {loaderData.item.image && (
-        <img src={loaderData.item.image} className="px-10" />
+        <img src={loaderData.item.image} className="w-1/2 mx-auto rounded-lg" />
       )}
       <p className="xl:text-largerN lg:text-sm text-xs mt-10 text-[#222222]">
         {loaderData.item.content || "Описание Пусто"}
@@ -19,13 +19,14 @@ const NewsItemPage = () => {
       <h3 className="xl:text-5xl lg:text-2xl text-lg font-bold mb-16">
         Другие интересные новости
       </h3>
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid md:grid-cols-3 grid-cols-2 gap-8">
         {GetLastDates(loaderData.news.results, 3).map((item) => {
           return (
             <NewsItem
               id={item.id}
               title={item.title}
               content={item.content}
+              image={item.image}
               date={item.published_at}
             />
           );

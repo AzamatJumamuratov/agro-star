@@ -16,6 +16,8 @@ const PopularNews = () => {
               index={index + 1}
               title={item.title}
               published_at={item.published_at}
+              tags_display={item.tags_display}
+              views={item.views}
             />
           );
         })}

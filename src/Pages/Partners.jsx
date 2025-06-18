@@ -15,7 +15,7 @@ const Partners = () => {
       <div className="wrapper">
         <PageTitle title={t("partners_title")} desc={t("partners_desc")} />
         <h3 className="xl:text-almostL lg:text-almostN text-xl font-bold mb-6">
-          Партнерские организации:
+          {t("partners_title")}
         </h3>
 
         <ul className="list-disc xl:text-largerN lg:text-xl text-base pl-8 mb-12">
@@ -29,12 +29,10 @@ const Partners = () => {
         </ul>
 
         <h3 className="xl:text-almostL lg:text-almostN text-xl font-bold mb-6">
-          Информация для инвесторов
+          {t("partners_info")}
         </h3>
         <p className="xl:text-largerN lg:text-xl text-base">
-          Мы открыты для сотрудничества с инвесторами, заинтересованными в
-          развитии устойчивого сельского хозяйства и внедрении инновационных
-          технологий.
+          {t("partners_info_text")}
         </p>
       </div>
     </main>

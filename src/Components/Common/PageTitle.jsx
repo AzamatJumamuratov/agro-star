@@ -6,7 +6,7 @@ const PageTitle = ({ title, desc }) => {
       </h2>
       <hr className="h-0.5 bg-primary xl:mb-9 lg:mb-6 mb-3" />
       {desc && (
-        <p className="xl:text-largerN lg:text-lg text-base lg:mb-9 xl:mb-6">
+        <p className="xl:text-largerN lg:text-lg text-base lg:mb-9 xl:mb-6 mb-4">
           {desc}
         </p>
       )}

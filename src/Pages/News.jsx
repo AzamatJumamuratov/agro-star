@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useLocation } from "react-router";
 import NewsItem from "../Components/Common/NewsItem";
 import PageTitle from "../Components/Common/PageTitle";
 import { useTranslation } from "react-i18next";
@@ -6,23 +6,37 @@ import { useTranslation } from "react-i18next";
 const News = () => {
   const loaderData = useLoaderData();
   const { t } = useTranslation();
+
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const searchQuery = params.get("search")?.toLowerCase() || "";
+
+  const filteredResults = loaderData.results.filter(
+    (item) =>
+      item.title.toLowerCase().includes(searchQuery) ||
+      item.content.toLowerCase().includes(searchQuery)
+  );
+
   return (
     <main>
       <div className="wrapper">
         <PageTitle title={t("news_title")} />
+        {searchQuery && (
+          <p className="text-gray-500 mt-2">
+            {`Найдено: ${filteredResults.length} новостей по запросу "${searchQuery}"`}
+          </p>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 xl:mt-14 lg:mt-9 mt-5">
-          {loaderData.results.map((item) => {
-            return (
-              <NewsItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                content={item.content}
-                image={item.image}
-                date={item.published_at}
-              />
-            );
-          })}
+          {filteredResults.map((item) => (
+            <NewsItem
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              content={item.content}
+              image={item.image}
+              date={item.published_at}
+            />
+          ))}
         </div>
       </div>
     </main>

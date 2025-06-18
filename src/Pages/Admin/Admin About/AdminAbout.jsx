@@ -1,14 +1,14 @@
 import { useLoaderData } from "react-router";
-import AdminSearchNews from "../../../Components/Admin/AdminSearchInput";
 import AdminNewButton from "../../../Components/Common/AdminNewButton";
 import { useState } from "react";
 import AdminAboutCard from "../../../Components/Admin/Admin About/AdminAboutCard";
 import AdminSearchInput from "../../../Components/Admin/AdminSearchInput";
+import Notification from "../../../Components/Common/Notification";
 
 const AdminAbout = () => {
   const loaderData = useLoaderData();
   const [searchData, setSearchData] = useState("");
-
+  const [notifyResult, setNotifyResult] = useState(null);
   return (
     <div className="mb-30">
       <div className="flex items-center gap-6 mb-4">
@@ -21,6 +21,7 @@ const AdminAbout = () => {
           Создание Информации О Компании
         </AdminNewButton>
       </div>
+      <Notification result={notifyResult} durationMilliSeconds={3000} />
       <div className="grid 2xl:grid-cols-4 min-[71.25rem]:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-8">
         {loaderData.results.map((item) => {
           if (searchData != "") {
@@ -31,9 +32,11 @@ const AdminAbout = () => {
               return (
                 <AdminAboutCard
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   description={item.description}
                   created_at={item.created_at}
+                  notifyFn={setNotifyResult}
                 />
               );
             }
@@ -41,9 +44,11 @@ const AdminAbout = () => {
             return (
               <AdminAboutCard
                 key={item.id}
+                id={item.id}
                 title={item.title}
                 description={item.description}
                 created_at={item.created_at}
+                notifyFn={setNotifyResult}
               />
             );
           }

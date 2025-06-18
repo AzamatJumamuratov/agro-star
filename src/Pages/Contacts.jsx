@@ -21,34 +21,34 @@ const Contacts = () => {
           ref={formRef}
           method={"post"}
           result={actionData}
-          formTitle={"Форма для связи по проектам"}
-          buttonText={"Отправить сообщение"}
+          formTitle={t("contacts_form_title")}
+          buttonText={t("contacts_form_button")}
         >
           <FormInput
             name={"name"}
             id={"name"}
             type={"text"}
             required={true}
-            placeholder={"Имя*"}
+            placeholder={t("contacts_form_name")}
           />
           <FormInput
             name={"email"}
             id={"email"}
             type={"email"}
             required={true}
-            placeholder={"Email*"}
+            placeholder={t("contacts_form_email")}
           />
           <FormInput
             name={"phone"}
             id={"phone"}
             type={"number"}
             required={true}
-            placeholder={"Телефон*"}
+            placeholder={t("contacts_form_phone")}
           />
           <CustomTextArea
             required={true}
             name={"message"}
-            placeholder={"Сообщение*"}
+            placeholder={t("contacts_form_message")}
             additionalClass={"xl:min-h-96 lg:min-h-72  md:min-h-64 min-h-48"}
           />
         </CustomForm>

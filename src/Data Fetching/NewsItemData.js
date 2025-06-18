@@ -7,7 +7,7 @@ export async function loader({ params }) {
     },
   });
 
-  let responseNews = await FetchData(`news`, {
+  let responseNews = await FetchData(`news/`, {
     headers: {
       "Accept-Language": "ru",
     },
