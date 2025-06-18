@@ -7,7 +7,7 @@ import clock_icon from "../../../assets/clock.svg";
 import eye_icon from "../../../assets/eye.svg";
 import formatDateToDDMMYYYY from "../../../Utils/formatDateToDDMMYYYY";
 import FetchData from "../../../Data Fetching/FetchData";
-import { useRevalidator } from "react-router";
+import { redirect, useRevalidator } from "react-router";
 import { createPortal } from "react-dom";
 import UpdateValuesModal from "../UpdateValuesModal";
 
@@ -18,7 +18,7 @@ const AdminNewsCard = ({
   image,
   published_at,
   views,
-  deleteResultFN,
+  notifyFn,
 }) => {
   const [cardOptions, setCardOptions] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -95,6 +95,7 @@ const AdminNewsCard = ({
             title={title}
             content={content}
             image={image}
+            submitFN={OnUpdate}
             closeFN={() => SetIsChanging(false)}
           />,
           document.body
@@ -103,18 +104,25 @@ const AdminNewsCard = ({
   );
 
   async function OnDelete(id) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return redirect("/login");
+    }
     setIsDeleting(true);
     let response = await FetchData(`news/${id}/`, {
       method: "DELETE",
       headers: {
-        Authorization: "5ff1802d2f84309a0b0c1dcec0b572e9047eace3",
+        Authorization: `Token ${token}`,
       },
     });
     if (response.ok) {
-      deleteResultFN({ success: true });
+      notifyFn({ success: true });
       revalidate();
     } else {
-      deleteResultFN({ success: false });
+      if (response.status == 401) {
+        redirect("/login");
+      }
+      notifyFn({ success: false });
       console.error(
         `Error Deleting News ${id} Item. Code : ` +
           response.status +
@@ -123,6 +131,40 @@ const AdminNewsCard = ({
       );
     }
     setIsDeleting(false);
+  }
+
+  async function OnUpdate(id, body, callback) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return redirect("/login");
+    }
+    const formdata = new FormData();
+    formdata.append("title", body.title);
+    formdata.append("content", body.mainContent);
+    if (body.image) {
+      formdata.append("image", body.image);
+    }
+
+    let response = await FetchData(`news/${id}/`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      body: formdata,
+    });
+    if (response.ok) {
+      notifyFn({ success: true });
+      revalidate();
+      callback();
+    } else {
+      notifyFn({ success: false });
+      console.error(
+        `Error Deleting News ${id} Item. Code : ` +
+          response.status +
+          " Text : " +
+          response.statusText
+      );
+    }
   }
 };
 

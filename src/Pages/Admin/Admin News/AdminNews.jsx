@@ -39,7 +39,7 @@ const AdminNews = () => {
                   published_at={item.published_at}
                   image={item.image}
                   views={item.views}
-                  deleteResultFN={setNotifyResult}
+                  notifyFn={setNotifyResult}
                 />
               );
             }
@@ -53,7 +53,7 @@ const AdminNews = () => {
                 published_at={item.published_at}
                 image={item.image}
                 views={item.views}
-                deleteResultFN={setNotifyResult}
+                notifyFn={setNotifyResult}
               />
             );
           }

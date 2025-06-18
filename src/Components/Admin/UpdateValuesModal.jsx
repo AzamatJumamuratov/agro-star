@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import trashBin from "../../assets/trash_bin.svg";
 import CustomTextArea from "../Common/CustomTextArea";
 import FormInput from "../Common/FormInput";
 import DropZone from "../Common/DropZone";
+import FetchData from "../../Data Fetching/FetchData";
 
 const UpdateValuesModal = ({
   id,
@@ -16,6 +17,7 @@ const UpdateValuesModal = ({
 }) => {
   const [imgHovered, SetImgHovered] = useState(false);
   const [imageUrl, setImageUrl] = useState(image || null);
+  const imageFileRef = useRef(null);
   const mainContent = description != "" && description ? description : content;
   const mainContentRef = useRef();
   const titleRef = useRef();
@@ -34,6 +36,7 @@ const UpdateValuesModal = ({
                   <button
                     onClick={() => {
                       setImageUrl(null);
+                      imageFileRef.current(null);
                       SetImgHovered(false);
                     }}
                     className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-8 xl:px-6 lg:px-3 px-3 2xl:text-xl  xl:text-base lg:text-sm text-xs rounded-xl bg-[#DC3545] text-white active:bg-[#7c3038]"
@@ -48,7 +51,10 @@ const UpdateValuesModal = ({
           ) : (
             image && (
               <DropZone
-                onFileSelect={(file) => setImageUrl(URL.createObjectURL(file))}
+                onFileSelect={(file) => {
+                  setImageUrl(URL.createObjectURL(file));
+                  imageFileRef.current = file;
+                }}
               />
             )
           )}
@@ -84,6 +90,7 @@ const UpdateValuesModal = ({
                     {
                       title: titleRef.current.value,
                       mainContent: mainContentRef.current.value,
+                      image: imageFileRef.current,
                     },
                     closeFN
                   )

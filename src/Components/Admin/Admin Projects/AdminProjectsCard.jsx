@@ -1,4 +1,4 @@
-import { useRevalidator } from "react-router";
+import { redirect, useRevalidator } from "react-router";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 import edit_icon from "../../../assets/edit.svg";
@@ -81,6 +81,7 @@ const AdminProjectsCard = ({
             description={description}
             image={image_url}
             closeFN={() => SetIsChanging(false)}
+            submitFN={OnUpdate}
           />,
           document.body
         )}
@@ -108,6 +109,40 @@ const AdminProjectsCard = ({
       );
     }
     setIsDeleting(false);
+  }
+
+  async function OnUpdate(id, body, callback) {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      return redirect("/login");
+    }
+    const formdata = new FormData();
+    formdata.append("title", body.title);
+    formdata.append("description", body.mainContent);
+    if (body.image) {
+      formdata.append("image", body.image);
+    }
+
+    let response = await FetchData(`projects/${id}/`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+      body: formdata,
+    });
+    if (response.ok) {
+      deleteResultFN({ success: true });
+      revalidate();
+      callback();
+    } else {
+      deleteResultFN({ success: false });
+      console.error(
+        `Error Deleting News ${id} Item. Code : ` +
+          response.status +
+          " Text : " +
+          response.statusText
+      );
+    }
   }
 };
 
