@@ -13,10 +13,6 @@ const SearchBar = ({ additionalClass }) => {
 
   // Обновление URL при изменении query
   useEffect(() => {
-    if (!location.pathname.includes("/news")) {
-      navigate(`/news?search=${query}`);
-    }
-
     const timeout = setTimeout(() => {
       const currentParams = new URLSearchParams(location.search);
       if (query) {
