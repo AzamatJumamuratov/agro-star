@@ -14,8 +14,8 @@ const Login = () => {
     <>
       <AuthTitle
         linkTo={"/"}
-        title={"Входить в Аккаунт"}
-        linkText={"Передите в Главную Страницу"}
+        title={"Войти в Аккаунт"}
+        linkText={"Перейдите в Главную Страницу"}
       />
       {actionData && <ErrorMessage message={actionData.non_field_errors} />}
       <Form
