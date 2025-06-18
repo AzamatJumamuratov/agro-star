@@ -83,7 +83,6 @@ const AdminPartnersCard = ({ id, name, description, notifyFN }) => {
         "Content-type": "application/json",
         Authorization: "5ff1802d2f84309a0b0c1dcec0b572e9047eace3",
       },
-      body: data,
     });
     if (response.ok) {
       notifyFN({ success: true });
