@@ -14,11 +14,13 @@ const HeroBanner = () => {
         />
       </div>
       <div className="wrapper">
-        <div className="text-white ml-14 lg:ml-26 max-sm:ml-0 xl:max-w-[608px] lg:max-w-[512px] md:max-w-[512px] max-sm:w-full xl:pt-32 lg:pt-20 pt-10">
+        <div className="text-white   xl:max-w-[608px] lg:max-w-[512px] md:max-w-[512px] max-sm:w-full xl:pt-32 lg:pt-20 pt-10">
           <h1 className="2xl:text-[56px] xl:text-5xl lg:text-4xl text-3xl mb-6 font-bold">
             {t("banner_title")}
           </h1>
-          <p className="mb-9 xl:mr-32 lg:mr-[84px] mr-10">{t("banner_desc")}</p>
+          <p className="mb-9 xl:mr-32 lg:mr-[84px] 2xl:text-2xl xl:text-xl lg:text-lg text-base mr-10">
+            {t("banner_desc")}
+          </p>
           <Link
             to={"/contacts"}
             className="bg-[#F39C12] xl:px-6 lg:px-4 px-3 py-3 rounded-full xl:text-lg lg:text-xs text-[10px]"
