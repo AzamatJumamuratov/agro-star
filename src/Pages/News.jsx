@@ -3,6 +3,7 @@ import NewsItem from "../Components/Common/NewsItem";
 import PageTitle from "../Components/Common/PageTitle";
 import { useTranslation } from "react-i18next";
 import truncateString from "../Utils/TruncateString";
+import GetLastDates from "../Utils/GetLastDates";
 
 const News = () => {
   const loaderData = useLoaderData();
@@ -12,7 +13,8 @@ const News = () => {
   const params = new URLSearchParams(location.search);
   const searchQuery = params.get("search")?.toLowerCase() || "";
 
-  const filteredResults = loaderData.results.filter(
+  const sortedResults = GetLastDates(loaderData.results);
+  const filteredResults = sortedResults.filter(
     (item) =>
       item.title.toLowerCase().includes(searchQuery) ||
       item.content.toLowerCase().includes(searchQuery)

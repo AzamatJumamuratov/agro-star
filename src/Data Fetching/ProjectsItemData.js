@@ -12,14 +12,14 @@ export async function loader({ params }) {
   } else {
     if (!responseItem.ok) {
       console.error(
-        "Error Loading News Item ITem Data Page. Code : " +
+        "Error Loading Projects Item Page. Code : " +
           responseItem.status +
           " Text : " +
           responseItem.statusText
       );
     } else {
       console.error(
-        "Error Loading News Item Page News Data. Code : " +
+        "Error Loading Projects Item Projects Data. Code : " +
           responseProjects.status +
           " Text : " +
           responseProjects.statusText

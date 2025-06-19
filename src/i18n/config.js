@@ -69,6 +69,7 @@ i18n
           partners_desc:
             "Мы сотрудничаем с ведущими организациями в области сельского хозяйства как на национальном, так и на международном уровне.",
           news_title: "Новости и объявления",
+          news_item_others_text: "Другие интересные Новости",
           contacts_title: "Свяжитесь с нами",
           projects_form_title: "Форма для связи по проектам",
           projects_form_button: "Отправить Запрос",
@@ -77,6 +78,7 @@ i18n
           partners_info: "Информация для инвесторов",
           partners_info_text:
             "Мы открыты для сотрудничества с инвесторами, заинтересованными в развитии устойчивого сельского хозяйства и внедрении инновационных технологий.",
+          projects_item_others_text: "Другие интересные Проекты",
           contacts_form_title: "Форма для связи по проектам",
           contacts_form_button: "Отправить сообщение",
           contacts_form_name: "Имя*",
@@ -99,7 +101,7 @@ i18n
           search: "Saytta izlew...",
           link_home: "Bas bet",
           link_about: "Kompaniya haqqında",
-          link_projects: "Joybar",
+          link_projects: "Joybarlar",
           link_agroschool: "Agromektep",
           link_partners: "Sherikler",
           link_news: "Jańalıqlar",
@@ -120,14 +122,16 @@ i18n
           partners_desc:
             "Biz milliy hám xalıqaralıq kólemde awıl xojalıǵı tarawında jetekshi shólkemler menen birge islesip kelmektemiz.",
           news_title: "Jańalıqlar hám jaŕıyalawlar",
+          news_item_others_text: "Basqa qızıqlı jańalıqlar",
           contacts_title: "Bizben baylanısıń",
           projects_form_title: "Joybarlar boyınsha baylanıs forması",
           projects_form_button: "Soraw jiberiw",
-          projects_form_input_name: "Layıhanıń atı",
+          projects_form_input_name: "Joybardıń atı",
           projects_form_message: "Xabarińız",
           partners_info: "Investorlar ushın maǵlıwmat",
           partners_info_text:
             "Biz turaqlı awıl xojalıǵın rawajlandırıw hám innovaciyalıq texnologiyalardı engiziwden mápdar investorlar menen birge islesiw ushın ashıqpız.",
+          projects_item_others_text: "Basqa da qızıqlı joybarlar",
           contacts_form_title: "Joybarlar ushın baylanıs forması",
           contacts_form_button: "Xabardi jiberiw",
           contacts_form_name: "Atıńız*",
@@ -171,6 +175,7 @@ i18n
           partners_desc:
             "Biz milliy va xalqaro miqyosda qishloq xo‘jaligi sohasidagi yetakchi tashkilotlar bilan hamkorlik qilamiz.",
           news_title: "Yangiliklar va e’lonlar",
+          news_item_others_text: "Boshqa qiziqarli yangiliklar",
           contacts_title: "Biz bilan bog‘lanish",
           projects_form_title: "Loyiha bo‘yicha bog‘lanish formasi",
           projects_form_button: "So‘rov yuborish",
@@ -179,6 +184,7 @@ i18n
           partners_info: "Investorlar uchun ma’lumot",
           partners_info_text:
             "Biz barqaror qishloq xo‘jaligini rivojlantirish va innovatsion texnologiyalarni joriy etishdan manfaatdor bo‘lgan investorlar bilan hamkorlik qilish uchun ochiqmiz.",
+          projects_item_others_text: "Boshqa qiziqarli loyihalar",
           contacts_form_title: "Loyiha uchun bog‘lanish formasi",
           contacts_form_button: "Xabar yuborish",
           contacts_form_name: "Ism*",
@@ -222,7 +228,9 @@ i18n
           partners_title: "Our Partners",
           partners_desc:
             "We cooperate with leading organizations in the field of agriculture both nationally and internationally.",
+          projects_item_others_text: "Other interesting projects",
           news_title: "News and Announcements",
+          news_item_others_text: "More interesting news",
           contacts_title: "Contact Us",
           projects_form_title: "Project Inquiry Form",
           projects_form_button: "Send Request",

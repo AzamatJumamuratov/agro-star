@@ -14,7 +14,7 @@ const AdminAbout = () => {
       <div className="flex sm:flex-row flex-col sm:items-center items-baseline gap-6 mb-4">
         <AdminSearchInput
           value={searchData}
-          placeholder={"Поиск Информации"}
+          placeholder={"Поиск"}
           onChange={(e) => setSearchData(e.target.value)}
         />
         <AdminNewButton to={"new"}>

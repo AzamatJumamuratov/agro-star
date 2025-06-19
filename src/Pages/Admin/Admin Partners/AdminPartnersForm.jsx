@@ -44,7 +44,7 @@ const AdminPartnersForm = () => {
             name={"description"}
             id={"description"}
             autoComplete={"description"}
-            required={true}
+            required={false}
             additionalClass={"mt-3 lg:min-h-40 min-h-24"}
           />
         </label>

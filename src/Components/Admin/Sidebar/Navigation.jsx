@@ -8,12 +8,10 @@ const Navigation = () => {
         <NavLinkListItem to={"news"}>Новости</NavLinkListItem>
         <NavLinkListItem to={"projects"}>Проекты</NavLinkListItem>
         <NavLinkListItem to={"partners"}>Партнеры</NavLinkListItem>
-        <NavLinkListItem to={"about"}>Информация Компании</NavLinkListItem>
-        <NavLinkListItem to={"contacts"}>Контакты</NavLinkListItem>
-        <NavLinkListItem to={"comments"}>Обращения по Проекту</NavLinkListItem>
-        <NavLinkListItem to={"contact-info"}>
-          Контактные Информации
-        </NavLinkListItem>
+        <NavLinkListItem to={"about"}>Детали компании</NavLinkListItem>
+        <NavLinkListItem to={"contacts"}>Полученные контакты</NavLinkListItem>
+        <NavLinkListItem to={"comments"}>Обращения по проектам</NavLinkListItem>
+        <NavLinkListItem to={"contact-info"}>Контакты компании</NavLinkListItem>
       </ul>
     </nav>
   );

@@ -15,7 +15,7 @@ const AdminComments = () => {
       <div className="flex items-center gap-6 mb-4">
         <AdminSearchInput
           value={searchData}
-          placeholder={"Поиск Обращений"}
+          placeholder={"Поиск"}
           onChange={(e) => setSearchData(e.target.value)}
         />
       </div>

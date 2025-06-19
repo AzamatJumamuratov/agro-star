@@ -73,7 +73,7 @@ import AdminCommentsLayout from "./Pages/Admin/Admin Comments/AdminCommentsLayou
 import AdminComments from "./Pages/Admin/Admin Comments/AdminComments.jsx";
 import { loader as AdminCommentsLoader } from "./Data Fetching/Admin/AdminCommentsData.js";
 import { Loader } from "./Data Fetching/LayoutData.js";
-import { loader } from "./Data Fetching/ProjectsItemData.js";
+import { loader as ProjectsItemLoader } from "./Data Fetching/ProjectsItemData.js";
 import ProjectsItemPage from "./Pages/ProjectsItemPage.jsx";
 import AdminContactInfoLayout from "./Pages/Admin/Admin Contact Info/AdminContactInfoLayout.jsx";
 import AdminContactInfo from "./Pages/Admin/Admin Contact Info/AdminContactInfo.jsx";
@@ -105,7 +105,7 @@ const router = createBrowserRouter([
       {
         path: "Projects/:id",
         Component: ProjectsItemPage,
-        loader: loader,
+        loader: ProjectsItemLoader,
       },
       {
         path: "agroschool",

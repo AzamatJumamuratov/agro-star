@@ -22,7 +22,7 @@ const LastNews = () => {
           {t("lastNews_link")}
         </Link>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3  gap-8 mt-14">
+      <div className="grid grid-cols-1 max-md:justify-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  gap-8 mt-14">
         {GetLastDates(loaderData.results, 6).map((item) => {
           // let dataByLanguage = item.translations?.[currentLanguage];
           // if (dataByLanguage) {
@@ -36,6 +36,7 @@ const LastNews = () => {
               content={truncateString(item.content, 200)}
               image={item.image}
               date={item.published_at}
+              additionalClass={"max-md:w-100 max-[28rem]:w-80"}
             />
           );
           // }

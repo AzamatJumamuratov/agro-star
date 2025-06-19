@@ -8,19 +8,20 @@ import truncateString from "../Utils/TruncateString";
 const Projects = () => {
   const loaderData = useLoaderData();
   const { t } = useTranslation();
+  console.log(loaderData.item);
   return (
     <main>
       <div className="wrapper">
         <PageTitle title={t("projects_title")} />
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 max-sm:p-12 gap-8 mb-10">
-          {loaderData.results.map((item, i) => {
+          {loaderData.results.map((item) => {
             return (
               <ProjectItem
                 key={item.id}
                 id={item.id}
                 img={item.image}
                 title={item.title}
-                desc={truncateString(item.description, 300)}
+                description={truncateString(item.description, 300)}
               />
             );
           })}
