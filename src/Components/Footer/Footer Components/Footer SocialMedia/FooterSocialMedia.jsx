@@ -9,7 +9,7 @@ const FooterSocialMedia = () => {
       <div className="flex items-center mb-6 xl:mb-12 gap-4">
         <img src={logo} className="xl:h-auto h-8" />
         <h3 className="xl:text-2xl text-lg text-white font-bold">
-          АгроКомпания
+          Beruniy - Agro Star
         </h3>
       </div>
       <div className="flex gap-6">

@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import search_icon from "../../../../assets/search_icon.svg";
+import { useTranslation } from "react-i18next";
 
 const SearchBar = ({ additionalClass }) => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ const SearchBar = ({ additionalClass }) => {
       />
       <input
         type="search"
-        placeholder="Поиск по сайту.."
+        placeholder={t("search")}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown} // ⌨️ Слушаем Enter

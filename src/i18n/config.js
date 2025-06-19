@@ -45,6 +45,7 @@ i18n
         // `translation` is the default namespace.
         // More details about namespaces shortly.
         translation: {
+          search: "Поиск по сайту..",
           link_home: "Главная",
           link_about: "О компании",
           link_projects: "Проекты",
@@ -95,9 +96,10 @@ i18n
       },
       kk: {
         translation: {
+          search: "Sayt arqalı izlew...",
           link_home: "Bas bet",
           link_about: "Kompaniya haqqında",
-          link_projects: "Proektler",
+          link_projects: "Joybar",
           link_agroschool: "Agromektep",
           link_partners: "sherikler",
           link_news: "Jańalıqlar",
@@ -119,20 +121,20 @@ i18n
             "Biz milliy hám xalıqaralıq kólemde awıl xojalıǵı tarawında jetekshi shólkemler menen birge islesip kelmektemiz.",
           news_title: "Jańalıqlar hám jaŕıyalawlar",
           contacts_title: "Bizben baylanısıń",
-          projects_form_title: "Layıha boyınsha baylanıs forması",
-          projects_form_button: "Surańı jiberiw",
+          projects_form_title: "Joybarlar boyınsha baylanıs forması",
+          projects_form_button: "Soraw jiberiw",
           projects_form_input_name: "Layıhanıń atı",
-          projects_form_message: "Habarińız",
+          projects_form_message: "Xabarińız",
           partners_info: "Investorlar ushın maǵlıwmat",
           partners_info_text:
             "Biz turaqlı awıl xojalıǵın rawajlandırıw hám innovaciyalıq texnologiyalardı engiziwden mápdar investorlar menen birge islesiw ushın ashıqpız.",
-          contacts_form_title: "Proektler ushın baylanıs forması",
-          contacts_form_button: "Habardi jiberiw",
+          contacts_form_title: "Joybarlar ushın baylanıs forması",
+          contacts_form_button: "Xabardi jiberiw",
           contacts_form_name: "Atıńız*",
-          contacts_form_email: "Email*",
-          contacts_form_phone: "Telefon*",
-          contacts_form_message: "Habar*",
-          agroschool_title: "awıl xojalıǵı mektebi",
+          contacts_form_email: "Email Pochtańız*",
+          contacts_form_phone: "Telefon Nomerińiz*",
+          contacts_form_message: "Xabar*",
+          agroschool_title: "Awıl xojalıǵı mektebi",
           agroschool_desc:
             "Agromektebimizde awıl xojalıǵı tarawında zamanagóy bilim berilip, agrar taraw ushın maman qánigeler tayarlanbaqta.",
           agroschool_directions: "Tiykarǵi oqıw baǵıtları:",
@@ -145,6 +147,7 @@ i18n
       },
       uz: {
         translation: {
+          search: "Saytdan izlash...",
           link_home: "Asosiy",
           link_about: "Kompaniya haqida",
           link_projects: "Loyihalar",
@@ -196,6 +199,7 @@ i18n
 
       en: {
         translation: {
+          search: "Searching on Website...",
           link_home: "Home",
           link_about: "About Us",
           link_projects: "Projects",

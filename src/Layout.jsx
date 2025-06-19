@@ -5,12 +5,14 @@ import ScrollToTop from "./Utils/ScrollToTop.jsx";
 
 function Layout() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col items-stretch justify-stretch">
       <Header />
       <ScrollToTop />
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
