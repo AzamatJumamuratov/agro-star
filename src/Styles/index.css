@@ -46,3 +46,9 @@
     max-width: calc(100% - 50px);
   }
 }
+
+@media screena and (max-width: 500px) {
+  .wrapper {
+    max-width: 100%;
+  }
+}
