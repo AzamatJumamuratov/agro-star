@@ -14,13 +14,13 @@ const FooterSocialMedia = () => {
       </div>
       <div className="flex gap-6">
         <button className="">
-          <img src={telegramIcon} className="xl:h-auto h-9" />
+          <img src={telegramIcon} className="lg:h-8 md:h-6 sm:h-4 h-4" />
         </button>
         <button className="">
-          <img src={instagramIcon} className="xl:h-auto h-9" />
+          <img src={instagramIcon} className="lg:h-8 md:h-6 sm:h-4 h-4" />
         </button>
         <button className="">
-          <img src={facebookIcon} className="xl:h-auto h-9" />
+          <img src={facebookIcon} className="lg:h-8 md:h-6 sm:h-4 h-4" />
         </button>
       </div>
     </div>

@@ -8,7 +8,7 @@ const QuickLinks = () => {
       <h3 className="xl:text-2xl text-lg mb-4 font-bold">
         {t("footer_links")}
       </h3>
-      <nav className="grid lg:grid-cols-1 md:grid-cols-4 items-center  grid-cols-3 gap-3 xl:text-xl text-base">
+      <nav className="grid lg:grid-cols-1 md:grid-cols-4 items-center  grid-cols-3 gap-3 xl:text-xl lg:text-sm text-xs">
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? "hidden" : "underline")}

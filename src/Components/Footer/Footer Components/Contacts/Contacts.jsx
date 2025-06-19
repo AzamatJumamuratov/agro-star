@@ -12,15 +12,17 @@ const Contacts = () => {
       </h3>
       <div className="flex gap-2 mb-6">
         <img src={message_icon} alt="Message Icon" className="xl:h-auto h-5" />
-        <span className="">info@company.uz</span>
+        <span className="xl:text-xl lg:text-sm text-xs">info@company.uz</span>
       </div>
       <div className="flex gap-2 mb-6">
         <img src={phone_icon} alt="Phone Icon" className="xl:h-auto h-5" />
-        <span className="">+99890 123 45 67</span>
+        <span className="xl:text-xl lg:text-sm text-xs">+99890 123 45 67</span>
       </div>
       <div className="flex gap-2">
         <img src={location_icon} alt="Message Icon" className="xl:h-auto h-5" />
-        <span className="">Каракалпакстан, Нукус</span>
+        <span className="xl:text-xl lg:text-sm text-xs">
+          Каракалпакстан, Нукус
+        </span>
       </div>
     </address>
   );
