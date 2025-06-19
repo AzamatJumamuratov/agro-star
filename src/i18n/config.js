@@ -96,12 +96,12 @@ i18n
       },
       kk: {
         translation: {
-          search: "Sayt arqalı izlew...",
+          search: "Saytta izlew...",
           link_home: "Bas bet",
           link_about: "Kompaniya haqqında",
           link_projects: "Joybar",
           link_agroschool: "Agromektep",
-          link_partners: "sherikler",
+          link_partners: "Sherikler",
           link_news: "Jańalıqlar",
           link_contacts: "Baylanıs",
           footer_contacts: "Baylanıs maǵlıwmatları",

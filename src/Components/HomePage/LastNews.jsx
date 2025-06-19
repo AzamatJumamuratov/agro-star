@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router";
 import NewsItem from "../Common/NewsItem.jsx";
 import GetLastDates from "../../Utils/GetLastDates.js";
 import { useTranslation } from "react-i18next";
+import truncateString from "../../Utils/TruncateString.js";
 // import { GlobalLanguageContext } from "../../Contexts/LanguageGlobalContext";
 // import { useContext } from "react";
 
@@ -21,7 +22,7 @@ const LastNews = () => {
           {t("lastNews_link")}
         </Link>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-8 mt-14">
+      <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3  gap-8 mt-14">
         {GetLastDates(loaderData.results, 6).map((item) => {
           // let dataByLanguage = item.translations?.[currentLanguage];
           // if (dataByLanguage) {
@@ -32,7 +33,7 @@ const LastNews = () => {
               // title={dataByLanguage.title}
               // content={dataByLanguage.content}
               title={item.title}
-              content={item.content}
+              content={truncateString(item.content, 200)}
               image={item.image}
               date={item.published_at}
             />

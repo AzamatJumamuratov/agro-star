@@ -3,6 +3,7 @@ import PageTitle from "../Components/Common/PageTitle";
 import ContactForm from "../Components/ProjectsPage/ContactForm";
 import ProjectItem from "../Components/ProjectsPage/ProjectItem";
 import { useTranslation } from "react-i18next";
+import truncateString from "../Utils/TruncateString";
 
 const Projects = () => {
   const loaderData = useLoaderData();
@@ -16,9 +17,10 @@ const Projects = () => {
             return (
               <ProjectItem
                 key={item.id}
+                id={item.id}
                 img={item.image}
                 title={item.title}
-                desc={item.description}
+                desc={truncateString(item.description, 300)}
               />
             );
           })}

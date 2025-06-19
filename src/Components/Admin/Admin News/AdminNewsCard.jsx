@@ -1,6 +1,7 @@
 import clock_icon from "../../../assets/clock.svg";
 import eye_icon from "../../../assets/eye.svg";
 import formatDateToDDMMYYYY from "../../../Utils/formatDateToDDMMYYYY";
+import truncateString from "../../../Utils/TruncateString";
 import AdminModifyCard from "../AdminModifyCard";
 
 const AdminNewsCard = ({
@@ -27,7 +28,7 @@ const AdminNewsCard = ({
           {title || "Пусто"}
         </h3>
         <p className="xl:text-sm text-xs text-[#666666] mb-4 break-words">
-          {content || "Описание Пусто."}
+          {content ? truncateString(content, 200) : "Описание Пусто."}
         </p>
         <div className="mt-auto mb-4 flex justify-between text-[#999999] lg:text-sm text-xs">
           <div className="flex gap-1.5">

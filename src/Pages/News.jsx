@@ -2,6 +2,7 @@ import { useLoaderData, useLocation } from "react-router";
 import NewsItem from "../Components/Common/NewsItem";
 import PageTitle from "../Components/Common/PageTitle";
 import { useTranslation } from "react-i18next";
+import truncateString from "../Utils/TruncateString";
 
 const News = () => {
   const loaderData = useLoaderData();
@@ -26,13 +27,13 @@ const News = () => {
             {`Найдено: ${filteredResults.length} новостей по запросу "${searchQuery}"`}
           </p>
         )}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 xl:mt-14 lg:mt-9 mt-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-8 xl:mt-14 lg:mt-9 mt-5">
           {filteredResults.map((item) => (
             <NewsItem
               key={item.id}
               id={item.id}
               title={item.title}
-              content={item.content}
+              content={truncateString(item.content, 300)}
               image={item.image}
               date={item.published_at}
             />

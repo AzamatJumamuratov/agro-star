@@ -11,6 +11,9 @@ const Navigation = () => {
         <NavLinkListItem to={"about"}>Информация Компании</NavLinkListItem>
         <NavLinkListItem to={"contacts"}>Контакты</NavLinkListItem>
         <NavLinkListItem to={"comments"}>Обращения по Проекту</NavLinkListItem>
+        <NavLinkListItem to={"contact-info"}>
+          Контактные Информации
+        </NavLinkListItem>
       </ul>
     </nav>
   );

@@ -1,21 +1,18 @@
-import edit_icon from "../../assets/edit.svg";
-import bin_icon from "../../assets/trash_bin.svg";
+import edit_icon from "../../../assets/edit.svg";
+import bin_icon from "../../../assets/trash_bin.svg";
 import { redirect, useRevalidator } from "react-router";
 import { createPortal } from "react-dom";
-import UpdateValuesModal from "../Admin/UpdateValuesModal";
 import { useState } from "react";
-import FetchData from "../../Data Fetching/FetchData";
-import ConvertToJSonFormData from "../../Utils/FromDataToJson";
+import FetchData from "../../../Data Fetching/FetchData";
+import AdminContactsModal from "./AdminConactsModal";
+import AdminSocialLinksModal from "./AdminSocialLinksModal";
 
-const AdminModifyCard = ({
-  id,
-  header,
-  mainContent,
-  image,
-  type,
-  modifyPath,
+const AdminSocialLinksModify = ({
+  telegram,
+  instagram,
+  facebook,
   editable = true,
-  deletable = true,
+  deletable = false,
   notifyFn,
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -52,13 +49,12 @@ const AdminModifyCard = ({
       )}
       {isChanging &&
         createPortal(
-          <UpdateValuesModal
-            id={id}
-            header={header}
-            mainContent={mainContent}
-            image={type == "news" || type == "projects" ? image : "none"}
-            submitFN={OnUpdate}
+          <AdminSocialLinksModal
+            telegram={telegram}
+            instagram={instagram}
+            facebook={facebook}
             closeFN={() => SetIsChanging(false)}
+            submitFN={OnUpdate}
           />,
           document.body
         )}
@@ -95,70 +91,41 @@ const AdminModifyCard = ({
     setIsDeleting(false);
   }
 
-  async function OnUpdate(id, body, callback) {
+  async function OnUpdate(body, SuccessCallback, ErrorCallback) {
     const token = localStorage.getItem("token");
     if (!token) {
       return redirect("/login");
     }
-    const formdata = new FormData();
-    const updateDataArr = GetType(type);
-    formdata.append(updateDataArr[0], body.title);
-    formdata.append(updateDataArr[1], body.mainContent);
-    if (updateDataArr[2]) {
-      formdata.append(updateDataArr[2], body.image);
-    }
-
-    console.log(body);
-
     const headers = {
       Authorization: `Token ${token}`,
+      "Content-Type": "application/json",
     };
 
-    let bodyData;
-    if (type == "news" || type == "projects") {
-      bodyData = formdata; // не указываем Content-Type
-    } else {
-      headers["Content-Type"] = "application/json";
-      bodyData = ConvertToJSonFormData(formdata); // важно!
-    }
-
-    let response = await FetchData(`${modifyPath}/${id}/`, {
-      method: "PATCH",
+    let response = await FetchData(`social-links/`, {
+      method: "PUT",
       headers,
-      body: bodyData,
+      body: JSON.stringify(body),
     });
+
     if (response.ok) {
       notifyFn({ success: true });
       revalidate();
+      SuccessCallback();
     } else {
       notifyFn({ success: false });
       if (response.status == 401) {
         redirect("/login");
       }
       console.error(
-        `Error Deleting News ${id} Item. Code : ` +
+        `Error Updating Social Links INFO. Code : ` +
           response.status +
           " Text : " +
           response.statusText
       );
-    }
-
-    callback();
-  }
-
-  function GetType(type) {
-    if (!type) console.error("you did'nt specify type of card, idiot");
-    switch (type) {
-      case "news":
-        return ["title", "content", "image"];
-      case "projects":
-        return ["title", "description", "image"];
-      case "partners":
-        return ["name", "description"];
-      case "company-info":
-        return ["title", "description"];
+      const error = await response.json();
+      ErrorCallback(error);
     }
   }
 };
 
-export default AdminModifyCard;
+export default AdminSocialLinksModify;

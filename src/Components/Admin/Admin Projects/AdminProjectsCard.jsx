@@ -8,6 +8,7 @@ import xMark_icon from "../../../assets/xmark.svg";
 import FetchData from "../../../Data Fetching/FetchData";
 import UpdateValuesModal from "../UpdateValuesModal";
 import AdminModifyCard from "../AdminModifyCard";
+import truncateString from "../../../Utils/TruncateString";
 
 const AdminProjectsCard = ({ id, title, description, image_url, notifyFn }) => {
   const [cardOptions, setCardOptions] = useState(false);
@@ -29,7 +30,7 @@ const AdminProjectsCard = ({ id, title, description, image_url, notifyFn }) => {
         </h3>
         <p className="xl:text-sm text-xs text-[#666666] mb-4 break-words">
           {/* {content != "" ? content.slice(0, 60) + "...."} */}
-          {description || "Описание Пусто."}
+          {description ? truncateString(description, 200) : "Описание Пусто."}
         </p>
         <AdminModifyCard
           id={id}
