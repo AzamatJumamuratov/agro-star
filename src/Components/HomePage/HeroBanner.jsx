@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const HeroBanner = () => {
   const { t } = useTranslation();
   return (
-    <section className="relative xl:h-[720px] lg:h-[512px] h-[384px]">
+    <section className="relative xl:h-[720px] lg:h-[512px] sm:h-[384px] h-[300px]">
       <div className="absolute -z-10 w-full h-full bg-linear-to-r from-bg-start to-bg-end">
         <img
           src={bg}
@@ -14,7 +14,7 @@ const HeroBanner = () => {
         />
       </div>
       <div className="wrapper">
-        <div className="text-white xl:max-w-[608px] lg:max-w-[512px] max-md:w-full xl:pt-32 lg:pt-20 pt-10">
+        <div className="text-white ml-14 lg:ml-26 max-sm:ml-0 xl:max-w-[608px] lg:max-w-[512px] md:max-w-[512px] max-sm:w-full xl:pt-32 lg:pt-20 pt-10">
           <h1 className="2xl:text-[56px] xl:text-5xl lg:text-4xl text-3xl mb-6 font-bold">
             {t("banner_title")}
           </h1>

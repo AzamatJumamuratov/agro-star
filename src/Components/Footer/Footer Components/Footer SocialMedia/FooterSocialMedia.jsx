@@ -5,10 +5,10 @@ import facebookIcon from "./facebook_icon.svg";
 
 const FooterSocialMedia = () => {
   return (
-    <div className="xl:mb-0 mb-8">
+    <div className="max-md:mb-6">
       <div className="flex items-center mb-6 xl:mb-12 gap-4">
         <img src={logo} className="xl:h-auto h-8" />
-        <h3 className="xl:text-[28px] text-lg text-white font-bold">
+        <h3 className="xl:text-2xl text-lg text-white font-bold">
           АгроКомпания
         </h3>
       </div>

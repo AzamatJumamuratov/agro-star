@@ -13,7 +13,7 @@ const LanguageButtons = ({ additionalClass }) => {
 
   return (
     <div
-      className={`flex justify-between items-center xl:text-base lg:text-sm text-xs gap-3 ${additionalClass}`}
+      className={`flex justify-between items-center xl:text-base lg:text-sm text-xs gap-1 ${additionalClass}`}
     >
       <LangButton
         current={currentLanguage}

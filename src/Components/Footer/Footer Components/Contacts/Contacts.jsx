@@ -7,7 +7,7 @@ const Contacts = () => {
   const { t } = useTranslation();
   return (
     <address className="text-white xl:text-2xl text-base xl:mb-0 mb-8">
-      <h3 className="xl:text-[28px] text-lg xl:mb-8 mb-5 font-bold">
+      <h3 className="xl:text-2xl text-lg xl:mb-8 mb-5 font-bold">
         {t("footer_contacts")}
       </h3>
       <div className="flex gap-2 mb-6">

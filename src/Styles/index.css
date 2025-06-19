@@ -17,13 +17,25 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1920px) {
+  .wrapper {
+    max-width: 1630px;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .wrapper {
+    max-width: calc(100% - 200px);
+  }
+}
+
+@media screen and (max-width: 1023px) {
   .wrapper {
     max-width: calc(100% - 150px);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .wrapper {
     max-width: calc(100% - 100px);
   }

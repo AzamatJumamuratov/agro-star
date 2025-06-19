@@ -4,9 +4,9 @@ import QuickLinks from "./Footer Components/QuickLinks/QuickLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-linear-to-r from-bg-start to-bg-end mt-24">
+    <footer className="bg-linear-to-r from-bg-start to-bg-end lg:mt-24 md:mt-10 mt-4">
       <div className="wrapper">
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-9  xl:pt-14 xl:pb-[72px] pb-12">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 max-[540px]:grid-cols-1 pt-6  pb-4">
           <FooterSocialMedia />
           <Contacts />
           <QuickLinks />

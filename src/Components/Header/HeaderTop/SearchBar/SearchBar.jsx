@@ -34,7 +34,7 @@ const SearchBar = ({ additionalClass }) => {
       <img
         src={search_icon}
         alt="search_icon"
-        className="absolute xl:h-[18px] lg:h-3.5 h-3  xl:left-4 lg:left-3 left-3 xl:top-3 lg:top-2 top-2 bottom-3"
+        className="absolute xl:h-[18px] lg:h-3.5 h-3 left-3 top-2 bottom-3"
       />
       <input
         type="search"
@@ -42,7 +42,7 @@ const SearchBar = ({ additionalClass }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown} // ⌨️ Слушаем Enter
-        className="h-full xl:w-[368px] lg:w-[245px]  xl:py-3  py-2 pl-11 pr-2 placeholder:text-white rounded-lg xl:text-base text-xs bg-white/30 text-white"
+        className="h-full xl:w-[368px] lg:w-[245px]   py-2 pl-11 pr-2 placeholder:text-white rounded-lg xl:text-base text-xs bg-white/30 text-white"
       />
     </div>
   );

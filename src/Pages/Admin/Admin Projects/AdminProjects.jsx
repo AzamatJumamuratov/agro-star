@@ -11,7 +11,7 @@ const AdminProjects = () => {
   const [notifyResult, setNotifyResult] = useState(null);
   return (
     <div className="mb-30">
-      <div className="flex items-center gap-6 mb-4">
+      <div className="flex sm:flex-row flex-col sm:items-center items-baseline gap-6 mb-4">
         <AdminSearchInput
           value={searchData}
           placeholder={"Поиск Проекта..."}
@@ -34,7 +34,7 @@ const AdminProjects = () => {
                   title={item.title}
                   description={item.description}
                   image_url={item.image_url}
-                  deleteResultFN={setNotifyResult}
+                  notifyFn={setNotifyResult}
                 />
               );
             }
@@ -46,7 +46,7 @@ const AdminProjects = () => {
                 title={item.title}
                 description={item.description}
                 image_url={item.image_url}
-                deleteResultFN={setNotifyResult}
+                notifyFn={setNotifyResult}
               />
             );
           }

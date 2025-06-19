@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 
 const CustomNavLink = ({ to, children }) => {
-  let className = "xl:text-xl lg:text-xs";
+  let className = "xl:text-base lg:text-sm text-xs";
   return (
     <NavLink
       to={to}

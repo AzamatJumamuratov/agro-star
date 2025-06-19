@@ -7,7 +7,7 @@ const AdminQuit = () => {
       onClick={handleClick}
       className="bg-primary ml-9 mb-4 p-2 duration-300 ease-in-outs active:bg-[#224836] text-white rounded-xl lg:text-sm text-xs"
     >
-      Выход из Аккаунта
+      Выйти из Аккаунта
     </button>
   );
 

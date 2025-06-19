@@ -7,14 +7,9 @@ import arrowUpFill_icon from "../../../assets/arrow_up_fill.svg";
 import xMark_icon from "../../../assets/xmark.svg";
 import FetchData from "../../../Data Fetching/FetchData";
 import UpdateValuesModal from "../UpdateValuesModal";
+import AdminModifyCard from "../AdminModifyCard";
 
-const AdminProjectsCard = ({
-  id,
-  title,
-  description,
-  image_url,
-  deleteResultFN,
-}) => {
+const AdminProjectsCard = ({ id, title, description, image_url, notifyFn }) => {
   const [cardOptions, setCardOptions] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isChanging, SetIsChanging] = useState(false);
@@ -36,55 +31,16 @@ const AdminProjectsCard = ({
           {/* {content != "" ? content.slice(0, 60) + "...."} */}
           {description || "Описание Пусто."}
         </p>
+        <AdminModifyCard
+          id={id}
+          header={title}
+          mainContent={description}
+          modifyPath={"projects"}
+          type={"projects"}
+          image={image_url}
+          notifyFn={notifyFn}
+        />
       </div>
-      <div
-        className={`w-full left-0 absolute flex flex-col gap-3 bg-white  items-center justify-center duration-500 ease-in-out 
-                  ${cardOptions ? "top-0 h-full" : "top-[calc(100%-18px)]"}`}
-      >
-        <button
-          onClick={() => setCardOptions(!cardOptions)}
-          className="w-10 bg-primaryGreen px-3 py-1 rounded-lg"
-        >
-          <img
-            src={cardOptions ? xMark_icon : arrowUpFill_icon}
-            className="w-5 h-5"
-          />
-        </button>
-        <div className="flex flex-col gap-4 ">
-          <button
-            onClick={() => SetIsChanging(true)}
-            disabled={isDeleting}
-            className={`flex items-center gap-2.5 2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-6 lg:px-4 px-3 xl:text-base lg:text-sm text-xs rounded-xl text-white bg-[#6877E0] ${
-              !isDeleting && "active:bg-[#3f488a]"
-            } disabled:opacity-40`}
-          >
-            <img src={edit_icon} className="xl:h-auto lg:h-4 h-3" />
-            Редактировать
-          </button>
-          <button
-            disabled={isDeleting}
-            onClick={() => OnDelete(id)}
-            className={`flex items-center gap-2.5 2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-6 lg:px-4 px-3 xl:text-base lg:text-sm text-xs rounded-xl text-white bg-[#DC3545] ${
-              isDeleting ? "" : "active:bg-[#98313b] "
-            } disabled:opacity-40 `}
-          >
-            <img src={bin_icon} className="xl:h-auto lg:h-4 h-3" />
-            {isDeleting ? "Удаление...." : "Удалить"}
-          </button>
-        </div>
-      </div>
-      {isChanging &&
-        createPortal(
-          <UpdateValuesModal
-            id={id}
-            title={title}
-            description={description}
-            image={image_url}
-            closeFN={() => SetIsChanging(false)}
-            submitFN={OnUpdate}
-          />,
-          document.body
-        )}
     </div>
   );
 

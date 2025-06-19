@@ -11,7 +11,7 @@ const AdminPartners = () => {
   const [notifyResult, setNotifyResult] = useState(null);
   return (
     <div className="mb-30">
-      <div className="flex items-center gap-6 mb-4">
+      <div className="flex sm:flex-row flex-col sm:items-center items-baseline gap-6 mb-4">
         <AdminSearchInput
           value={searchData}
           placeholder={"Поиск Партнеров..."}
@@ -33,7 +33,7 @@ const AdminPartners = () => {
                   id={item.id}
                   name={item.name}
                   description={item.description}
-                  notifyFN={setNotifyResult}
+                  notifyFn={setNotifyResult}
                 />
               );
             }
@@ -44,7 +44,7 @@ const AdminPartners = () => {
                 id={item.id}
                 name={item.name}
                 description={item.description}
-                notifyFN={setNotifyResult}
+                notifyFn={setNotifyResult}
               />
             );
           }

@@ -4,11 +4,11 @@ import { NavLink } from "react-router";
 const QuickLinks = () => {
   const { t } = useTranslation();
   return (
-    <div className="text-white xl:col-auto col-span-full">
-      <h3 className="xl:text-[28px] text-lg xl:mb-8 lg:mb-5 mb-4 font-bold">
+    <div className="text-white lg:col-auto col-span-full">
+      <h3 className="xl:text-2xl text-lg mb-4 font-bold">
         {t("footer_links")}
       </h3>
-      <nav className="grid xl:grid-cols-1 md:grid-cols-4  grid-cols-3 gap-6 xl:text-2xl text-base">
+      <nav className="grid lg:grid-cols-1 md:grid-cols-4 items-center  grid-cols-3 gap-3 xl:text-xl text-base">
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? "hidden" : "underline")}
