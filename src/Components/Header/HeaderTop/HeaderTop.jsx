@@ -11,7 +11,10 @@ const HeaderTop = () => {
   const [sidebarOpened, OpenSidebar] = useState(false);
   const navigate = useNavigate();
   return (
-    <div className="bg-linear-to-r from-bg-start to-bg-end shadow-[0_2px_10px_0_rgba(0,0,0,0.1)]">
+    <div
+      className="bg-linear-to-r from-bg-start to-bg-end 
+    shadow-[0_2px_10px_0_rgba(0,0,0,0.1)]"
+    >
       <div className="wrapper">
         <div className="flex items-center  lg:gap-8 gap-3 justify-between xl:py-4 lg:py-3.5  md:py-2 py-4">
           <LogoComponent />

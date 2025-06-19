@@ -14,11 +14,11 @@ const Partners = () => {
     <main>
       <div className="wrapper">
         <PageTitle title={t("partners_title")} desc={t("partners_desc")} />
-        <h3 className="xl:text-almostL lg:text-almostN text-xl font-bold mb-6">
+        <h3 className="xl:text-2xl lg:text-xl text-lg font-bold mb-6">
           {t("partners_title")}
         </h3>
 
-        <ul className="list-disc xl:text-largerN lg:text-xl text-base pl-8 mb-12">
+        <ul className="list-disc xl:text-lg lg:text-sm text-xs pl-8 mb-12">
           {loaderData.results.map((item) => {
             return <li key={item.id}>{item.name}</li>;
           })}
@@ -28,10 +28,10 @@ const Partners = () => {
           <li>Европейские фермерские ассоциации</li> */}
         </ul>
 
-        <h3 className="xl:text-almostL lg:text-almostN text-xl font-bold mb-6">
+        <h3 className="xl:text-2xl lg:text-xl text-lg font-bold mb-6">
           {t("partners_info")}
         </h3>
-        <p className="xl:text-largerN lg:text-xl text-base">
+        <p className="xl:text-lg lg:text-sm text-xs">
           {t("partners_info_text")}
         </p>
       </div>
