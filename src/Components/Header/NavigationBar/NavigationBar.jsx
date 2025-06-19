@@ -7,7 +7,7 @@ const NavigationBar = () => {
     <div className="hidden md:block shadow-[0px_2px_5px_0px_#0000001A] mb-1 bg-white">
       <div className="wrapper">
         <nav className="">
-          <ul className="flex lg:flex-nowrap justify-center  items-center xl:gap-20 lg:gap-10 gap-8  lg:py-3 md:py-1">
+          <ul className="flex lg:flex-nowrap justify-center  items-center xl:gap-20 lg:gap-10 gap-8  lg:py-2 md:py-1">
             <li className="">
               <CustomNavLink to="/">{t("link_home")}</CustomNavLink>
             </li>
