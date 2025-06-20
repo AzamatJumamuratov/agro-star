@@ -2,7 +2,7 @@ const AdminTitle = ({ type = "h3", children }) => {
   return (
     <Title
       type={type}
-      className="2xl:ml-9 xl:ml-6 lg:ml-4 ml-3 xl:mb-8 lg:mb-5 mb-3 2xl:text-5xl xl:text-4xl lg:text-xl font-bold"
+      className="2xl:ml-9 xl:ml-6 lg:ml-4 ml-3 xl:mb-8 lg:mb-5 mb-3 2xl:text-4xl xl:text-4xl lg:text-xl font-bold"
     >
       {children}
     </Title>

@@ -46,7 +46,7 @@ const AdminProjectsForm = () => {
       <Form
         ref={formRef}
         method="POST"
-        className="2xl:p-9 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10"
+        className="2xl:p-6 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10"
         onSubmit={handleSubmit}
       >
         <label htmlFor="title" className="">
@@ -100,14 +100,14 @@ const AdminProjectsForm = () => {
         <div className="flex gap-6 mt-9 text-white">
           <button
             type="submit"
-            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] active:bg-[#424b91]"
+            className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-6 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] active:bg-[#424b91]"
           >
             Опубликовать проект
           </button>
           <button
             type="reset"
             onClick={() => setPreviewImage(null)}
-            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
+            className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-6 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
           >
             Очистить
           </button>
