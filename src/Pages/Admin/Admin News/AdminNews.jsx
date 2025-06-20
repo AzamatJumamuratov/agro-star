@@ -21,7 +21,7 @@ const AdminNews = () => {
         <AdminNewButton to={"new"}>Создание Новости</AdminNewButton>
       </div>
 
-      <NewsSortOptions />
+      {/* <NewsSortOptions /> */}
       <Notification result={notifyResult} durationMilliSeconds={3000} />
       <div className="grid 2xl:grid-cols-4 min-[71.25rem]:grid-cols-3  md:grid-cols-2 grid-cols-1 gap-8">
         {loaderData.results.map((item) => {
