@@ -9,7 +9,7 @@ const Navigation = () => {
         <NavLinkListItem to={"projects"}>Проекты</NavLinkListItem>
         <NavLinkListItem to={"partners"}>Партнеры</NavLinkListItem>
         <NavLinkListItem to={"about"}>Детали компании</NavLinkListItem>
-        <NavLinkListItem to={"contacts"}>Полученные контакты</NavLinkListItem>
+        <NavLinkListItem to={"contacts"}>Входящие контакты</NavLinkListItem>
         <NavLinkListItem to={"comments"}>Обращения по проектам</NavLinkListItem>
         <NavLinkListItem to={"contact-info"}>Контакты компании</NavLinkListItem>
       </ul>
