@@ -11,6 +11,8 @@ const AdminNewsCard = ({
   image,
   published_at,
   views,
+  activeLanguage,
+  setActiveLanguage,
   notifyFn,
 }) => {
   const formattedDate = formatDateToDDMMYYYY(published_at, "/");
@@ -48,6 +50,8 @@ const AdminNewsCard = ({
           modifyPath={"news"}
           mainContent={content}
           notifyFn={notifyFn}
+          activeLanguage={activeLanguage}
+          setActiveLanguage={setActiveLanguage}
         />
       </div>
     </div>

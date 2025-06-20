@@ -2,6 +2,7 @@ import logo from "../../../../assets/logo.svg";
 import instagramIcon from "./instagram_icon.svg";
 import telegramIcon from "./telegram_icon.svg";
 import facebookIcon from "./facebook_icon.svg";
+import linkedinIcon from "./linkedin_icon.svg";
 import { Link, useLoaderData } from "react-router";
 
 const FooterSocialMedia = () => {
@@ -23,6 +24,9 @@ const FooterSocialMedia = () => {
         </Link>
         <Link to={social_links.facebook} type="_blank" className="">
           <img src={facebookIcon} className="lg:h-8 md:h-6 h-6" />
+        </Link>
+        <Link to={social_links.linkedin} type="_blank" className="">
+          <img src={linkedinIcon} className="lg:h-8 md:h-6 h-6" />
         </Link>
       </div>
     </div>

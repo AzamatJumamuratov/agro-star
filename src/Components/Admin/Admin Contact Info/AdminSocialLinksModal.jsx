@@ -6,6 +6,7 @@ const AdminSocialLinksModal = ({
   telegram,
   instagram,
   facebook,
+  linkedin,
   closeFN,
   submitFN,
 }) => {
@@ -13,6 +14,7 @@ const AdminSocialLinksModal = ({
   const telegramRef = useRef();
   const instagramRef = useRef();
   const facebookRef = useRef();
+  const linkedinRef = useRef();
   const [error, setError] = useState();
   return (
     <div className="z-50 fixed flex justify-center items-center left-0 top-0 w-full h-full bg-black/30">
@@ -50,6 +52,15 @@ const AdminSocialLinksModal = ({
               id={"facebook"}
               defaultValue={facebook}
               placeholder={"facebook"}
+            />
+            <FormInput
+              ref={linkedinRef}
+              type={"url"}
+              required={true}
+              name={"linkedin"}
+              id={"linkedin"}
+              defaultValue={linkedin}
+              placeholder={"linkedin"}
             />
             <div className="flex gap-4">
               <button

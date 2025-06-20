@@ -11,6 +11,7 @@ const AdminSocialLinksModify = ({
   telegram,
   instagram,
   facebook,
+  linkedin,
   editable = true,
   deletable = false,
   notifyFn,
@@ -53,6 +54,7 @@ const AdminSocialLinksModify = ({
             telegram={telegram}
             instagram={instagram}
             facebook={facebook}
+            linkedin={linkedin}
             closeFN={() => SetIsChanging(false)}
             submitFN={OnUpdate}
           />,

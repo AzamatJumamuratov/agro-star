@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useState } from "react";
 import FetchData from "../../../Data Fetching/FetchData";
 import AdminContactsModal from "./AdminConactsModal";
+import LanguageSwitcher from "../LanguageSwitcher";
 
 const AdminContactsModify = ({
   email,
@@ -13,6 +14,8 @@ const AdminContactsModify = ({
   editable = true,
   deletable = false,
   notifyFn,
+  activeLanguage,
+  setActiveLanguage,
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isChanging, SetIsChanging] = useState(false);
@@ -46,6 +49,11 @@ const AdminContactsModify = ({
           {isDeleting ? "Удаление...." : "Удалить"}
         </button>
       )}
+      <LanguageSwitcher
+        active={activeLanguage}
+        setActive={setActiveLanguage}
+        additionalClass={"mt-2"}
+      />
       {
         isChanging &&
           createPortal(

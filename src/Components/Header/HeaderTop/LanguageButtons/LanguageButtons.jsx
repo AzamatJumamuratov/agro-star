@@ -1,5 +1,4 @@
 import { useContext } from "react";
-// In our components or hooks
 import { useTranslation } from "react-i18next";
 import { GlobalLanguageContext } from "../../../../Contexts/LanguageGlobalContext";
 
@@ -32,9 +31,9 @@ const LanguageButtons = ({ additionalClass }) => {
       <LangButton
         current={currentLanguage}
         onClick={OnChangeLanguage}
-        language={"kk"}
+        language={"kaa"}
       >
-        KK
+        KAA
       </LangButton>
       <LangButton
         current={currentLanguage}

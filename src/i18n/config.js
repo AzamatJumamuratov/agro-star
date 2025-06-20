@@ -96,7 +96,7 @@ i18n
           agroschool_l5: "Агробизнес и управление",
         },
       },
-      kk: {
+      kaa: {
         translation: {
           search: "Saytta izlew...",
           link_home: "Bas bet",

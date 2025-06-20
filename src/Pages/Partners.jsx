@@ -1,15 +1,19 @@
 import { useLoaderData } from "react-router";
 import PageTitle from "../Components/Common/PageTitle";
 import { useTranslation } from "react-i18next";
-// import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
-// import { useContext } from "react";
+import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
+import { useContext } from "react";
 
 const Partners = () => {
   const loaderData = useLoaderData();
   const { t } = useTranslation();
-  // const { currentLanguage, languageSwitchHandler } = useContext(
-  //   GlobalLanguageContext
-  // );
+  const { currentLanguage } = useContext(GlobalLanguageContext);
+
+  // Отфильтруем только те, у кого есть перевод на текущем языке
+  const filteredItems = loaderData.results.filter(
+    (item) => item.translations?.[currentLanguage]
+  );
+
   return (
     <main>
       <div className="wrapper">
@@ -19,13 +23,15 @@ const Partners = () => {
         </h3>
 
         <ul className="list-disc xl:text-lg lg:text-sm text-xs pl-8 mb-12">
-          {loaderData.results.map((item) => {
-            return <li key={item.id}>{item.name}</li>;
-          })}
-          {/* <li>Министерство сельского хозяйства Республики Узбекистан</li>
-          <li>Международные агротехнические компании </li>
-          <li>Научно-исследовательские институты </li>
-          <li>Европейские фермерские ассоциации</li> */}
+          {filteredItems.length > 0 ? (
+            filteredItems.map((item) => (
+              <li key={item.id}>{item.translations[currentLanguage].name}</li>
+            ))
+          ) : (
+            <p className="xl:text-lg lg:text-sm text-xs text-gray-500 p-2">
+              {"Нет партнеров для текущего языка..."}
+            </p>
+          )}
         </ul>
 
         <h3 className="xl:text-2xl lg:text-xl text-lg font-bold mb-6">
