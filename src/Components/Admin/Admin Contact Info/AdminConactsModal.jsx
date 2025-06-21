@@ -2,7 +2,9 @@ import { useRef, useState } from "react";
 import FormInput from "../../Common/FormInput";
 import { Form } from "react-router";
 import ErrorMessage from "../../Auth/ErrorMessage";
-import LanguageSwitcher from "../../Admin/LanguageSwitcher";
+import LanguageSwitcher, {
+  languages as data_languages,
+} from "../../Admin/LanguageSwitcher";
 
 const AdminContactsModal = ({
   email,
@@ -19,7 +21,6 @@ const AdminContactsModal = ({
   const [localTranslations, setLocalTranslations] = useState(
     translations || {}
   );
-  const requiredLangs = ["ru", "en", "uz", "kaa"];
   const [formErrors, setFormErrors] = useState([]);
 
   const handleInputChange = (lang, value) => {
@@ -49,7 +50,7 @@ const AdminContactsModal = ({
     setSubmitting(true);
     setFormErrors([]);
 
-    const missingLanguages = requiredLangs.filter(
+    const missingLanguages = data_languages.filter(
       (lang) => !localTranslations[lang]?.address?.trim()
     );
 

@@ -5,16 +5,17 @@ import { useEffect, useRef, useState } from "react";
 import AdminTitle from "../../../Components/Admin/AdminTitle";
 import CustomTextArea from "../../../Components/Common/CustomTextArea";
 import Notification from "../../../Components/Common/Notification";
-import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
+import LanguageSwitcher, {
+  languages as data_languages,
+} from "../../../Components/Admin/LanguageSwitcher";
 import ErrorMessage from "../../../Components/Auth/ErrorMessage";
-
-const REQUIRED_LANGUAGES = ["ru", "en", "uz", "kaa"];
 
 const AdminProjectsForm = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [activeLanguage, setActiveLanguage] = useState("ru");
   const [translations, setTranslations] = useState({});
   const [formErrors, setFormErrors] = useState([]);
+  const [isCreating, setIsCreating] = useState(false);
 
   const imageFileRef = useRef(null);
   const formRef = useRef(null);
@@ -33,6 +34,7 @@ const AdminProjectsForm = () => {
       setPreviewImage(null);
       setTranslations({});
       setFormErrors([]);
+      setIsCreating(false);
     }
   }, [actionData]);
 
@@ -48,6 +50,7 @@ const AdminProjectsForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsCreating(true);
     const formData = new FormData(formRef.current);
     formData.delete("title");
     formData.delete("description");
@@ -59,7 +62,7 @@ const AdminProjectsForm = () => {
     const errors = [];
 
     const filteredTranslations = {};
-    REQUIRED_LANGUAGES.forEach((lang) => {
+    data_languages.forEach((lang) => {
       const title = translations[lang]?.title?.trim();
       const description = translations[lang]?.description?.trim();
       if (!title || !description) {
@@ -71,6 +74,7 @@ const AdminProjectsForm = () => {
 
     if (errors.length > 0) {
       setFormErrors(errors);
+      setIsCreating(false);
       return;
     }
 
@@ -145,8 +149,12 @@ const AdminProjectsForm = () => {
                 <div className="flex gap-6 items-center">
                   <img src={previewImage} className="w-1/2 rounded-lg mt-3" />
                   <button
+                    type="button"
+                    disabled={isCreating}
                     onClick={() => setPreviewImage(null)}
-                    className="xl:p-3 lg:p-2 p-2 2xl:text-3xl xl:text-xl lg:text-base text-xs rounded-xl bg-red-400 text-white"
+                    className={`xl:p-3 lg:p-2 p-2 2xl:text-3xl xl:text-xl lg:text-base text-xs rounded-xl bg-red-400 text-white ${
+                      isCreating ? "" : "active:bg-red-800"
+                    } disabled:opacity-40`}
                   >
                     Убрать
                   </button>
@@ -167,18 +175,24 @@ const AdminProjectsForm = () => {
         <div className="flex gap-6 mt-9 text-white">
           <button
             type="submit"
-            className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-6 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] active:bg-[#424b91]"
+            disabled={isCreating}
+            className={`2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-6 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] ${
+              isCreating ? "" : "active:bg-[#424b91]"
+            } disabled:opacity-40`}
           >
             Опубликовать проект
           </button>
           <button
             type="reset"
+            disabled={isCreating}
             onClick={() => {
               setPreviewImage(null);
               setTranslations({});
               setFormErrors([]);
             }}
-            className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-6 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
+            className={`2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-6 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] ${
+              isCreating ? "" : "active:bg-[#5a5a5a]"
+            } disabled:opacity-40`}
           >
             Очистить
           </button>

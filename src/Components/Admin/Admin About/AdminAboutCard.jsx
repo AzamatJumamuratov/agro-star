@@ -1,5 +1,6 @@
 import clock_icon from "../../../assets/clock.svg";
 import formatDateToDDMMYYYY from "../../../Utils/formatDateToDDMMYYYY";
+import truncateString from "../../../Utils/TruncateString";
 import AdminModifyCard from "../AdminModifyCard";
 
 const AdminAboutCard = ({
@@ -18,7 +19,7 @@ const AdminAboutCard = ({
           {title || "Пусто"}
         </h3>
         <p className="xl:text-sm text-xs text-[#666666] mb-4 break-words">
-          {description || "Описание Пусто."}
+          {description ? truncateString(description, 200) : "Описание Пусто."}
         </p>
         <div className="flex justify-between text-[#999999] lg:text-sm text-xs">
           <div className="flex gap-1.5  ">

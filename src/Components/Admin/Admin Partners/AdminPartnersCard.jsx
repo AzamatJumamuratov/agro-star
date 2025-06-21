@@ -1,3 +1,4 @@
+import truncateString from "../../../Utils/TruncateString";
 import AdminModifyCard from "../AdminModifyCard";
 
 const AdminPartnersCard = ({
@@ -14,7 +15,7 @@ const AdminPartnersCard = ({
           {name || "Пусто"}
         </h3>
         <p className="xl:text-sm text-xs text-[#666666] mb-4 break-words">
-          {description || "Описание Пусто."}
+          {description ? truncateString(description, 200) : "Описание Пусто."}
         </p>
         <AdminModifyCard
           id={id}

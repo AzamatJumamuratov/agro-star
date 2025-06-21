@@ -4,10 +4,10 @@ import AdminTitle from "../../../Components/Admin/AdminTitle";
 import CustomTextArea from "../../../Components/Common/CustomTextArea";
 import { useEffect, useRef, useState } from "react";
 import Notification from "../../../Components/Common/Notification";
-import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
+import LanguageSwitcher, {
+  languages as data_languages,
+} from "../../../Components/Admin/LanguageSwitcher";
 import ErrorMessage from "../../../Components/Auth/ErrorMessage";
-
-const REQUIRED_LANGS = ["ru", "en", "uz", "kaa"];
 
 const AdminAboutForm = () => {
   const actionData = useActionData();
@@ -17,12 +17,14 @@ const AdminAboutForm = () => {
   const [activeLanguage, setActiveLanguage] = useState("ru");
   const [translations, setTranslations] = useState({});
   const [formErrors, setFormErrors] = useState([]);
+  const [isCreating, setIsCreating] = useState(false); // <-- Новое состояние
 
   useEffect(() => {
     if (actionData?.success) {
       formRef.current.reset();
       setTranslations({});
       setFormErrors([]);
+      setIsCreating(false); // <-- Сбрасываем после отправки
     }
   }, [actionData]);
 
@@ -36,7 +38,6 @@ const AdminAboutForm = () => {
         },
       };
 
-      // Удалить язык, если оба поля пусты
       if (!updated[lang].title?.trim() && !updated[lang].description?.trim()) {
         const { [lang]: _, ...rest } = updated;
         return rest;
@@ -48,11 +49,12 @@ const AdminAboutForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsCreating(true); // <-- Устанавливаем при начале отправки
 
     const errors = [];
     const filteredTranslations = {};
 
-    for (const lang of REQUIRED_LANGS) {
+    for (const lang of data_languages) {
       const title = translations[lang]?.title?.trim();
       const description = translations[lang]?.description?.trim();
 
@@ -65,6 +67,7 @@ const AdminAboutForm = () => {
 
     if (errors.length > 0) {
       setFormErrors(errors);
+      setIsCreating(false); // <-- Сбрасываем, если есть ошибки
       return;
     }
 
@@ -137,17 +140,23 @@ const AdminAboutForm = () => {
         <div className="flex gap-6 mt-9 text-white">
           <button
             type="submit"
-            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] active:bg-[#424b91]"
+            disabled={isCreating}
+            className={`2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] ${
+              isCreating ? "" : "active:bg-[#424b91]"
+            } disabled:opacity-40`}
           >
             Опубликовать Информацию
           </button>
           <button
             type="reset"
+            disabled={isCreating}
             onClick={() => {
               setTranslations({});
               setFormErrors([]);
             }}
-            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
+            className={`2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] ${
+              isCreating ? "" : "active:bg-[#5a5a5a]"
+            } disabled:opacity-40`}
           >
             Очистить
           </button>

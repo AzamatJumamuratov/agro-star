@@ -3,11 +3,11 @@ import FormInput from "../../../Components/Common/FormInput";
 import AdminTitle from "../../../Components/Admin/AdminTitle";
 import CustomTextArea from "../../../Components/Common/CustomTextArea";
 import Notification from "../../../Components/Common/Notification";
-import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
+import LanguageSwitcher, {
+  languages as data_languages,
+} from "../../../Components/Admin/LanguageSwitcher";
 import ErrorMessage from "../../../Components/Auth/ErrorMessage";
 import { useEffect, useRef, useState } from "react";
-
-const REQUIRED_LANGUAGES = ["ru", "en", "uz", "kaa"];
 
 const AdminPartnersForm = () => {
   const actionData = useActionData();
@@ -17,12 +17,14 @@ const AdminPartnersForm = () => {
   const [translations, setTranslations] = useState({});
   const [activeLanguage, setActiveLanguage] = useState("ru");
   const [formErrors, setFormErrors] = useState([]);
+  const [isCreating, setIsCreating] = useState(false);
 
   useEffect(() => {
     if (actionData?.success) {
       formRef.current.reset();
       setTranslations({});
       setFormErrors([]);
+      setIsCreating(false);
     }
   }, [actionData]);
 
@@ -38,11 +40,12 @@ const AdminPartnersForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsCreating(true);
 
     const errors = [];
     const filteredTranslations = {};
 
-    REQUIRED_LANGUAGES.forEach((lang) => {
+    data_languages.forEach((lang) => {
       const name = translations[lang]?.name?.trim();
       const description = translations[lang]?.description?.trim();
 
@@ -55,6 +58,7 @@ const AdminPartnersForm = () => {
 
     if (errors.length > 0) {
       setFormErrors(errors);
+      setIsCreating(false);
       return;
     }
 
@@ -128,17 +132,19 @@ const AdminPartnersForm = () => {
         <div className="flex gap-6 mt-9 text-white">
           <button
             type="submit"
-            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] active:bg-[#424b91]"
+            disabled={isCreating}
+            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] disabled:opacity-40"
           >
             Опубликовать Партнера
           </button>
           <button
             type="reset"
+            disabled={isCreating}
             onClick={() => {
               setTranslations({});
               setFormErrors([]);
             }}
-            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
+            className="2xl:py-6 xl:py-4 lg:py-3 py-2 2xl:px-9 xl:px-8 lg:px-4 px-3 2xl:text-almostN xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] disabled:opacity-40"
           >
             Очистить
           </button>

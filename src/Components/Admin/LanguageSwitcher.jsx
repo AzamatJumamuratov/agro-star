@@ -1,4 +1,4 @@
-const languages = ["ru", "uz", "kaa", "en"];
+export const languages = ["ru", "uz", "kk", "en"];
 
 const LanguageSwitcher = ({
   active,

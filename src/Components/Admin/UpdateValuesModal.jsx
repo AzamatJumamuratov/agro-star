@@ -3,9 +3,9 @@ import CustomTextArea from "../Common/CustomTextArea";
 import FormInput from "../Common/FormInput";
 import DropZone from "../Common/DropZone";
 import ErrorMessage from "../Auth/ErrorMessage";
-import LanguageSwitcher from "../Admin/LanguageSwitcher";
-
-const LANGUAGES = ["ru", "en", "uz", "kaa"];
+import LanguageSwitcher, {
+  languages as data_languages,
+} from "../Admin/LanguageSwitcher";
 
 const UpdateValuesModal = ({
   id,
@@ -28,7 +28,7 @@ const UpdateValuesModal = ({
 
   useEffect(() => {
     const initial = {};
-    LANGUAGES.forEach((lang) => {
+    data_languages.forEach((lang) => {
       initial[lang] = {
         [headerKey]: translations?.[lang]?.[headerKey] || "",
         [mainContentKey]: translations?.[lang]?.[mainContentKey] || "",
@@ -50,7 +50,7 @@ const UpdateValuesModal = ({
   const validateAllFields = () => {
     const newErrors = [];
 
-    for (let lang of LANGUAGES) {
+    for (let lang of data_languages) {
       const title = localTranslations[lang]?.[headerKey]?.trim();
       const desc = localTranslations[lang]?.[mainContentKey]?.trim();
       if (!title || !desc) {

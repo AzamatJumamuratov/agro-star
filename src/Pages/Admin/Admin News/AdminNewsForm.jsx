@@ -6,7 +6,9 @@ import AdminTitle from "../../../Components/Admin/AdminTitle";
 import CustomTextArea from "../../../Components/Common/CustomTextArea";
 import Notification from "../../../Components/Common/Notification";
 import NewsTags from "../../../Components/Admin/NewsTags";
-import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
+import LanguageSwitcher, {
+  languages,
+} from "../../../Components/Admin/LanguageSwitcher";
 import ErrorMessage from "../../../Components/Auth/ErrorMessage";
 
 const AdminNewsForm = () => {
@@ -15,6 +17,7 @@ const AdminNewsForm = () => {
   const [activeLanguage, setActiveLanguage] = useState("ru");
   const [translations, setTranslations] = useState({});
   const [formErrors, setFormErrors] = useState([]);
+  const [isCreating, setIsCreating] = useState(false);
 
   const imageFileRef = useRef(null);
   const formRef = useRef(null);
@@ -34,6 +37,7 @@ const AdminNewsForm = () => {
       setTags([]);
       setTranslations({});
       setFormErrors([]);
+      setIsCreating(false);
     }
   }, [actionData]);
 
@@ -57,6 +61,7 @@ const AdminNewsForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsCreating(true);
     const formData = new FormData(formRef.current);
     formData.delete("title");
     formData.delete("content");
@@ -67,7 +72,7 @@ const AdminNewsForm = () => {
 
     formData.set("tags", JSON.stringify(tags));
 
-    const requiredLangs = ["ru", "en", "uz", "kaa"];
+    const requiredLangs = languages;
     const missing = [];
 
     // Проверка по каждому языку
@@ -163,8 +168,11 @@ const AdminNewsForm = () => {
                 <div className="flex gap-6 items-center">
                   <img src={previewImage} className="w-1/2 rounded-lg mt-3" />
                   <button
+                    disabled={isCreating}
                     onClick={() => setPreviewImage(null)}
-                    className="xl:p-3 lg:p-2 p-2 2xl:text-3xl xl:text-xl lg:text-base text-xs rounded-xl bg-red-400 text-white"
+                    className={`xl:p-3 lg:p-2 p-2 2xl:text-3xl xl:text-xl lg:text-base text-xs rounded-xl bg-red-400 text-white ${
+                      isCreating ? "" : "active:bg-red-800"
+                    } disabled:opacity-40`}
                   >
                     Убрать
                   </button>
@@ -189,17 +197,23 @@ const AdminNewsForm = () => {
         <div className="flex gap-6 mt-9 text-white">
           <button
             type="submit"
-            className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-7 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] active:bg-[#424b91]"
+            disabled={isCreating}
+            className={`2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-7 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#6877E0] ${
+              isCreating ? "" : "active:bg-[#424b91]"
+            } disabled:opacity-40`}
           >
             Опубликовать новость
           </button>
           <button
             type="reset"
+            disabled={isCreating}
             onClick={() => {
               setPreviewImage(null);
               setTags([]);
             }}
-            className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-7 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
+            className={`2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-7 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] ${
+              isCreating ? "" : "active:bg-[#5a5a5a]"
+            } disabled:opacity-40`}
           >
             Очистить
           </button>
