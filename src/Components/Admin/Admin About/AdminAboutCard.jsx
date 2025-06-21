@@ -14,7 +14,7 @@ const AdminAboutCard = ({
   const formattedDate = formatDateToDDMMYYYY(created_at, "/");
   return (
     <div className="min-h-56 flex flex-col relative overflow-hidden  bg-white rounded-xl shadow-[0px_4px_15px_0px] shadow-black/10 pb-4">
-      <div className="xl:px-5 lg:px-3 mt-4 px-2 pb-6">
+      <div className="flex flex-col h-full xl:px-5 lg:px-3 mt-4 px-2 pb-6">
         <h3 className="xl:text-xl lg:text-base text-base font-bold mb-1.5 break-words">
           {title || "Пусто"}
         </h3>
@@ -27,13 +27,15 @@ const AdminAboutCard = ({
             <time>{formattedDate}</time>
           </div>
         </div>
-        <AdminModifyCard
-          id={id}
-          translations={translations}
-          modifyPath={"company-info"}
-          type={"company-info"}
-          notifyFn={notifyFn}
-        />
+        <div className="mt-auto">
+          <AdminModifyCard
+            id={id}
+            translations={translations}
+            modifyPath={"company-info"}
+            type={"company-info"}
+            notifyFn={notifyFn}
+          />
+        </div>
       </div>
     </div>
   );

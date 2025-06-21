@@ -32,14 +32,16 @@ const AdminProjectsCard = ({
           {/* {content != "" ? content.slice(0, 60) + "...."} */}
           {description ? truncateString(description, 200) : "Описание Пусто."}
         </p>
-        <AdminModifyCard
-          id={id}
-          translations={translations}
-          modifyPath={"projects"}
-          type={"projects"}
-          image={image}
-          notifyFn={notifyFn}
-        />
+        <div className="mt-auto">
+          <AdminModifyCard
+            id={id}
+            translations={translations}
+            modifyPath={"projects"}
+            type={"projects"}
+            image={image}
+            notifyFn={notifyFn}
+          />
+        </div>
       </div>
     </div>
   );
