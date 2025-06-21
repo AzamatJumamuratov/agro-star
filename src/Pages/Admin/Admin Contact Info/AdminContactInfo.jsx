@@ -39,6 +39,7 @@ const AdminContactInfo = () => {
           email={contacts.email}
           phone={contacts.phone}
           address={contacts.translations[activeLanguage].address}
+          translations={contacts.translations}
           deletable={false}
           modifyPath={"contact-info/"}
           notifyFn={setNotifyResult}

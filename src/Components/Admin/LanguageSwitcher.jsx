@@ -1,20 +1,48 @@
-const LanguageSwitcher = ({ active, setActive, additionalClass }) => {
-  const languages = ["ru", "uz", "kaa", "en"];
+const languages = ["ru", "uz", "kaa", "en"];
+
+const LanguageSwitcher = ({
+  active,
+  setActive,
+  mode = "auto",
+  additionalClass,
+  type = "button",
+}) => {
+  // Преобразуем `active` в массив для внутреннего использования
+  const activeArray = Array.isArray(active) ? active : [active];
+
+  const isMultiple =
+    mode === "multiple" || (mode === "auto" && Array.isArray(active));
+  const isSingle =
+    mode === "single" || (!isMultiple && typeof active === "string");
+
+  const toggleLanguage = (lang) => {
+    if (isSingle) {
+      setActive(lang); // строка
+    } else {
+      // multiple
+      if (activeArray.includes(lang)) {
+        setActive(activeArray.filter((l) => l !== lang));
+      } else {
+        setActive([...activeArray, lang]);
+      }
+    }
+  };
 
   return (
-    <div className={`flex justify-around gap-2 ${additionalClass || ""}`}>
+    <div className="flex gap-2 flex-wrap">
       {languages.map((lang) => (
         <button
+          type={type}
           key={lang}
-          onClick={() => setActive(lang)}
-          className={`px-4 py-2 rounded-md font-semibold transition-colors
+          onClick={() => toggleLanguage(lang)}
+          className={`px-4 py-1 rounded-xl font-semibold transition-all
             ${
-              active === lang
+              activeArray.includes(lang)
                 ? "bg-orange-400 text-white"
-                : "bg-[#96C140] text-white hover:bg-green-400"
-            }`}
+                : "bg-green-300 text-gray-800 hover:bg-green-400"
+            } ${additionalClass || ""}`}
         >
-          {lang}
+          {lang.toUpperCase()}
         </button>
       ))}
     </div>

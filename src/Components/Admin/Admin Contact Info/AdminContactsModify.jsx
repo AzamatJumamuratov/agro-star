@@ -10,7 +10,7 @@ import LanguageSwitcher from "../LanguageSwitcher";
 const AdminContactsModify = ({
   email,
   phone,
-  address,
+  translations,
   editable = true,
   deletable = false,
   notifyFn,
@@ -60,7 +60,7 @@ const AdminContactsModify = ({
             <AdminContactsModal
               email={email}
               phone={phone}
-              address={address}
+              translations={translations}
               closeFN={() => SetIsChanging(false)}
               submitFN={OnUpdate}
             />,

@@ -16,15 +16,11 @@ const News = () => {
   const params = new URLSearchParams(location.search);
   const searchQuery = params.get("search")?.toLowerCase() || "";
 
-  // Получаем отсортированные новости
-  const sortedResults = GetLastDates(loaderData.results);
-
-  // Фильтруем по наличию перевода
-  const translatedNews = sortedResults.filter(
+  const allNews = GetLastDates(loaderData.results || []);
+  const translatedNews = allNews.filter(
     (item) => item.translations?.[currentLanguage]
   );
 
-  // Фильтрация по поисковому запросу
   const filteredResults = translatedNews.filter((item) => {
     const data = item.translations[currentLanguage];
     return (
@@ -33,22 +29,25 @@ const News = () => {
     );
   });
 
+  const hasNoNews = allNews.length === 0;
+  const hasNoTranslations = allNews.length > 0 && translatedNews.length === 0;
+  const hasNoFilteredResults =
+    translatedNews.length > 0 && filteredResults.length === 0;
+
   return (
     <main>
       <div className="wrapper">
         <PageTitle title={t("news_title")} />
 
-        {searchQuery && (
-          <p className="text-gray-500 mt-2">
-            {t("search_result_count", {
-              count: filteredResults.length,
-              query: searchQuery,
-            }) ||
-              `Найдено: ${filteredResults.length} новостей по запросу "${searchQuery}"`}
+        {hasNoNews ? (
+          <p className="text-gray-500 mt-5">{t("empty")}</p>
+        ) : hasNoTranslations ? (
+          <p className="text-gray-500 mt-5">{t("news_empty")}</p>
+        ) : hasNoFilteredResults ? (
+          <p className="text-gray-500 mt-5">
+            {t("news_search_empty") + ": " + searchQuery}
           </p>
-        )}
-
-        {filteredResults.length > 0 ? (
+        ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-8 xl:mt-14 lg:mt-9 mt-5">
             {filteredResults.map((item) => {
               const data = item.translations[currentLanguage];
@@ -64,10 +63,6 @@ const News = () => {
               );
             })}
           </div>
-        ) : (
-          <p className="text-gray-500 mt-5">
-            {"Нет новостей на выбранном языке или по запросу."}
-          </p>
         )}
       </div>
     </main>

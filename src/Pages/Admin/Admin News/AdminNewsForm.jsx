@@ -5,11 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import AdminTitle from "../../../Components/Admin/AdminTitle";
 import CustomTextArea from "../../../Components/Common/CustomTextArea";
 import Notification from "../../../Components/Common/Notification";
-import NewsTags from "../../../Components/Admin/NewsTags"; // 💡 Импорт компонента тегов
+import NewsTags from "../../../Components/Admin/NewsTags";
+import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
+import ErrorMessage from "../../../Components/Auth/ErrorMessage";
 
 const AdminNewsForm = () => {
   const [previewImage, setPreviewImage] = useState(null);
-  const [tags, setTags] = useState([]); // 🆕 Состояние тегов
+  const [tags, setTags] = useState([]);
+  const [activeLanguage, setActiveLanguage] = useState("ru");
+  const [translations, setTranslations] = useState({});
+  const [formErrors, setFormErrors] = useState([]);
 
   const imageFileRef = useRef(null);
   const formRef = useRef(null);
@@ -26,19 +31,70 @@ const AdminNewsForm = () => {
       formRef.current.reset();
       imageFileRef.current = null;
       setPreviewImage(null);
-      setTags([]); // 🆕 очищаем теги
+      setTags([]);
+      setTranslations({});
+      setFormErrors([]);
     }
   }, [actionData]);
+
+  const handleInputChange = (lang, field, value) => {
+    setTranslations((prev) => {
+      const updated = {
+        ...prev,
+        [lang]: {
+          ...prev[lang],
+          [field]: value,
+        },
+      };
+      if (!value.trim()) {
+        if (!updated[lang].title?.trim() || !updated[lang].content?.trim()) {
+          delete updated[lang];
+        }
+      }
+      return { ...updated };
+    });
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(formRef.current);
+    formData.delete("title");
+    formData.delete("content");
+
     if (imageFileRef.current) {
       formData.set("image", imageFileRef.current, imageFileRef.current.name);
     }
 
-    // 🆕 Добавим теги в formData
     formData.set("tags", JSON.stringify(tags));
+
+    const requiredLangs = ["ru", "en", "uz", "kaa"];
+    const missing = [];
+
+    // Проверка по каждому языку
+    for (let lang of requiredLangs) {
+      const title = translations[lang]?.title?.trim();
+      const content = translations[lang]?.content?.trim();
+      if (!title || !content) {
+        missing.push(`Поля не заполнены для языка: ${lang.toUpperCase()}`);
+      }
+    }
+
+    if (missing.length > 0) {
+      setFormErrors(missing);
+      return;
+    }
+
+    // Всё ок — формируем объект
+    const filteredTranslations = {};
+    requiredLangs.forEach((lang) => {
+      filteredTranslations[lang] = {
+        title: translations[lang].title.trim(),
+        content: translations[lang].content.trim(),
+      };
+    });
+
+    formData.set("translations", JSON.stringify(filteredTranslations));
+    setFormErrors([]); // Очистить ошибки перед отправкой
 
     submit(formData, {
       method: "post",
@@ -57,30 +113,40 @@ const AdminNewsForm = () => {
         className="2xl:p-6 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10"
         onSubmit={handleSubmit}
       >
+        <LanguageSwitcher
+          active={activeLanguage}
+          setActive={setActiveLanguage}
+          additionalClass="mb-4"
+        />
+
         <label htmlFor="title">
           <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
-            Заголовок новости
+            Заголовок новости : {activeLanguage.toUpperCase()}
           </span>
           <FormInput
             type="text"
-            name="title"
+            name={`title_${activeLanguage}`}
             id="title"
-            autoComplete="title"
-            required
+            value={translations[activeLanguage]?.title || ""}
+            onChange={(e) =>
+              handleInputChange(activeLanguage, "title", e.target.value)
+            }
             additionalClass="mt-3"
           />
         </label>
 
         <label htmlFor="description">
           <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
-            Содержание
+            Содержание : {activeLanguage.toUpperCase()}
           </span>
           <CustomTextArea
             type="text"
-            name="content"
+            name={`content_${activeLanguage}`}
             id="content"
-            autoComplete="content"
-            required
+            value={translations[activeLanguage]?.content || ""}
+            onChange={(e) =>
+              handleInputChange(activeLanguage, "content", e.target.value)
+            }
             additionalClass="mt-3 lg:min-h-40 min-h-24"
           />
         </label>
@@ -108,10 +174,17 @@ const AdminNewsForm = () => {
           </div>
         </label>
 
-        {/* 🆕 Компонент тегов */}
         <div className="mt-6">
           <NewsTags tags={tags} setTags={setTags} />
         </div>
+
+        {formErrors.length > 0 && (
+          <div className="mt-6 space-y-2">
+            {formErrors.map((msg, idx) => (
+              <ErrorMessage key={idx} message={msg} />
+            ))}
+          </div>
+        )}
 
         <div className="flex gap-6 mt-9 text-white">
           <button
@@ -124,7 +197,7 @@ const AdminNewsForm = () => {
             type="reset"
             onClick={() => {
               setPreviewImage(null);
-              setTags([]); // 🆕 очищаем теги при очистке
+              setTags([]);
             }}
             className="2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-7 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] active:bg-[#5a5a5a]"
           >

@@ -6,24 +6,22 @@ import UpdateValuesModal from "../Admin/UpdateValuesModal";
 import { useState } from "react";
 import FetchData from "../../Data Fetching/FetchData";
 import ConvertToJSonFormData from "../../Utils/FromDataToJson";
-import LanguageSwitcher from "../Admin/LanguageSwitcher";
 
 const AdminModifyCard = ({
   id,
-  header,
-  mainContent,
+  translations,
   image,
   type,
   modifyPath,
   editable = true,
   deletable = true,
   notifyFn,
-  activeLanguage,
-  setActiveLanguage, // <--- добавлено
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isChanging, SetIsChanging] = useState(false);
   const { revalidate } = useRevalidator();
+
+  const typeKeys = GetType(type);
 
   return (
     <div className="flex flex-col items-stretch gap-3 mt-4">
@@ -55,24 +53,17 @@ const AdminModifyCard = ({
         </button>
       )}
 
-      {/* Language switcher */}
-      <LanguageSwitcher
-        active={activeLanguage}
-        setActive={setActiveLanguage}
-        additionalClass={" w-full"}
-      />
-
       {/* Modal */}
       {isChanging &&
         createPortal(
           <UpdateValuesModal
             id={id}
-            header={header}
-            mainContent={mainContent}
+            headerKey={typeKeys[0]}
+            mainContentKey={typeKeys[1]}
+            translations={translations}
             image={type === "news" || type === "projects" ? image : "none"}
             submitFN={OnUpdate}
             closeFN={() => SetIsChanging(false)}
-            activeLanguage={activeLanguage}
           />,
           document.body
         )}
@@ -110,12 +101,11 @@ const AdminModifyCard = ({
     const token = localStorage.getItem("token");
     if (!token) return redirect("/login");
 
-    const updateDataArr = GetType(type);
     const formdata = new FormData();
-    formdata.append(updateDataArr[0], body.title);
-    formdata.append(updateDataArr[1], body.mainContent);
-    if (updateDataArr[2]) {
-      formdata.append(updateDataArr[2], body.image);
+    formdata.append("translations", JSON.stringify(body.translations));
+
+    if (typeKeys[2] && body.image !== "unchanged" && body.image !== "none") {
+      formdata.append(typeKeys[2], body.image);
     }
 
     const headers = {
@@ -127,7 +117,7 @@ const AdminModifyCard = ({
       bodyData = formdata;
     } else {
       headers["Content-Type"] = "application/json";
-      bodyData = ConvertToJSonFormData(formdata);
+      bodyData = JSON.stringify(body);
     }
 
     const response = await FetchData(`${modifyPath}/${id}/`, {

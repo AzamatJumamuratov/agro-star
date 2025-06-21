@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import truncateString from "../../Utils/TruncateString.js";
 import { GlobalLanguageContext } from "../../Contexts/LanguageGlobalContext";
 import { useContext } from "react";
+import EmptyMessage from "../Common/EmptyMessage.jsx";
 
 const LastNews = () => {
   const loaderData = useLoaderData();
@@ -14,7 +15,7 @@ const LastNews = () => {
   // Получаем последние 6 новостей
   const latestNews = GetLastDates(loaderData.results, 6);
 
-  // Фильтруем только те, у кого есть перевод на текущем языке
+  // Фильтруем те, у кого есть перевод на текущем языке
   const filteredNews = latestNews.filter(
     (item) => item.translations?.[currentLanguage]
   );
@@ -31,7 +32,16 @@ const LastNews = () => {
       </div>
 
       <div className="grid grid-cols-1 max-md:justify-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 mt-14">
-        {filteredNews.length > 0 ? (
+        {latestNews.length === 0 ? (
+          // Нет новостей вообще
+          <EmptyMessage />
+        ) : filteredNews.length === 0 ? (
+          // Новости есть, но нет перевода для текущего языка
+          <p className="xl:text-lg lg:text-sm text-xs col-span-full text-gray-500">
+            {t("homepage_empty")}
+          </p>
+        ) : (
+          // Всё ок — рендерим список новостей
           filteredNews.map((item) => {
             const data = item.translations[currentLanguage];
             return (
@@ -46,10 +56,6 @@ const LastNews = () => {
               />
             );
           })
-        ) : (
-          <p className="xl:text-lg lg:text-sm text-xs col-span-full text-gray-500">
-            {"Нет новостей для текущего языка..."}
-          </p>
         )}
       </div>
     </div>

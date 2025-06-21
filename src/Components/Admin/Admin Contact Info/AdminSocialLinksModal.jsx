@@ -81,6 +81,7 @@ const AdminSocialLinksModal = ({
                       telegram: telegramRef.current.value,
                       instagram: instagramRef.current.value,
                       facebook: facebookRef.current.value,
+                      linkedin: linkedinRef.current.value,
                     },
                     () => {
                       closeFN();

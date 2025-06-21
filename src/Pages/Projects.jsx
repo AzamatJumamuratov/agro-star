@@ -6,14 +6,16 @@ import { useTranslation } from "react-i18next";
 import truncateString from "../Utils/TruncateString";
 import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
 import { useContext } from "react";
+import EmptyMessage from "../Components/Common/EmptyMessage";
 
 const Projects = () => {
   const loaderData = useLoaderData();
   const { t } = useTranslation();
   const { currentLanguage } = useContext(GlobalLanguageContext);
 
-  // Фильтруем по доступности перевода
-  const filteredProjects = loaderData.results.filter(
+  const items = loaderData.results || [];
+
+  const filteredProjects = items.filter(
     (item) => item.translations?.[currentLanguage]
   );
 
@@ -23,7 +25,13 @@ const Projects = () => {
         <PageTitle title={t("projects_title")} />
 
         <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 max-sm:p-12 gap-8 mb-10">
-          {filteredProjects.length > 0 ? (
+          {items.length === 0 ? (
+            <EmptyMessage />
+          ) : filteredProjects.length === 0 ? (
+            <p className="col-span-full text-gray-500 xl:text-lg lg:text-sm text-xs">
+              {t("projects_empty")}
+            </p>
+          ) : (
             filteredProjects.map((item) => {
               const data = item.translations[currentLanguage];
               return (
@@ -36,10 +44,6 @@ const Projects = () => {
                 />
               );
             })
-          ) : (
-            <p className="col-span-full text-gray-500 xl:text-lg lg:text-sm text-xs">
-              {"Нет доступных проектов на выбранном языке."}
-            </p>
           )}
         </div>
 

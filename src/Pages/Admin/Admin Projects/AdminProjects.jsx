@@ -4,20 +4,17 @@ import AdminNewButton from "../../../Components/Common/AdminNewButton";
 import { useState } from "react";
 import AdminSearchInput from "../../../Components/Admin/AdminSearchInput";
 import Notification from "../../../Components/Common/Notification";
+import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
 
 const AdminProjects = () => {
   const loaderData = useLoaderData();
   const [searchData, setSearchData] = useState("");
   const [notifyResult, setNotifyResult] = useState(null);
+  const [activeLanguage, setActiveLanguage] = useState("ru");
 
-  // Берем только проекты с русским переводом
-  const russianProjects = loaderData.results.filter(
-    (item) => item.translations?.ru
-  );
-
-  // Применяем фильтрацию по поисковому запросу
-  const filteredProjects = russianProjects.filter((item) => {
-    const title = item.translations.ru.title;
+  const filteredItems = loaderData.results.filter((item) => {
+    const translation = item.translations?.[activeLanguage];
+    const title = translation?.title || "";
     return title.toLowerCase().includes(searchData.toLowerCase());
   });
 
@@ -31,19 +28,32 @@ const AdminProjects = () => {
         />
         <AdminNewButton to="new">Создание Проекта</AdminNewButton>
       </div>
-
+      <LanguageSwitcher
+        active={activeLanguage}
+        setActive={setActiveLanguage}
+        additionalClass={"mb-4"}
+      />
       <Notification result={notifyResult} durationMilliSeconds={3000} />
 
       <div className="grid 2xl:grid-cols-4 min-[71.25rem]:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
-        {filteredProjects.map((item) => {
-          const { title, description } = item.translations.ru;
+        {filteredItems.map((item) => {
+          const translation = item.translations?.[activeLanguage];
+
+          const title =
+            translation?.title ||
+            `Нет заголовка на "${activeLanguage.toLocaleLowerCase()}"`;
+          const description =
+            translation?.description ||
+            `Нет описания на "${activeLanguage.toLocaleLowerCase()}"`;
+
           return (
             <AdminProjectsCard
               key={item.id}
               id={item.id}
               title={title}
               description={description}
-              image_url={item.image_url}
+              translations={item.translations}
+              image={item.image}
               notifyFn={setNotifyResult}
             />
           );

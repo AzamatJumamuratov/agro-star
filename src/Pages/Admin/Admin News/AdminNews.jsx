@@ -4,6 +4,7 @@ import AdminSearchInput from "../../../Components/Admin/AdminSearchInput";
 import AdminNewButton from "../../../Components/Common/AdminNewButton";
 import AdminNewsCard from "../../../Components/Admin/Admin News/AdminNewsCard";
 import Notification from "../../../Components/Common/Notification";
+import LanguageSwitcher from "../../../Components/Admin/LanguageSwitcher";
 
 const AdminNews = () => {
   const loaderData = useLoaderData();
@@ -27,7 +28,11 @@ const AdminNews = () => {
         />
         <AdminNewButton to="new">Создание Новости</AdminNewButton>
       </div>
-
+      <LanguageSwitcher
+        active={activeLanguage}
+        setActive={setActiveLanguage}
+        additionalClass={"mb-4"}
+      />
       <Notification result={notifyResult} durationMilliSeconds={3000} />
 
       <div className="grid 2xl:grid-cols-4 min-[71.25rem]:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
@@ -47,12 +52,11 @@ const AdminNews = () => {
               id={item.id}
               title={title}
               content={content}
+              translations={item.translations}
               published_at={item.published_at}
               image={item.image}
               views={item.views}
               notifyFn={setNotifyResult}
-              activeLanguage={activeLanguage}
-              setActiveLanguage={setActiveLanguage}
             />
           );
         })}

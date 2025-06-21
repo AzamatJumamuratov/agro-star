@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Notification = ({ result, durationMilliSeconds = 3000 }) => {
   const [doneShowing, SetDoneShowing] = useState(true);
@@ -21,7 +21,7 @@ const Notification = ({ result, durationMilliSeconds = 3000 }) => {
               : "bg-red-500 border-red-600"
           } rounded-4xl border  fixed left-1/2 -translate-1/2 -top-full xl:p-4 p-3 duration-1000 ease-in-out text-white z-40 xl:text-base lg:text-sm text-xs`}
         >
-          {result?.success ? "Результат Успешен!" : "Произошла Ошибка!"}
+          {result?.success ? `Результат Успешен!` : `Произошла Ошибка!`}
         </div>
       }
     </>

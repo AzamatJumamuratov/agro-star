@@ -34,14 +34,35 @@ export async function loader() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const dataJSON = ConvertToJSonFormData(formData);
+  const rawTranslations = formData.get("translations");
+
+  let parsed;
+  try {
+    parsed = JSON.parse(rawTranslations);
+  } catch (error) {
+    console.error("Invalid JSON in translations:", error);
+    return {
+      success: false,
+      result: { message: "Неверный формат translations" },
+    };
+  }
+
+  // Получаем первый язык из translations
+  const firstLang = Object.keys(parsed)[0];
+  const fallbackData = parsed[firstLang] || {};
+
+  const bodyToSend = {
+    title: fallbackData.title || "",
+    description: fallbackData.description || "",
+    translations: parsed,
+  };
 
   let response = await FetchData("company-info/", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
-    body: dataJSON,
+    body: JSON.stringify(bodyToSend),
   });
 
   let result;

@@ -4,10 +4,13 @@ import PageTitle from "../Components/Common/PageTitle";
 import GetLastDates from "../Utils/GetLastDates";
 import truncateString from "../Utils/TruncateString";
 import { useTranslation } from "react-i18next";
+import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
+import { useContext } from "react";
 
 const NewsItemPage = () => {
   const loaderData = useLoaderData();
   const { t } = useTranslation();
+  const { currentLanguage } = useContext(GlobalLanguageContext);
 
   const otherNews = GetLastDates(
     loaderData.news.results,
@@ -15,16 +18,39 @@ const NewsItemPage = () => {
     loaderData.item.id
   );
 
+  const translations = loaderData.item.translations || {};
+  const currentTranslation = translations[currentLanguage];
+  const fallbackTranslation = translations["ru"];
+
+  const title =
+    currentTranslation?.title ||
+    fallbackTranslation?.title ||
+    "Нет заголовка на выбранном языке";
+
+  const content =
+    currentTranslation?.content ||
+    fallbackTranslation?.content ||
+    "Нет содержимого на выбранном языке";
+
+  const isFallback = !currentTranslation?.title || !currentTranslation?.content;
+
   return (
     <div className="wrapper">
-      <PageTitle title={loaderData.item.title || "Пусто"} />
+      <PageTitle title={title} />
+
+      {isFallback && (
+        <p className="text-red-500 mt-3 text-sm">
+          Перевод недоступен для языка {currentLanguage.toUpperCase()}. Показано
+          на русском.
+        </p>
+      )}
 
       {loaderData.item.image && (
         <img src={loaderData.item.image} className="w-1/2 mx-auto rounded-lg" />
       )}
 
       <p className="xl:text-largerN lg:text-sm text-xs mt-10 text-[#222222]">
-        {loaderData.item.content || "Описание Пусто"}
+        {content}
       </p>
 
       {otherNews.length > 0 && (
@@ -34,16 +60,22 @@ const NewsItemPage = () => {
             {t("news_item_others_text")}
           </h3>
           <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-            {otherNews.map((item) => (
-              <NewsItem
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                content={truncateString(item.content, 200)}
-                image={item.image}
-                date={item.published_at}
-              />
-            ))}
+            {otherNews.map((item) => {
+              const trans =
+                item.translations?.[currentLanguage] ||
+                item.translations?.ru ||
+                {};
+              return (
+                <NewsItem
+                  key={item.id}
+                  id={item.id}
+                  title={trans.title || "Нет заголовка"}
+                  content={truncateString(trans.content || "Нет описания", 200)}
+                  image={item.image}
+                  date={item.published_at}
+                />
+              );
+            })}
           </div>
         </>
       )}

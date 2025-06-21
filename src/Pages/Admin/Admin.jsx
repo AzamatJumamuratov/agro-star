@@ -1,10 +1,16 @@
 import { Outlet } from "react-router";
 import Sidebar from "../../Components/Admin/Sidebar/Sidebar";
 import { SidebarContext } from "../../Contexts/SidebarContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Admin = () => {
   const [openSideBar, setOpenSideBar] = useState(false);
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, []);
   return (
     <div className="min-h-screen">
       <div className="h-screen flex">

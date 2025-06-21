@@ -34,14 +34,35 @@ export async function loader() {
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const dataJSON = ConvertToJSonFormData(formData);
+  const rawTranslations = formData.get("translations");
+
+  let parsed;
+  try {
+    parsed = JSON.parse(rawTranslations);
+  } catch (error) {
+    console.error("Invalid JSON in translations:", error);
+    return {
+      success: false,
+      result: { message: "Неверный формат translations" },
+    };
+  }
+
+  // Получаем первый язык из translations
+  const firstLang = Object.keys(parsed)[0];
+  const fallbackData = parsed[firstLang] || {};
+
+  const bodyToSend = {
+    name: fallbackData.name || "",
+    description: fallbackData.description || "",
+    translations: parsed,
+  };
 
   let response = await FetchData("/partners/", {
     method: "POST",
     headers: {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
     },
-    body: dataJSON,
+    body: JSON.stringify(bodyToSend),
   });
 
   let result;
@@ -49,13 +70,13 @@ export async function action({ request }) {
     result = await response.json();
   } else {
     console.error(
-      "Error in Action from Admin Partners Page.Error Code : " +
+      "Error in Action from Admin Partners Page. Error Code: " +
         response.status +
-        "Text : " +
+        " Text: " +
         response.statusText
     );
     result = {
-      message: "Произошла Ошибка!",
+      message: "Произошла ошибка при создании партнера!",
     };
   }
 

@@ -2,7 +2,14 @@ import clock_icon from "../../../assets/clock.svg";
 import formatDateToDDMMYYYY from "../../../Utils/formatDateToDDMMYYYY";
 import AdminModifyCard from "../AdminModifyCard";
 
-const AdminAboutCard = ({ id, title, description, created_at, notifyFn }) => {
+const AdminAboutCard = ({
+  id,
+  title,
+  description,
+  translations,
+  created_at,
+  notifyFn,
+}) => {
   const formattedDate = formatDateToDDMMYYYY(created_at, "/");
   return (
     <div className="min-h-56 flex flex-col relative overflow-hidden  bg-white rounded-xl shadow-[0px_4px_15px_0px] shadow-black/10 pb-4">
@@ -21,8 +28,7 @@ const AdminAboutCard = ({ id, title, description, created_at, notifyFn }) => {
         </div>
         <AdminModifyCard
           id={id}
-          header={title}
-          mainContent={description}
+          translations={translations}
           modifyPath={"company-info"}
           type={"company-info"}
           notifyFn={notifyFn}
