@@ -36,16 +36,6 @@ const Contacts = () => {
       </div>
     </address>
   );
-
-  // async function fetchContacts() {
-  //   const response = await FetchData("contact-info/");
-
-  //   if (response.ok) {
-  //     return await response.json();
-  //   } else {
-  //     console.error("Error fetching data");
-  //   }
-  // }
 };
 
 export default Contacts;

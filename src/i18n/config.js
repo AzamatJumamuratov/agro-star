@@ -103,7 +103,7 @@ i18n
           news_search_empty: "не нашлось данных по поиску",
         },
       },
-      kaa: {
+      kk: {
         translation: {
           search: "Saytta izlew...",
           link_home: "Bas bet",

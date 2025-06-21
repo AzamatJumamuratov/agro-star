@@ -31,7 +31,7 @@ const LanguageButtons = ({ additionalClass }) => {
       <LangButton
         current={currentLanguage}
         onClick={OnChangeLanguage}
-        language={"kaa"}
+        language={"kk"}
       >
         KK
       </LangButton>
