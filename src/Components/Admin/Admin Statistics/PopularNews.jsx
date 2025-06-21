@@ -1,12 +1,10 @@
 import { useLoaderData } from "react-router";
 import PopularNewsItem from "./PopularNewsItem";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../../Admin/LanguageSwitcher";
 
 const PopularNews = () => {
   const loaderData = useLoaderData();
-  const { t } = useTranslation();
 
   const [selectedLang, setSelectedLang] = useState("ru");
 
@@ -39,7 +37,7 @@ const PopularNews = () => {
                 index={index + 1}
                 title={translation.title}
                 published_at={item.published_at}
-                tags_display={item.tags_display}
+                tag_list={item.tag_list}
                 views={item.views}
               />
             );
