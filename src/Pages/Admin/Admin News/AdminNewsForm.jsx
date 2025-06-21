@@ -115,7 +115,7 @@ const AdminNewsForm = () => {
       <Form
         ref={formRef}
         method="POST"
-        className="2xl:p-6 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10"
+        className="2xl:p-6 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10 mb-6"
         onSubmit={handleSubmit}
       >
         <LanguageSwitcher

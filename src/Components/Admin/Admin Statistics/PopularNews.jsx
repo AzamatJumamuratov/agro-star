@@ -13,7 +13,7 @@ const PopularNews = () => {
   );
 
   return (
-    <div className="2xl:p-9 xl:p-6 p-5 rounded-3xl shadow-[0px_0px_10px_0] shadow-black/10">
+    <div className="2xl:p-9 xl:p-6 p-5 mb-6 rounded-3xl shadow-[0px_0px_10px_0] shadow-black/10">
       <div className="flex flex-col gap-3 mb-6">
         <div className="flex max-sm:flex-wrap max-sm:gap-4 justify-between items-center">
           <h1 className="2xl:text-4xl xl:text-2xl lg:text-lg text-base font-bold">

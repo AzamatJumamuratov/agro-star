@@ -1,8 +1,16 @@
 import { Outlet, useNavigate } from "react-router";
 import AdminHeader from "../../../Components/Admin/Header/Header";
+import { useEffect } from "react";
 
 const AdminProjectsLayout = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, []);
 
   return (
     <>

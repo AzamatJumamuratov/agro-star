@@ -42,7 +42,7 @@ const CustomSideBar = ({ opened, OpenSidebarFn }) => {
           <img src={XMark_icon} className="w-8 h-8" />
         </button>
         <div className="flex flex-wrap gap-4 items-center mb-4">
-          <SearchBar />
+          <SearchBar openSidebarFn={OpenSidebarFn} />
           <button
             onClick={() => navigate("/login")}
             className=" bg-white/30 py-1 xl:py-3 px-2.5 xl:px-4 active:scale-110 duration-100 ease-in-out rounded-lg  text-white"

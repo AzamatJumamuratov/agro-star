@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router";
 import search_icon from "../../../../assets/search_icon.svg";
 import { useTranslation } from "react-i18next";
 
-const SearchBar = ({ additionalClass }) => {
+const SearchBar = ({ openSidebarFn = () => {}, additionalClass }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,6 +28,8 @@ const SearchBar = ({ additionalClass }) => {
       navigate(`${isOnNews ? location.pathname : targetPath}?${searchParams}`, {
         replace: true,
       });
+
+      openSidebarFn(false);
     }
   };
 
