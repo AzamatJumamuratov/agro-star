@@ -9,8 +9,8 @@ import AdminSocialLinksModal from "./AdminSocialLinksModal";
 
 const AdminSocialLinksModify = ({
   telegram,
-  instagram,
-  facebook,
+  // instagram,
+  // facebook,
   linkedin,
   editable = true,
   deletable = false,
@@ -52,8 +52,8 @@ const AdminSocialLinksModify = ({
         createPortal(
           <AdminSocialLinksModal
             telegram={telegram}
-            instagram={instagram}
-            facebook={facebook}
+            // instagram={instagram}
+            // facebook={facebook}
             linkedin={linkedin}
             closeFN={() => SetIsChanging(false)}
             submitFN={OnUpdate}

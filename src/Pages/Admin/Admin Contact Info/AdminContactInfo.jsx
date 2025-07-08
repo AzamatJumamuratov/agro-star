@@ -53,14 +53,14 @@ const AdminContactInfo = () => {
             Icon={<img src={telegram_icon} className="size-5" />}
             content={social_links.telegram}
           />
-          <AdminContactItem
+          {/* <AdminContactItem
             Icon={<img src={instagram_icon} className="size-5" />}
             content={social_links.instagram}
           />
           <AdminContactItem
             Icon={<img src={facebook_icon} className="size-5" />}
             content={social_links.facebook}
-          />
+          /> */}
           <AdminContactItem
             Icon={<img src={linkedin_icon} className="size-5" />}
             content={social_links.linkedin}

@@ -19,12 +19,12 @@ const FooterSocialMedia = () => {
         <Link to={social_links.telegram} type="_blank" className="">
           <img src={telegramIcon} className="lg:h-8 md:h-6 h-6" />
         </Link>
-        <Link to={social_links.instagram} type="_blank" className="">
+        {/* <Link to={social_links.instagram} type="_blank" className="">
           <img src={instagramIcon} className="lg:h-8 md:h-6 h-6" />
         </Link>
         <Link to={social_links.facebook} type="_blank" className="">
           <img src={facebookIcon} className="lg:h-8 md:h-6 h-6" />
-        </Link>
+        </Link> */}
         <Link to={social_links.linkedin} type="_blank" className="">
           <img src={linkedinIcon} className="lg:h-8 md:h-6 h-6" />
         </Link>

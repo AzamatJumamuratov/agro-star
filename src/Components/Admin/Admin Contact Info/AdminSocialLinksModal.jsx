@@ -4,16 +4,16 @@ import ErrorMessage from "../../Auth/ErrorMessage";
 
 const AdminSocialLinksModal = ({
   telegram,
-  instagram,
-  facebook,
+  // instagram,
+  // facebook,
   linkedin,
   closeFN,
   submitFN,
 }) => {
   const [isSubmitting, setSubmitting] = useState(false);
   const telegramRef = useRef();
-  const instagramRef = useRef();
-  const facebookRef = useRef();
+  // const instagramRef = useRef();
+  // const facebookRef = useRef();
   const linkedinRef = useRef();
   const [error, setError] = useState();
   return (
@@ -35,7 +35,7 @@ const AdminSocialLinksModal = ({
               placeholder={"telegram"}
               additionalClass={"mt-4"}
             />
-            <FormInput
+            {/* <FormInput
               ref={instagramRef}
               type={"url"}
               required={true}
@@ -43,8 +43,8 @@ const AdminSocialLinksModal = ({
               id={"instagram"}
               defaultValue={instagram}
               placeholder={"instagram"}
-            />
-            <FormInput
+            /> */}
+            {/* <FormInput
               ref={facebookRef}
               type={"url"}
               required={true}
@@ -52,7 +52,7 @@ const AdminSocialLinksModal = ({
               id={"facebook"}
               defaultValue={facebook}
               placeholder={"facebook"}
-            />
+            /> */}
             <FormInput
               ref={linkedinRef}
               type={"url"}
@@ -79,8 +79,8 @@ const AdminSocialLinksModal = ({
                   submitFN(
                     {
                       telegram: telegramRef.current.value,
-                      instagram: instagramRef.current.value,
-                      facebook: facebookRef.current.value,
+                      // instagram: instagramRef.current.value,
+                      // facebook: facebookRef.current.value,
                       linkedin: linkedinRef.current.value,
                     },
                     () => {
