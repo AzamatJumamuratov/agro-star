@@ -62,9 +62,9 @@ i18n
           lastNews_title: "Последние новости",
           lastNews_link: "Посмотреть все",
           about_company_title: "О Компании",
-          about_company_desc:
-            "Наша сельскохозяйственная компания специализируется на увеличении сельскохозяйственной продукции и внедрении современных технологий агросектор.",
-          projects_title: "Наши проекты",
+          // about_company_desc:
+          //   "Наша сельскохозяйственная компания специализируется на увеличении сельскохозяйственной продукции и внедрении современных технологий агросектор.",
+          // projects_title: "Наши проекты",
           partners_title: "Наши партнеры",
           partners_desc:
             "Мы сотрудничаем с ведущими организациями в области сельского хозяйства как на национальном, так и на международном уровне.",
@@ -122,8 +122,8 @@ i18n
           lastNews_title: "Sońǵı jańalıqlar",
           lastNews_link: "Bárin kóriw",
           about_company_title: "Kompaniya haqqında",
-          about_company_desc:
-            "Biziń awıl xojalıǵı kompaniyamız awıl xojalıǵı ónimlerin kóbeytiw hám agrosektorǵa zamanagóy texnologiyalardı engiziwge qánigelesken.",
+          // about_company_desc:
+          //   "Biziń awıl xojalıǵı kompaniyamız awıl xojalıǵı ónimlerin kóbeytiw hám agrosektorǵa zamanagóy texnologiyalardı engiziwge qánigelesken.",
           projects_title: "Bizdiń proektlerimiz",
           partners_title: "Bizdiń sheriklerimiz",
           partners_desc:
@@ -182,8 +182,8 @@ i18n
           lastNews_title: "So‘nggi yangiliklar",
           lastNews_link: "Hammasini ko‘rish",
           about_company_title: "Kompaniya haqida",
-          about_company_desc:
-            "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",
+          // about_company_desc:
+          //   "Bizning qishloq xo‘jaligi kompaniyamiz qishloq xo‘jaligi mahsulotlarini ko‘paytirish va agrosektorga zamonaviy texnologiyalarni joriy etishga ixtisoslashgan.",
           projects_title: "Loyihalarimiz",
           partners_title: "Hamkorlarimiz",
           partners_desc:
@@ -244,8 +244,8 @@ i18n
           lastNews_title: "Latest News",
           lastNews_link: "View All",
           about_company_title: "About the Company",
-          about_company_desc:
-            "Our agricultural company specializes in increasing agricultural production and implementing modern technologies in the agro-sector.",
+          // about_company_desc:
+          //   "Our agricultural company specializes in increasing agricultural production and implementing modern technologies in the agro-sector.",
           projects_title: "Our Projects",
           partners_title: "Our Partners",
           partners_desc:

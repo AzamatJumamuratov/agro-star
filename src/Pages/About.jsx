@@ -22,7 +22,7 @@ const About = () => {
       <div className="wrapper">
         <PageTitle
           title={t("about_company_title")}
-          desc={t("about_company_desc")}
+          // desc={t("about_company_desc")}
         />
 
         {items.length === 0 ? (
