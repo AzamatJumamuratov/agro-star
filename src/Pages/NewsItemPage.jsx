@@ -7,6 +7,7 @@ import GetLastDates from "../Utils/GetLastDates";
 import truncateString from "../Utils/TruncateString";
 import { GlobalLanguageContext } from "../Contexts/LanguageGlobalContext";
 import NewsItemPageModal from "../Components/Common/NewsItemPageModal";
+import convertYoutubeUrlToEmbed from "../Utils/convertYoutubeUrlToEmbed";
 const NewsItemPage = () => {
   const loaderData = useLoaderData();
   const { t } = useTranslation();
@@ -54,7 +55,7 @@ const NewsItemPage = () => {
           <img
             src={item.image}
             alt="Основное фото"
-            className={` h-60 rounded-lg object-cover ${
+            className={`h-60 rounded-lg object-cover ${
               showGalleryBlock ? "" : "md:col-span-3 mx-auto"
             }`}
           />
@@ -107,7 +108,7 @@ const NewsItemPage = () => {
             {item.youtube_url && (
               <div className="col-span-full">
                 <iframe
-                  src={item.youtube_url.replace("watch?v=", "embed/")}
+                  src={convertYoutubeUrlToEmbed(item.youtube_url)}
                   className="w-full h-[400px] rounded-md"
                   allow="autoplay; encrypted-media"
                   allowFullScreen
