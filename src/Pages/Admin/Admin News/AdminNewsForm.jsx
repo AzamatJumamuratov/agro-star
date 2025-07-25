@@ -10,6 +10,7 @@ import LanguageSwitcher, {
   languages,
 } from "../../../Components/Admin/LanguageSwitcher";
 import ErrorMessage from "../../../Components/Auth/ErrorMessage";
+import AdditionalImagesDropZone from "../../../Components/Common/AdditionalImagesDropZone";
 
 const AdminNewsForm = () => {
   const [previewImage, setPreviewImage] = useState(null);
@@ -18,6 +19,7 @@ const AdminNewsForm = () => {
   const [translations, setTranslations] = useState({});
   const [formErrors, setFormErrors] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
+  const [additionalImages, setAdditionalImages] = useState([]);
 
   const imageFileRef = useRef(null);
   const formRef = useRef(null);
@@ -37,8 +39,9 @@ const AdminNewsForm = () => {
       setTags([]);
       setTranslations({});
       setFormErrors([]);
-      setIsCreating(false);
+      setAdditionalImages([]);
     }
+    setIsCreating(false);
   }, [actionData]);
 
   const handleInputChange = (lang, field, value) => {
@@ -75,7 +78,6 @@ const AdminNewsForm = () => {
     const requiredLangs = languages;
     const missing = [];
 
-    // Проверка по каждому языку
     for (let lang of requiredLangs) {
       const title = translations[lang]?.title?.trim();
       const content = translations[lang]?.content?.trim();
@@ -86,10 +88,10 @@ const AdminNewsForm = () => {
 
     if (missing.length > 0) {
       setFormErrors(missing);
+      setIsCreating(false);
       return;
     }
 
-    // Всё ок — формируем объект
     const filteredTranslations = {};
     requiredLangs.forEach((lang) => {
       filteredTranslations[lang] = {
@@ -99,7 +101,12 @@ const AdminNewsForm = () => {
     });
 
     formData.set("translations", JSON.stringify(filteredTranslations));
-    setFormErrors([]); // Очистить ошибки перед отправкой
+    additionalImages.forEach((file, i) => {
+      formData.append(`images[${i}][image]`, file);
+      formData.append(`images[${i}][caption]`, "");
+    });
+
+    setFormErrors([]);
 
     submit(formData, {
       method: "post",
@@ -115,7 +122,7 @@ const AdminNewsForm = () => {
       <Form
         ref={formRef}
         method="POST"
-        className="2xl:p-6 xl:p-6 lg:p-4 p-3 rounded-3xl  shadow-[0px_0px_10px_0] shadow-black/10 mb-6"
+        className="2xl:p-6 xl:p-6 lg:p-4 p-3 rounded-3xl shadow-[0px_0px_10px_0] shadow-black/10 mb-6"
         onSubmit={handleSubmit}
       >
         <LanguageSwitcher
@@ -156,9 +163,9 @@ const AdminNewsForm = () => {
           />
         </label>
 
-        <label htmlFor="image">
+        <label htmlFor="image" className="block mt-6">
           <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
-            Фотографии
+            Главная фотография
           </span>
           <DropZone onFileSelect={handleFileSelect} />
           <div className="mt-4">
@@ -180,6 +187,40 @@ const AdminNewsForm = () => {
               </>
             )}
           </div>
+        </label>
+
+        <label htmlFor="youtube_url" className="block mt-6">
+          <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
+            Ссылка на видео YouTube
+          </span>
+          <FormInput
+            type="url"
+            name="youtube_url"
+            id="youtube_url"
+            placeholder="https://youtube.com/..."
+            additionalClass="mt-3"
+          />
+        </label>
+
+        <label htmlFor="images" className="block mt-6">
+          <span className="2xl:text-2xl xl:text-xl lg:text-base text-sm text-[#666666]">
+            Дополнительные фотографии
+          </span>
+          <AdditionalImagesDropZone
+            onAddFiles={(acceptedFiles) => setAdditionalImages(acceptedFiles)}
+          />
+          {additionalImages.length > 0 && (
+            <div className="flex flex-wrap gap-4 mt-4">
+              {additionalImages.map((file, idx) => (
+                <img
+                  key={idx}
+                  src={URL.createObjectURL(file)}
+                  alt="preview"
+                  className="w-32 h-32 object-cover rounded-lg"
+                />
+              ))}
+            </div>
+          )}
         </label>
 
         <div className="mt-6">
@@ -210,6 +251,7 @@ const AdminNewsForm = () => {
             onClick={() => {
               setPreviewImage(null);
               setTags([]);
+              setAdditionalImages([]);
             }}
             className={`2xl:py-4 xl:py-4 lg:py-3 py-2 2xl:px-7 xl:px-8 lg:px-4 px-3 2xl:text-2xl xl:text-xl lg:text-sm text-xs rounded-xl bg-[#999999] ${
               isCreating ? "" : "active:bg-[#5a5a5a]"

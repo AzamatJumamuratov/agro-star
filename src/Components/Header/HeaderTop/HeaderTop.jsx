@@ -6,10 +6,18 @@ import sign_out_icon from "../../../assets/sign_out.svg";
 import { useState } from "react";
 import CustomSideBar from "./Sidebar/CustomSideBar";
 import { useNavigate } from "react-router";
+import ConfirmLogoutModal from "../../Common/ConfirmLogoutModal"; // путь зависит от структуры
 
 const HeaderTop = () => {
   const [sidebarOpened, OpenSidebar] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <div
       className="bg-linear-to-r from-bg-start to-bg-end 
@@ -20,7 +28,7 @@ const HeaderTop = () => {
           <LogoComponent />
           <button
             onClick={() => OpenSidebar(!sidebarOpened)}
-            className="md:hidden h-"
+            className="md:hidden"
           >
             <img src={burger_icon} className="w-6 h-6" />
           </button>
@@ -28,13 +36,20 @@ const HeaderTop = () => {
           <SearchBar additionalClass={"hidden md:flex"} />
           <LanguageButtons additionalClass={"hidden md:flex"} />
           <button
-            onClick={() => navigate("/login")}
+            onClick={() => setShowModal(true)}
             className="md:block hidden bg-white/30 py-1 px-2.5 active:scale-110 duration-100 ease-in-out rounded-lg  text-white"
           >
             <img src={sign_out_icon} className="lg:w-5 lg:h-5  size-4" />
           </button>
         </div>
       </div>
+
+      {showModal && (
+        <ConfirmLogoutModal
+          onConfirm={handleLogout}
+          onCancel={() => setShowModal(false)}
+        />
+      )}
     </div>
   );
 };

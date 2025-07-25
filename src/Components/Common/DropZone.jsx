@@ -1,24 +1,26 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-
+import ErrorMessage from "../../Components/Auth/ErrorMessage";
 const DropZone = ({ onFileSelect }) => {
+  const [error, setError] = useState("");
+
   const onDrop = useCallback(
     (acceptedFiles, fileRejections) => {
+      setError("");
+
       if (fileRejections.length > 0) {
-        alert("Только изображения (jpg, png, jpeg, webp) разрешены!");
+        setError("Только изображения (jpg, png, jpeg, webp) разрешены!");
         return;
       }
 
       const file = acceptedFiles[0];
       if (file) {
-        // const previewUrl = URL.createObjectURL(file);
-        // setPreview(previewUrl);
         onFileSelect(file);
       }
-      // Do something with the files
     },
     [onFileSelect]
   );
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
@@ -29,6 +31,7 @@ const DropZone = ({ onFileSelect }) => {
     },
     maxFiles: 1,
   });
+
   return (
     <>
       <div
@@ -38,16 +41,12 @@ const DropZone = ({ onFileSelect }) => {
         })}
       >
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p className="z-40 2xl:text-largerN xl:text-almostN text-[#759933]">
-            Поместите здесь!
-          </p>
-        ) : (
-          <p className="z-40 2xl:text-largerN xl:text-almostN text-[#759933]">
-            Загрузить фотографию
-          </p>
-        )}
+        <p className="z-40 2xl:text-largerN xl:text-almostN text-[#759933]">
+          {isDragActive ? "Поместите здесь!" : "Загрузить фотографию"}
+        </p>
       </div>
+
+      {error && <ErrorMessage message={error} additionalClass={"mt-4"} />}
     </>
   );
 };

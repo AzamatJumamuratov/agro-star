@@ -5,7 +5,6 @@ import { createPortal } from "react-dom";
 import UpdateValuesModal from "../Admin/UpdateValuesModal";
 import { useState } from "react";
 import FetchData from "../../Data Fetching/FetchData";
-import ConvertToJSonFormData from "../../Utils/FromDataToJson";
 
 const AdminModifyCard = ({
   id,
@@ -13,9 +12,12 @@ const AdminModifyCard = ({
   image,
   type,
   modifyPath,
+  images,
   editable = true,
   deletable = true,
   notifyFn,
+  isNews = false,
+  youtubeUrl = null,
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isChanging, SetIsChanging] = useState(false);
@@ -64,6 +66,9 @@ const AdminModifyCard = ({
             image={type === "news" || type === "projects" ? image : "none"}
             submitFN={OnUpdate}
             closeFN={() => SetIsChanging(false)}
+            isNews={isNews}
+            images={images}
+            youtubeUrl={youtubeUrl}
           />,
           document.body
         )}
@@ -101,11 +106,28 @@ const AdminModifyCard = ({
     const token = localStorage.getItem("token");
     if (!token) return redirect("/login");
 
-    const formdata = new FormData();
-    formdata.append("translations", JSON.stringify(body.translations));
+    const formData = new FormData();
+    formData.append("translations", JSON.stringify(body.translations));
 
     if (typeKeys[2] && body.image !== "unchanged" && body.image !== "none") {
-      formdata.append(typeKeys[2], body.image);
+      formData.append(typeKeys[2], body.image);
+    }
+
+    console.log(body);
+
+    if (isNews) {
+      if (body.youtube_url) {
+        formData.append("youtube_url", body.youtube_url);
+      }
+      if (body.images.length !== 0)
+        body.images.forEach((file, i) => {
+          formData.append(`images[${i}][image]`, file);
+          formData.append(`images[${i}][caption]`, "");
+        });
+
+      if (body.deleted_images.length !== 0) {
+        formData.append("deleted_images", JSON.stringify(body.deleted_images));
+      }
     }
 
     const headers = {
@@ -114,7 +136,7 @@ const AdminModifyCard = ({
 
     let bodyData;
     if (type === "news" || type === "projects") {
-      bodyData = formdata;
+      bodyData = formData;
     } else {
       headers["Content-Type"] = "application/json";
       bodyData = JSON.stringify(body);

@@ -10,6 +10,7 @@ const AdminNews = () => {
   const loaderData = useLoaderData();
   const [searchData, setSearchData] = useState("");
   const [notifyResult, setNotifyResult] = useState(null);
+
   const [activeLanguage, setActiveLanguage] = useState("ru");
 
   const filteredItems = loaderData.results.filter((item) => {
@@ -55,8 +56,10 @@ const AdminNews = () => {
               translations={item.translations}
               published_at={item.published_at}
               image={item.image}
+              images={item.images}
               views={item.views}
               notifyFn={setNotifyResult}
+              youtubeUrl={item.youtube_url}
             />
           );
         })}

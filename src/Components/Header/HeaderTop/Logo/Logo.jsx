@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import LogoIcon from "../../../../assets/logo.svg";
+import LogoIcon from "../../../../assets/Beruniy - Agrostar.png";
 
 const Logo = () => {
   return (

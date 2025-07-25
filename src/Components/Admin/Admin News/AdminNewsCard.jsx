@@ -9,7 +9,9 @@ const AdminNewsCard = ({
   title,
   content,
   translations,
+  youtubeUrl = null,
   image,
+  images,
   published_at,
   views,
   notifyFn,
@@ -47,7 +49,10 @@ const AdminNewsCard = ({
           translations={translations}
           image={image}
           modifyPath={"news"}
+          images={images}
           notifyFn={notifyFn}
+          isNews={true}
+          youtubeUrl={youtubeUrl}
         />
       </div>
     </div>

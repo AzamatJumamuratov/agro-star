@@ -15,7 +15,7 @@ const Admin = () => {
     <div className="min-h-screen">
       <div className="h-screen flex">
         <SidebarContext.Provider value={[openSideBar, setOpenSideBar]}>
-          <div className="xl:w-[320px] md:w-[240px] w-[180px] max-[500px]:w-0">
+          <div className="xl:w-[320px] md:w-[280px] w-[180px] max-[500px]:w-0">
             <Sidebar />
           </div>
           <div className="flex-1 flex flex-col">
