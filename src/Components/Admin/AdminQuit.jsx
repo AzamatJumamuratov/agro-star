@@ -14,7 +14,7 @@ const AdminQuit = () => {
 
   return (
     <>
-      <div>
+      <div className="mt-3">
         <button
           onClick={() => setShowModal(true)}
           className="bg-primaryGreen p-2 rounded-lg"
