@@ -29,7 +29,7 @@ const CustomSideBar = ({ opened, OpenSidebarFn }) => {
         } fixed w-full left-0  top-0 duration-300 ease-in-out h-full bg-black/30 z-30`}
       ></div>
       <div
-        className={`fixed w-3/4 top-0 z-40 h-full ${
+        className={`fixed min-[350px]:w-3/4 w-full top-0 z-40 h-full ${
           opened ? "right-0" : "-right-full"
         } duration-300 ease-in-out bg-primary p-6 overflow-y-scroll`}
       >

@@ -52,7 +52,7 @@ const LastNews = () => {
                 content={truncateString(data.content, 200)}
                 image={item.image}
                 date={item.published_at}
-                additionalClass={"max-md:w-100 max-[28rem]:w-80"}
+                additionalClass={"max-md:w-100 max-[28rem]:w-auto"}
               />
             );
           })
