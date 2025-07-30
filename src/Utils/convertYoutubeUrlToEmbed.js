@@ -1,15 +1,13 @@
 function convertYoutubeUrlToEmbed(url) {
-  try {
-    const videoIdMatch =
-      url.match(/(?:\/watch\?v=|\/live\/)([\w-]+)/) ||
-      url.match(/youtu\.be\/([\w-]+)/);
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|live\/|shorts\/)|youtu\.be\/)([\w-]+)/
+  );
 
-    return videoIdMatch
-      ? `https://www.youtube.com/embed/${videoIdMatch[1]}`
-      : null;
-  } catch {
-    return null;
+  if (!match) {
+    throw new Error(`Неподдерживаемый формат YouTube ссылки: ${url}`);
   }
+
+  return `https://www.youtube.com/embed/${match[1]}`;
 }
 
 export default convertYoutubeUrlToEmbed;
